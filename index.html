@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IGCSE Hindi 0549 — The Complete Study Companion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F2E6; --paper2:#EFE8D7; --card:#FBF8EF;
+  --ink:#211D15; --ink2:#6E6656; --ink3:#98917F;
+  --line:rgba(33,29,21,.2); --hair:rgba(33,29,21,.1);
+  --acc:#BC3A17; --acc-deep:#93300F; --acc-soft:rgba(188,58,23,.09);
+  --green:#2E6B4A; --green-soft:rgba(46,107,74,.09); --gold:#A07E22; --gold-soft:rgba(160,126,34,.1);
+  --f-ed:'Fraunces',serif; --f-ui:'Archivo',sans-serif;
+  --fd:'Noto Serif Devanagari',serif; --fdb:'Noto Sans Devanagari',sans-serif;
+  --sh:0 1px 2px rgba(33,29,21,.05),0 10px 30px -14px rgba(33,29,21,.22);
+}
+[data-theme="dark"]{
+  --paper:#171310; --paper2:#201B15; --card:#211B14;
+  --ink:#EDE4D2; --ink2:#A79D89; --ink3:#7A715F;
+  --line:rgba(237,228,210,.22); --hair:rgba(237,228,210,.1);
+  --acc:#E5714A; --acc-deep:#F08A66; --acc-soft:rgba(229,113,74,.12);
+  --green:#7FBF9A; --green-soft:rgba(127,191,154,.12); --gold:#D4B45C; --gold-soft:rgba(212,180,92,.12);
+  --sh:0 1px 2px rgba(0,0,0,.3),0 12px 34px -14px rgba(0,0,0,.55);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-ui);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+::selection{background:var(--acc);color:#fff}
+button{font:inherit;cursor:pointer;background:none;border:none;color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:2px}
+.hi{font-family:var(--fd)} .hib{font-family:var(--fdb)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(18px,4.5vw,60px)}
+.muted{color:var(--ink2)}
+
+/* header + tabs */
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hd-in{display:flex;align-items:center;justify-content:space-between;height:60px;gap:14px}
+.brand{display:flex;align-items:center;gap:10px;flex:none}
+.brand-mark{width:34px;height:34px;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-family:var(--fd);font-weight:700;font-size:1.1rem;border-radius:8px}
+[data-theme="dark"] .brand-mark{background:var(--acc);color:#171310}
+.brand b{font-family:var(--f-ed);font-weight:600;font-size:.98rem;white-space:nowrap}
+.brand b span{color:var(--acc)}
+nav.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{font-size:.8rem;font-weight:600;padding:8px 11px;border-radius:9px;color:var(--ink2);transition:all .15s;white-space:nowrap;flex:none}
+nav.tabs button:hover{color:var(--ink);background:var(--paper2)}
+nav.tabs button.on{color:var(--paper);background:var(--ink)}
+.hd-actions{display:flex;gap:8px;flex:none}
+.icon-btn{width:36px;height:36px;border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;color:var(--ink2);transition:all .15s}
+.icon-btn:hover{color:var(--ink);border-color:var(--ink)}
+.icon-btn svg{width:16px;height:16px}
+.kbd{font-size:.62rem;border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink3)}
+.burger{display:none}
+@media(max-width:1000px){
+  nav.tabs{position:fixed;inset:0;background:var(--paper);z-index:60;flex-direction:column;justify-content:center;align-items:center;gap:6px;opacity:0;pointer-events:none;transition:opacity .25s;overflow-y:auto}
+  nav.tabs button{font-family:var(--f-ed);font-size:1.35rem;font-weight:600;padding:9px 22px}
+  header.menu-open nav.tabs{opacity:1;pointer-events:auto}
+  .burger{display:grid}
+  .m-close{display:grid !important;position:fixed;top:12px;right:14px;z-index:70}
+}
+.m-close{display:none}
+
+/* palette */
+.pal{position:fixed;inset:0;z-index:80;display:none;align-items:flex-start;justify-content:center;padding:12vh 20px 20px;background:rgba(20,16,10,.45);backdrop-filter:blur(3px)}
+.pal.open{display:flex}
+.pal-box{width:100%;max-width:600px;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--sh);animation:pop .18s ease}
+@keyframes pop{from{transform:translateY(10px) scale(.98);opacity:0}to{transform:none;opacity:1}}
+.pal-in{display:flex;gap:10px;align-items:center;padding:16px 18px;border-bottom:1px solid var(--hair)}
+.pal-in svg{width:17px;height:17px;color:var(--ink3);flex:none}
+.pal-in input{flex:1;border:none;background:none;font:inherit;font-size:1.02rem;color:var(--ink);outline:none}
+.pal-res{max-height:52vh;overflow-y:auto}
+.pal-res .pr{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:11px 18px;border-bottom:1px solid var(--hair);transition:background .1s}
+.pal-res .pr:hover,.pal-res .pr.sel{background:var(--acc-soft)}
+.pr .pw{font-family:var(--fd);font-weight:600;font-size:1.04rem;white-space:nowrap}
+.pr .pm{font-size:.82rem;color:var(--ink2);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pr .pc{font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--acc-deep);border:1px solid var(--line);padding:2px 8px;border-radius:99px;flex:none}
+.pal-empty{padding:28px 18px;color:var(--ink2);font-size:.92rem;text-align:center}
+
+/* tab sections */
+main{padding-top:60px}
+.tabsec{display:none;padding:clamp(40px,6vw,80px) 0 80px;animation:fadein .3s ease}
+.tabsec.on{display:block}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.sec-head{margin-bottom:clamp(28px,4vw,46px);max-width:800px}
+.sec-num{display:inline-flex;align-items:center;gap:14px;font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--acc-deep);margin-bottom:14px}
+.sec-num::after{content:"";width:44px;height:1px;background:var(--acc)}
+.sec-head h2{font-family:var(--f-ed);font-weight:600;font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.12}
+.sec-head h2 .hi{font-weight:700}
+.sec-head .sub{margin-top:12px;color:var(--ink2);font-size:1rem;line-height:1.7;max-width:660px}
+.sub-label{display:flex;align-items:baseline;gap:14px;font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink2);margin:50px 0 6px}
+.sub-label:first-of-type{margin-top:0}
+.sub-label::after{content:"";flex:1;height:1px;background:var(--hair)}
+
+/* home */
+.hero{display:grid;grid-template-columns:1.2fr .9fr;gap:clamp(30px,5vw,70px);align-items:center;padding:clamp(24px,4vw,60px) 0}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--acc-deep);margin-bottom:20px}
+.eyebrow::before{content:"";width:30px;height:2px;background:var(--acc)}
+h1{font-family:var(--f-ed);font-weight:600;font-size:clamp(2.4rem,5.6vw,4.2rem);line-height:1.05;letter-spacing:-.015em}
+h1 em{font-style:italic;color:var(--acc)}
+.hero-sub{margin-top:20px;max-width:520px;color:var(--ink2);font-size:1.02rem;line-height:1.7}
+.hero-sub .hi{font-weight:600;color:var(--ink)}
+.cta-row{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 22px;border-radius:12px;font-weight:600;font-size:.93rem;border:1.5px solid var(--ink);transition:all .18s}
+.btn svg{width:15px;height:15px}
+.btn-solid{background:var(--ink);color:var(--paper)}
+.btn-solid:hover{background:var(--acc);border-color:var(--acc);transform:translateY(-1px)}
+.btn-ghost:hover{border-color:var(--acc);color:var(--acc-deep)}
+.btn-acc{background:var(--acc);border-color:var(--acc);color:#fff}
+.btn-acc:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-green{border-color:var(--green);color:var(--green)}
+.btn-green:hover{background:var(--green);color:#fff}
+.wotd{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:var(--sh);position:relative}
+.wotd::before{content:"";position:absolute;inset:8px;border:1px dashed var(--hair);border-radius:14px;pointer-events:none}
+.wotd-top{display:flex;justify-content:space-between;align-items:center;font-size:.66rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px}
+.wotd-word{font-family:var(--fd);font-weight:700;font-size:clamp(2.4rem,4.2vw,3.3rem);line-height:1.15}
+.wotd-gloss{margin-top:6px;color:var(--ink2);font-size:.94rem}
+.wotd-gloss b{color:var(--ink)}
+.wotd-ex{margin-top:14px;padding:11px 15px;border-left:3px solid var(--acc);background:var(--acc-soft);border-radius:0 10px 10px 0;font-family:var(--fdb);font-size:.94rem;line-height:1.8}
+.wotd-actions{display:flex;gap:10px;margin-top:16px}
+.wotd-actions .btn{padding:9px 15px;font-size:.84rem;border-radius:10px}
+.statrow{border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr)}
+.statrow>div{padding:18px 20px;border-right:1px solid var(--hair)}
+.statrow>div:last-child{border-right:none}
+.statrow b{display:block;font-family:var(--f-ed);font-weight:600;font-size:1.6rem}
+.statrow span{font-size:.76rem;color:var(--ink2)}
+.home-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:44px}
+.hcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;text-align:left;transition:all .15s}
+.hcard:hover{border-color:var(--acc);transform:translateY(-3px)}
+.hcard .hn{font-size:.64rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acc-deep)}
+.hcard b{display:block;font-family:var(--f-ed);font-weight:600;font-size:1.25rem;margin:6px 0 4px}
+.hcard p{font-size:.82rem;color:var(--ink2);line-height:1.55}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.statrow{grid-template-columns:1fr 1fr 1fr}.statrow>div{border-bottom:1px solid var(--hair)}}
+@media(max-width:620px){.statrow{grid-template-columns:1fr 1fr}}
+
+/* vocab */
+.v-tools{display:flex;gap:12px;align-items:center;margin-bottom:32px;flex-wrap:wrap}
+.search{flex:1 1 300px;max-width:440px;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 16px;transition:border-color .15s}
+.search:focus-within{border-color:var(--ink)}
+.search svg{width:16px;height:16px;color:var(--ink3);flex:none}
+.search input{border:none;background:none;font:inherit;color:var(--ink);width:100%;outline:none}
+.search input::placeholder{color:var(--ink3)}
+.seg-chips{display:flex;gap:8px;flex-wrap:wrap}
+.seg-chips button{font-size:.8rem;font-weight:600;padding:8px 14px;border:1px solid var(--line);border-radius:99px;color:var(--ink2);transition:all .15s}
+.seg-chips button:hover{border-color:var(--ink);color:var(--ink)}
+.seg-chips button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.v-progress-pill{margin-left:auto;font-size:.85rem;color:var(--ink2);display:flex;align-items:center;gap:10px}
+.v-progress-pill b{color:var(--ink);font-family:var(--f-ed);font-size:1.05rem}
+.pbar{width:90px;height:5px;border-radius:99px;background:var(--hair);overflow:hidden}
+.pbar i{display:block;height:100%;background:var(--acc);border-radius:99px;transition:width .4s}
+.vocab-body{display:grid;grid-template-columns:280px 1fr;gap:clamp(26px,4vw,56px)}
+.theme-list{list-style:none;align-self:start;position:sticky;top:76px;display:flex;flex-direction:column;gap:2px;max-height:calc(100vh - 96px);overflow-y:auto;padding-right:4px}
+.theme-list li{display:block;padding:1px}
+.theme-list button{width:100%;display:flex;align-items:center;gap:10px;text-align:left;padding:8px 12px;border-radius:12px;transition:background .12s;color:var(--ink2)}
+.theme-list button:hover{background:var(--paper2);color:var(--ink)}
+.theme-list li.active button{background:var(--ink);color:var(--paper)}
+.theme-list .tn{font-size:.66rem;font-weight:600;width:24px;flex:none;color:inherit;opacity:.6}
+.theme-list .tname{flex:1;font-weight:500;font-size:.88rem;line-height:1.3}
+.theme-list li.active .tname{font-weight:600}
+.theme-list .tprog{font-size:.64rem;opacity:.7;font-weight:600}
+.theme-list .tdot{width:7px;height:7px;border-radius:50%;background:var(--hair);flex:none}
+.theme-list li.active .tdot{background:var(--acc)}
+.theme-list li.done .tdot{background:var(--green)}
+.theme-head h3{font-family:var(--f-ed);font-weight:600;font-size:1.6rem}
+.theme-head h3 .hi{font-weight:700}
+.theme-head p{color:var(--ink2);font-size:.9rem;margin-top:4px;max-width:560px}
+.ventry{display:grid;grid-template-columns:44px 1fr auto;gap:4px 18px;padding:20px 0;border-bottom:1px solid var(--hair)}
+.ventry .no{font-family:var(--f-ed);font-size:.95rem;color:var(--ink3);padding-top:8px}
+.ventry.learned .no{color:var(--green)}
+.vmain{min-width:0}
+.w-row{display:flex;align-items:baseline;gap:11px;flex-wrap:wrap}
+.w-row .hw{font-family:var(--fd);font-weight:700;font-size:1.4rem;line-height:1.25}
+.ventry.learned .hw{color:var(--green)}
+.w-row .gen{font-size:.62rem;font-weight:600;letter-spacing:.06em;color:var(--ink3);border:1px solid var(--line);border-radius:99px;padding:2px 9px;text-transform:uppercase}
+.w-row .glo{font-family:var(--f-ed);font-style:italic;color:var(--ink2);font-size:.94rem}
+.w-row .adv{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);border-radius:99px;padding:2px 9px;background:var(--gold-soft)}
+.vmean{margin-top:3px;font-family:var(--fdb);font-size:.95rem;line-height:1.7}
+.vex{margin-top:8px;padding:7px 13px;border-left:2px solid var(--acc);background:var(--acc-soft);border-radius:0 8px 8px 0;font-family:var(--fdb);font-size:.9rem;line-height:1.75}
+.vside{display:flex;flex-direction:column;gap:8px;padding-top:6px}
+.side-btn{width:36px;height:36px;border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;color:var(--ink2);transition:all .15s;flex:none}
+.side-btn:hover{border-color:var(--acc);color:var(--acc-deep)}
+.side-btn svg{width:15px;height:15px}
+.side-btn.starred{border-color:var(--gold);color:var(--gold);background:var(--gold-soft)}
+.side-btn.starred svg{fill:currentColor}
+@media(max-width:900px){
+  .vocab-body{grid-template-columns:1fr}
+  .theme-list{position:static;flex-direction:row;overflow-x:auto;gap:8px;padding-bottom:12px;margin-bottom:8px;max-height:none}
+  .theme-list button{width:auto;white-space:nowrap;padding:8px 13px;border:1px solid var(--line)}
+  .theme-list .tn,.theme-list .tdot{display:none}
+  .ventry{grid-template-columns:1fr auto}
+  .ventry .no{display:none}
+  .vside{flex-direction:row}
+}
+
+/* flashcards */
+.fc-setup{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:30px}
+.select{appearance:none;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 40px 11px 16px;font:inherit;font-size:.9rem;font-weight:500;color:var(--ink);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%236E6656' stroke-width='2'%3E%3Cpath d='m2 4 4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;cursor:pointer}
+.fc-stage{max-width:560px;margin:0 auto}
+.fc-meta{display:flex;justify-content:space-between;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px}
+.fc{perspective:1400px;height:330px;cursor:pointer}
+.fc-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,.1,.2,1)}
+.fc.flipped .fc-inner{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--card);border:1.5px solid var(--line);border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:34px;box-shadow:var(--sh)}
+.fc-face .fcl{font-size:.64rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px}
+.fc-front .fcw{font-family:var(--fd);font-weight:700;font-size:clamp(2.1rem,6vw,3rem);line-height:1.2}
+.fc-front .fcg{margin-top:10px;color:var(--ink2);font-size:.9rem}
+.fc-back{transform:rotateY(180deg);border-color:var(--acc);background:linear-gradient(160deg,var(--card),var(--acc-soft))}
+.fc-back .fcw{font-family:var(--fd);font-weight:700;font-size:1.7rem}
+.fc-back .fcm{margin-top:8px;font-family:var(--fdb);font-size:1rem;line-height:1.7}
+.fc-back .fcm i{font-family:var(--f-ed);font-style:italic;color:var(--ink2);display:block;font-size:.9rem}
+.fc-back .fce{margin-top:16px;padding:10px 16px;border-left:3px solid var(--acc);font-family:var(--fdb);font-size:.9rem;line-height:1.75;background:var(--card);border-radius:0 8px 8px 0}
+.fc-actions{display:flex;gap:12px;margin-top:22px;justify-content:center;flex-wrap:wrap}
+.fc-actions .btn{min-width:130px;justify-content:center}
+.fc-tip{text-align:center;color:var(--ink3);font-size:.8rem;margin-top:16px}
+.fc-summary{text-align:center;padding:50px 0 20px}
+.fc-summary .big{font-family:var(--f-ed);font-weight:600;font-size:4rem;line-height:1}
+.fc-summary .big small{font-size:1.6rem;color:var(--ink2)}
+
+/* idioms */
+.idiom{display:grid;grid-template-columns:52px 1fr;gap:18px;padding:28px 0;border-bottom:1px solid var(--hair)}
+.idiom .no{font-family:var(--f-ed);font-size:1rem;color:var(--ink3);padding-top:9px}
+.idiom h3{font-family:var(--fd);font-weight:700;font-size:clamp(1.25rem,2.4vw,1.7rem);line-height:1.35}
+.tagchip{display:inline-block;vertical-align:6px;margin-left:12px;font-family:var(--f-ui);font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc-deep);border:1px solid var(--acc);border-radius:99px;padding:2px 11px}
+.mean-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px}
+.mean-grid .cell{border-top:1px solid var(--hair);padding-top:10px}
+.mean-grid .cell.fig{border-top:2px solid var(--acc)}
+.mean-grid .cell b{display:block;font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
+.mean-grid .cell.fig b{color:var(--acc-deep)}
+.mean-grid p{font-family:var(--fdb);font-size:.93rem;line-height:1.7}
+.idiom .vex{margin-top:16px}
+@media(max-width:700px){.idiom{grid-template-columns:1fr}.idiom .no{display:none}.mean-grid{grid-template-columns:1fr}}
+
+/* phrases */
+.ph-cats{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:30px}
+.ph-cats button{font-size:.84rem;font-weight:500;padding:9px 16px;border:1px solid var(--line);border-radius:99px;color:var(--ink2);transition:all .15s}
+.ph-cats button:hover{border-color:var(--ink);color:var(--ink)}
+.ph-cats button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.ph-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.ph-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;transition:all .15s}
+.ph-card:hover{border-color:var(--acc);transform:translateY(-2px)}
+.ph-card .pwh{font-family:var(--fd);font-weight:700;font-size:1.2rem;line-height:1.35}
+.ph-card .pe{font-family:var(--f-ed);font-style:italic;color:var(--ink2);font-size:.86rem;margin-top:2px}
+.ph-card .pu{font-family:var(--fdb);font-size:.88rem;color:var(--ink2);margin-top:12px;border-left:2px solid var(--acc);padding-left:12px;line-height:1.75}
+.ph-card .ph-act{margin-top:14px;display:flex;gap:8px}
+
+/* word bank */
+.ledger{border-top:1px solid var(--line)}
+.lrow{display:grid;grid-template-columns:1fr 64px 1.3fr;gap:18px;align-items:center;padding:18px 10px;border-bottom:1px solid var(--hair);transition:background .12s;border-radius:10px}
+.lrow:hover{background:var(--acc-soft)}
+.lrow .basic{color:var(--ink2);font-family:var(--fdb);font-size:1rem}
+.lrow .basic::after{content:"basic";display:block;font-family:var(--f-ui);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+.lrow .arrow{color:var(--acc);display:flex;justify-content:center}
+.lrow .up{font-family:var(--fd);font-weight:700;font-size:1.35rem;line-height:1.25}
+.lrow .up-note{display:block;font-family:var(--f-ui);font-size:.76rem;font-weight:400;color:var(--ink2);margin-top:2px;line-height:1.5}
+@media(max-width:700px){.lrow{grid-template-columns:1fr;gap:6px;padding:16px 6px}.lrow .arrow{justify-content:flex-start}.lrow .arrow svg{transform:rotate(90deg)}}
+.gloss{columns:2;column-gap:clamp(28px,4vw,56px);margin-top:8px}
+.gitem{break-inside:avoid;padding:18px 0;border-bottom:1px solid var(--hair)}
+.gitem b{font-family:var(--fd);font-weight:700;font-size:1.25rem}
+.gitem .gu{margin-top:6px;font-family:var(--fdb);font-size:.86rem;color:var(--ink2);line-height:1.7}
+.gitem .gu::before{content:"↳ ";color:var(--acc);font-weight:700}
+@media(max-width:700px){.gloss{columns:1}}
+.lab{margin-top:50px;border:1.5px solid var(--ink);border-radius:20px;padding:clamp(22px,4vw,40px);background:var(--card)}
+.lab .sub-label{margin-top:0}
+.lab-s{font-family:var(--fdb);font-size:1.2rem;margin:20px 0 6px;line-height:1.8}
+.pill{display:inline;border-bottom:2px solid var(--acc);color:var(--acc-deep);cursor:pointer;padding:0 3px;font-weight:600;border-radius:2px}
+.pill:hover{background:var(--acc-soft)}
+.reg{font-size:.78rem;color:var(--ink2);display:flex;align-items:center;gap:8px}
+.reg i{width:8px;height:8px;border-radius:50%;background:var(--ink3);flex:none}
+.reg i.l1{background:var(--acc)}.reg i.l2{background:var(--green)}
+
+/* grammar */
+.g-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+.gcard{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.gcard-head{width:100%;display:flex;align-items:center;gap:14px;padding:20px;text-align:left}
+.gcard-head .gi{width:40px;height:40px;border-radius:12px;background:var(--acc-soft);color:var(--acc-deep);display:grid;place-items:center;font-family:var(--fd);font-weight:700;font-size:1.05rem;flex:none}
+.gcard-head b{font-size:.98rem;font-weight:600;line-height:1.3}
+.gcard-head small{display:block;font-size:.76rem;color:var(--ink2);font-weight:400}
+.gcard-head .chev{margin-left:auto;color:var(--ink3);transition:transform .25s;flex:none}
+.gcard.open .chev{transform:rotate(180deg)}
+.gcard-body{max-height:0;overflow:hidden;transition:max-height .4s ease;padding:0 22px}
+.gcard.open .gcard-body{max-height:900px;padding-bottom:22px}
+.gtab{width:100%;border-collapse:collapse;font-size:.88rem}
+.gtab th{text-align:left;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);padding:8px 10px;border-bottom:1px solid var(--line)}
+.gtab td{padding:9px 10px;border-bottom:1px solid var(--hair);vertical-align:top}
+.gtab td:first-child{font-family:var(--fd);font-weight:600;white-space:nowrap}
+.gtab td:not(:first-child){font-family:var(--fdb)}
+.gnote{font-size:.8rem;color:var(--ink2);margin-top:12px;line-height:1.6}
+.gnote b{color:var(--acc-deep)}
+ul.glist{list-style:none}
+ul.glist li{display:grid;grid-template-columns:130px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--hair);font-size:.9rem}
+ul.glist li b{font-family:var(--fd);font-weight:600}
+ul.glist li span{font-family:var(--fdb);color:var(--ink2)}
+@media(max-width:520px){ul.glist li{grid-template-columns:1fr;gap:2px}}
+
+/* writing */
+.fmt-tabs{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:32px}
+.fmt-tabs button{font-size:.86rem;font-weight:500;padding:9px 17px;border:1px solid var(--line);border-radius:99px;color:var(--ink2);transition:all .15s}
+.fmt-tabs button:hover{border-color:var(--ink);color:var(--ink)}
+.fmt-tabs button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.fmt-top{margin-bottom:30px;padding-left:18px;border-left:4px solid var(--acc)}
+.fmt-top h3{font-family:var(--f-ed);font-weight:600;font-size:clamp(1.4rem,2.8vw,2rem)}
+.fmt-top h3 .hi{font-weight:700}
+.fmt-top p{color:var(--ink2);margin-top:5px;font-size:.93rem}
+.wgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,4vw,60px)}
+@media(max-width:860px){.wgrid{grid-template-columns:1fr}}
+.steps{list-style:none}
+.steps li{display:grid;grid-template-columns:38px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--hair)}
+.steps .sn{font-family:var(--f-ed);color:var(--acc-deep);font-size:.92rem;padding-top:2px}
+.steps b{font-weight:600;font-size:.93rem}
+.steps p{font-size:.85rem;color:var(--ink2);line-height:1.6}
+.phrases{list-style:none}
+.phrases li{padding:14px 0;border-bottom:1px solid var(--hair)}
+.phrases .ph{font-family:var(--fdb);font-size:1rem;font-weight:500}
+.phrases .pn{font-size:.78rem;color:var(--ink2);margin-top:3px;line-height:1.5}
+.manuscript{border:1px solid var(--line);background:var(--card);border-radius:20px;padding:clamp(24px,4vw,44px);font-family:var(--fdb);font-size:1rem;line-height:1.9;box-shadow:var(--sh)}
+.manuscript p{margin-bottom:16px}
+.manuscript p:last-child{margin-bottom:0}
+.seg{border-radius:3px;transition:background .2s;padding:1px 2px;margin:-1px -2px}
+.seg sup{color:var(--acc-deep);font-weight:700;font-size:.68em;margin-left:2px}
+.seg.lit{background:var(--acc-soft)}
+.notes{list-style:none;margin-top:20px;columns:2;column-gap:40px}
+.notes li{break-inside:avoid;display:grid;grid-template-columns:30px 1fr;gap:10px;padding:11px 0;border-bottom:1px solid var(--hair);font-size:.84rem;color:var(--ink2);line-height:1.55}
+.notes li:hover{color:var(--ink)}
+.notes li .nn{font-family:var(--f-ed);color:var(--acc-deep);font-weight:600}
+@media(max-width:700px){.notes{columns:1}}
+
+/* reading */
+.passages{display:grid;gap:28px}
+.passage{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.pas-head{padding:20px 28px;border-bottom:1px solid var(--hair);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.pas-head h3{font-family:var(--f-ed);font-weight:600;font-size:1.35rem}
+.pas-meta{display:flex;gap:8px}
+.pas-meta span{font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2);border:1px solid var(--line);border-radius:99px;padding:3px 11px}
+.pas-body{padding:24px 28px;font-family:var(--fdb);font-size:1rem;line-height:2}
+.pas-body p{margin-bottom:14px}
+.pas-body p:last-child{margin-bottom:0}
+.pas-qs{padding:6px 28px 26px;border-top:1px dashed var(--hair)}
+.pq{padding:18px 0;border-bottom:1px solid var(--hair)}
+.pq:last-child{border-bottom:none}
+.pq h4{font-size:.93rem;font-weight:600;line-height:1.5}
+.pq-opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:9px;margin-top:12px}
+.pq-opts button{text-align:left;padding:11px 15px;border:1px solid var(--line);border-radius:11px;font-family:var(--fdb);font-size:.92rem;transition:all .12s;display:flex;gap:10px;align-items:baseline}
+.pq-opts button:hover:not(:disabled){border-color:var(--ink)}
+.pq-opts button:disabled{cursor:default;opacity:.5}
+.pq-opts button.right{opacity:1;border-color:var(--green);background:var(--green-soft);color:var(--green);font-weight:600}
+.pq-opts button.wrong{opacity:1;border-color:var(--acc);background:var(--acc-soft)}
+.pq-why{margin-top:10px;font-size:.82rem;color:var(--ink2);display:none}
+.pq-why.show{display:block}
+.pq-why b{color:var(--green)}
+
+/* quiz */
+.quiz-shell{max-width:680px;margin:0 auto;background:var(--card);border:1.5px solid var(--ink);border-radius:22px;overflow:hidden;box-shadow:var(--sh)}
+.qbar{height:6px;background:var(--hair)}
+.qbar i{display:block;height:100%;background:var(--acc);width:0;transition:width .35s}
+.qbody{padding:clamp(22px,4vw,40px)}
+.qmeta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:18px}
+.qmeta .cat{color:var(--acc-deep)}
+.qprompt{font-family:var(--f-ed);font-weight:600;font-size:clamp(1.15rem,2.6vw,1.55rem);line-height:1.45}
+.qprompt .hi{font-weight:700}
+.qprompt .blank{display:inline-block;min-width:110px;border-bottom:2px solid var(--acc);margin:0 5px;color:var(--acc-deep);text-align:center}
+.opts{list-style:none;margin-top:22px;display:grid;gap:10px}
+.opts button{width:100%;text-align:left;display:flex;gap:14px;align-items:baseline;border:1px solid var(--line);border-radius:13px;padding:13px 17px;font-family:var(--fdb);font-size:1rem;transition:all .12s}
+.opts button .k{font-family:var(--f-ui);font-size:.68rem;font-weight:600;color:var(--ink3);border:1px solid var(--hair);border-radius:6px;padding:2px 7px;flex:none}
+.opts button:hover:not(:disabled){border-color:var(--ink);transform:translateX(3px)}
+.opts button:disabled{cursor:default;opacity:.4}
+.opts button.right{opacity:1;border-color:var(--green);background:var(--green-soft)}
+.opts button.right .k{border-color:var(--green);color:var(--green)}
+.opts button.wrong{opacity:1;border-color:var(--acc);background:var(--acc-soft)}
+.qfeed{margin-top:20px;display:flex;gap:12px;align-items:flex-start;padding:14px 17px;border-left:3px solid var(--green);background:var(--green-soft);border-radius:0 12px 12px 0;font-size:.9rem;line-height:1.6}
+.qfeed.bad{border-left-color:var(--acc);background:var(--acc-soft)}
+.qfeed svg{width:18px;height:18px;flex:none;margin-top:2px;color:var(--green)}
+.qfeed.bad svg{color:var(--acc)}
+.qnext-row{display:flex;justify-content:flex-end;margin-top:22px}
+.q-intro h3{font-family:var(--f-ed);font-weight:600;font-size:1.7rem;margin-bottom:10px}
+.q-intro p{color:var(--ink2);max-width:520px;line-height:1.7}
+.q-best{margin-top:18px;display:inline-flex;gap:10px;align-items:center;font-size:.84rem;color:var(--ink2);background:var(--paper2);border-radius:12px;padding:9px 15px}
+.q-best b{font-family:var(--f-ed);color:var(--ink)}
+.q-intro .btn{margin-top:24px}
+.mcq-config{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;background:var(--paper2);border-radius:16px;padding:22px;margin-bottom:28px;max-width:820px}
+.mcq-config label{display:block;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);margin-bottom:8px}
+.mcq-config .select{width:100%}
+.q-end{text-align:center}
+.q-end .score{font-family:var(--f-ed);font-weight:600;font-size:4.2rem;line-height:1;color:var(--acc)}
+.q-end .score small{font-size:1.5rem;color:var(--ink2)}
+.q-end .timechip{font-size:.8rem;color:var(--ink2);margin-top:8px}
+.q-end .verdict{margin:14px auto 0;max-width:440px;font-size:1rem;line-height:1.65}
+.missed{list-style:none;text-align:left;margin-top:28px;max-height:340px;overflow-y:auto}
+.missed li{padding:13px 0;border-bottom:1px solid var(--hair);font-size:.9rem}
+.missed .mc{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc-deep)}
+.missed .ma{color:var(--green);font-weight:600}
+.q-end-actions{display:flex;justify-content:center;gap:12px;margin-top:28px;flex-wrap:wrap}
+
+/* exam */
+.papers{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-bottom:50px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;position:relative;overflow:hidden}
+.paper::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--acc)}
+.paper .pnum{font-family:var(--f-ed);font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acc-deep)}
+.paper h3{font-family:var(--f-ed);font-weight:600;font-size:1.3rem;margin:6px 0 10px}
+.paper p{font-size:.86rem;color:var(--ink2);line-height:1.65}
+.paper ul{list-style:none;margin-top:14px}
+.paper li{font-size:.82rem;padding:5px 0;color:var(--ink2)}
+.paper li::before{content:"→ ";color:var(--acc)}
+.syllabus-note{font-size:.82rem;color:var(--ink2);background:var(--paper2);border-radius:12px;padding:14px 18px;line-height:1.6;margin-bottom:44px}
+.tips-tabs{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:24px}
+.tips-tabs button{font-size:.84rem;font-weight:600;padding:9px 17px;border:1px solid var(--line);border-radius:99px;color:var(--ink2);transition:all .15s}
+.tips-tabs button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.tips-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.tips-list{grid-template-columns:1fr}}
+.tips-list li{display:grid;grid-template-columns:40px 1fr;gap:14px;background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:16px}
+.tips-list li:hover{border-color:var(--acc)}
+.tips-list .tno{font-family:var(--f-ed);font-weight:600;color:var(--acc-deep);font-size:1.05rem}
+.tips-list b{font-weight:600;font-size:.92rem;display:block;margin-bottom:3px}
+.tips-list p{font-size:.82rem;color:var(--ink2);line-height:1.6}
+.mistakes{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
+@media(max-width:760px){.mistakes{grid-template-columns:1fr}}
+.mistakes li{display:flex;gap:13px;padding:13px 0;border-bottom:1px solid var(--hair);cursor:pointer;align-items:flex-start}
+.mistakes .mbox{width:20px;height:20px;border:1.5px solid var(--line);border-radius:6px;flex:none;margin-top:3px;display:grid;place-items:center;color:transparent;transition:all .15s;font-size:.65rem}
+.mistakes li.done .mbox{background:var(--green);border-color:var(--green);color:#fff}
+.mistakes li.done .mtxt{color:var(--ink3)}
+.mistakes li.done .mtxt b{text-decoration:line-through}
+.mistakes b{font-weight:600;font-size:.92rem;display:block}
+.mistakes span{font-size:.8rem;color:var(--ink2)}
+
+footer{border-top:1px solid var(--line);padding:40px 0 50px}
+.ft-base{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.74rem;color:var(--ink3)}
+#toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,80px);background:var(--ink);color:var(--paper);padding:12px 22px;border-radius:12px;font-size:.88rem;font-weight:500;z-index:90;transition:transform .3s cubic-bezier(.3,1.2,.4,1);box-shadow:var(--sh);display:flex;gap:10px;align-items:center;max-width:90vw}
+#toast.show{transform:translate(-50%,0)}
+#toast svg{width:15px;height:15px;color:#8FCBA8;flex:none}
+@media print{.ventry{page-break-inside:avoid}nav.tabs,.v-tools,.theme-list,.vside,.hd-actions{display:none !important}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13l5 5L20 6"/></symbol>
+  <symbol id="i-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+  <symbol id="i-vol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 6a9 9 0 0 1 0 12"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></symbol>
+  <symbol id="i-shuffle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></symbol>
+</svg>
+
+<header id="hdr">
+  <div class="wrap hd-in">
+    <a class="brand" href="#home"><span class="brand-mark hi">हि</span><b>IGCSE Hindi <span>0549</span></b></a>
+    <nav class="tabs" id="tabs">
+      <button data-t="home" class="on">Home</button>
+      <button data-t="vocab">Vocabulary</button>
+      <button data-t="cards">Flashcards</button>
+      <button data-t="idioms">Idioms</button>
+      <button data-t="phrases">Writing Words</button>
+      <button data-t="wordbank">Word Bank</button>
+      <button data-t="grammar">Grammar</button>
+      <button data-t="writing">Writing</button>
+      <button data-t="reading">Reading</button>
+      <button data-t="quiz">Quizzes</button>
+      <button data-t="exam">Exam Guide</button>
+    </nav>
+    <div class="hd-actions">
+      <button class="icon-btn" id="palbtn" title="Search everything (Ctrl+K)"><svg><use href="#i-search"/></svg></button>
+      <button class="icon-btn" id="themebtn" title="Toggle dark mode"><svg><use href="#i-moon"/></svg></button>
+      <button class="icon-btn burger" id="burger" aria-label="Menu"><svg><use href="#i-menu"/></svg></button>
+      <button class="icon-btn m-close" id="mclose" aria-label="Close"><svg><use href="#i-x"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="pal" id="pal">
+  <div class="pal-box">
+    <div class="pal-in"><svg><use href="#i-search"/></svg><input id="palinput" type="text" placeholder="Search words, phrases, idioms, grammar…" autocomplete="off"><span class="kbd">ESC</span></div>
+    <div class="pal-res" id="palres"></div>
+  </div>
+</div>
+
+<main>
+<!-- ============ HOME ============ -->
+<div class="tabsec on" id="sec-home">
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Cambridge IGCSE · Hindi as a Second Language · 0549</p>
+        <h1>Master every word,<br>every <em>format</em>, every mark.</h1>
+        <p class="hero-sub">The complete companion for the 0549 exam — <span class="hi">शब्दावली</span> by theme, writing phrases, idioms, examiner-grade vocabulary, grammar, annotated exemplars, reading practice and self-test engines. Every feature lives in its own section — no endless scrolling.</p>
+        <div class="cta-row">
+          <button class="btn btn-solid" data-goto="vocab">Browse vocabulary <svg><use href="#i-arrow"/></svg></button>
+          <button class="btn btn-ghost" data-goto="quiz">Take a quiz <svg><use href="#i-arrow"/></svg></button>
+        </div>
+        <p class="muted" style="margin-top:18px;font-size:.78rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap">Press <span class="kbd">Ctrl K</span> to search all <span id="pal-count">—</span> entries.</p>
+      </div>
+      <aside class="wotd">
+        <div class="wotd-top"><span>Word of the day</span><span id="wotd-date"></span></div>
+        <div class="wotd-word hi" id="wotd-word"></div>
+        <p class="wotd-gloss" id="wotd-gloss"></p>
+        <p class="wotd-ex" id="wotd-ex"></p>
+        <div class="wotd-actions">
+          <button class="btn btn-acc" id="wotd-speak"><svg><use href="#i-vol"/></svg> Pronounce</button>
+          <button class="btn btn-ghost" id="wotd-learn"><svg><use href="#i-star"/></svg> Learned</button>
+        </div>
+      </aside>
+    </div>
+    <div class="statrow">
+      <div><b id="stat-words">0</b><span>vocabulary words · 54 banks</span></div>
+      <div><b id="stat-adv">0</b><span>advanced-tier words (★)</span></div>
+      <div><b>52</b><span>idioms &amp; proverbs</span></div>
+      <div><b id="stat-ph">0</b><span>writing phrases</span></div>
+      <div><b id="stat-learned">0</b><span>words you have learned</span></div>
+    </div>
+    <div class="home-grid">
+      <button class="hcard" data-goto="vocab"><span class="hn">Section 01</span><b>Vocabulary</b><p>1,500+ words across 54 themed banks, with pronunciation and learn-tracking.</p></button>
+      <button class="hcard" data-goto="cards"><span class="hn">Section 02</span><b>Flashcards</b><p>Active-recall engine with per-theme and advanced-only decks.</p></button>
+      <button class="hcard" data-goto="idioms"><span class="hn">Section 03</span><b>Idioms &amp; Proverbs</b><p>40 idioms and 12 proverbs with literal vs figurative meanings.</p></button>
+      <button class="hcard" data-goto="phrases"><span class="hn">Section 04</span><b>Writing Words</b><p>Connectives, openers and power phrases — with a phrase quiz.</p></button>
+      <button class="hcard" data-goto="wordbank"><span class="hn">Section 05</span><b>Word Bank</b><p>Upgrade ledger, high-tier glossary and the sentence lab.</p></button>
+      <button class="hcard" data-goto="grammar"><span class="hn">Section 06</span><b>Grammar</b><p>Eight cards covering the highest-loss grammar areas.</p></button>
+      <button class="hcard" data-goto="writing"><span class="hn">Section 07</span><b>Writing</b><p>Six formats with skeletons, phrase banks and annotated exemplars.</p></button>
+      <button class="hcard" data-goto="reading"><span class="hn">Section 08</span><b>Reading</b><p>Exam-style passages with interactive questions.</p></button>
+      <button class="hcard" data-goto="quiz"><span class="hn">Section 09</span><b>Quizzes</b><p>Vocab MCQ trainer, the master quiz and best-score tracking.</p></button>
+      <button class="hcard" data-goto="exam"><span class="hn">Section 10</span><b>Exam Guide</b><p>Papers, strategy and the pre-exam red-flag checklist.</p></button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ VOCAB ============ -->
+<div class="tabsec" id="sec-vocab">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">Section 01</p>
+      <h2>Theme-wise <span class="hi">शब्दकोश</span></h2>
+      <p class="sub">Every entry carries gender, meaning, an English gloss and a model sentence. The first 20 banks are the core detailed set; banks 21–54 form the 1,000+ word expansion. Gold-starred words are advanced tier. Tap the speaker to hear a word; the star marks it learned (saved on this device).</p>
+    </div>
+    <div class="v-tools">
+      <label class="search"><svg><use href="#i-search"/></svg><input id="vsearch" type="text" placeholder="Search every word — Hindi, English or example…"></label>
+      <div class="seg-chips" id="lvlchips">
+        <button data-lvl="all" class="on">All</button>
+        <button data-lvl="core">Core</button>
+        <button data-lvl="adv">★ Advanced</button>
+        <button id="unlearned-toggle">Hide learned</button>
+      </div>
+      <div class="v-progress-pill"><div class="pbar"><i id="v-allbar"></i></div><span><b id="v-allnum">0</b>/<span id="v-total">0</span></span></div>
+      <button class="btn btn-ghost" id="printbtn" style="padding:9px 15px;font-size:.82rem">Print</button>
+    </div>
+    <div class="vocab-body">
+      <ul class="theme-list" id="themelist"></ul>
+      <div>
+        <div class="theme-head" style="margin-bottom:16px"><h3 id="th-title"></h3><p id="th-desc"></p></div>
+        <div id="entries"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FLASHCARDS ============ -->
+<div class="tabsec" id="sec-cards">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">Section 02</p>
+      <h2>Flashcard <span class="hi">अभ्यास</span></h2>
+      <p class="sub">Active recall beats re-reading. Pick a deck, say the meaning out loud before you flip, then be honest with the buttons — "Again" pushes the card to the end of the pile.</p>
+    </div>
+    <div class="fc-setup">
+      <select class="select" id="fc-deck"></select>
+      <button class="btn btn-ghost" id="fc-shuffle" style="padding:10px 17px;font-size:.85rem"><svg><use href="#i-shuffle"/></svg> Shuffle</button>
+    </div>
+    <div class="fc-stage" id="fc-stage"></div>
+  </div>
+</div>
+
+<!-- ============ IDIOMS ============ -->
+<div class="tabsec" id="sec-idioms">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">Section 03</p>
+      <h2>Idioms &amp; <span class="hi">मुहावरे</span></h2>
+      <p class="sub">One well-placed idiom signals language excellence. For each: the literal meaning <em>and</em> the figurative — because the difference between the two is exactly what the board likes to test.</p>
+    </div>
+    <p class="sub-label">Idioms · <span class="hi">मुहावरे</span></p>
+    <div id="idiomlist"></div>
+    <p class="sub-label">Proverbs · <span class="hi">कहावतें</span></p>
+    <div id="provlist"></div>
+  </div>
+</div>
+
+<!-- ============ PHRASES ============ -->
+<div class="tabsec" id="sec-phrases">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">Section 04</p>
+      <h2>Writing <span class="hi">शब्द-संपत्ति</span></h2>
+      <p class="sub">The connectives, openers and power phrases that stitch raw vocabulary into top-band writing. Learn one bank at a time, steal the phrases whole, then test yourself below.</p>
+    </div>
+    <div class="ph-cats" id="phcats"></div>
+    <div class="ph-grid" id="phgrid"></div>
+    <p class="sub-label" style="margin-top:48px">Phrase quiz</p>
+    <div class="quiz-shell"><div class="qbar"><i id="pq-bar"></i></div><div class="qbody" id="pq-zone"></div></div>
+  </div>
+</div>
+
+<!-- ============ WORDBANK ============ -->
+<div class="tabsec" id="sec-wordbank">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">Section 05</p>
+      <h2>The Examiner's <span class="hi">शब्द-भंडार</span></h2>
+      <p class="sub">High-tier vocabulary is the fastest way to lift a response from "good" to "excellent". Swap the everyday word for its upgrade, then browse the glossary of board-favourite terms.</p>
+    </div>
+    <p class="sub-label">Word upgrades</p>
+    <div class="ledger" id="upledger"></div>
+    <p class="sub-label">High-tier glossary</p>
+    <div class="gloss" id="gloss"></div>
+    <div class="lab">
+      <p class="sub-label">Sentence lab · click the highlighted word to upgrade it</p>
+      <div id="labbox"></div>
+      <button class="lab-reset" id="labreset" style="font-size:.8rem;font-weight:600;color:var(--acc-deep);margin-top:18px;display:inline-block;border-bottom:1px solid var(--acc)">Reset all sentences</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GRAMMAR ============ -->
+<div class="tabsec" id="sec-grammar">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">Section 06</p>
+      <h2>Grammar <span class="hi">सुधार-किट</span></h2>
+      <p class="sub">The eight grammar areas where 0549 candidates lose the most marks. Open a card, learn the rule, steal the examples.</p>
+    </div>
+    <div class="g-grid" id="g-grid"></div>
+  </div>
+</div>
+
+<!-- ============ WRITING ============ -->
+<div class="tabsec" id="sec-writing">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">Section 07</p>
+      <h2>Writing <span class="hi">लेखन-कक्षा</span></h2>
+      <p class="sub">Every format the exam can ask for, each with its structure skeleton, a bank of ready phrases and a full exemplar annotated with examiner-style commentary.</p>
+    </div>
+    <div class="fmt-tabs" id="fmttabs"></div>
+    <div class="fmt-top"><h3 id="fmt-title"></h3><p id="fmt-desc"></p></div>
+    <div class="wgrid">
+      <div><p class="sub-label">Structure</p><ol class="steps" id="fmtsteps"></ol></div>
+      <div><p class="sub-label">Ready phrases</p><ul class="phrases" id="fmtphrases"></ul></div>
+    </div>
+    <p class="sub-label" style="margin-top:44px">Annotated exemplar</p>
+    <div class="manuscript" id="fmtex"></div>
+    <ul class="notes" id="fmtnotes"></ul>
+  </div>
+</div>
+
+<!-- ============ READING ============ -->
+<div class="tabsec" id="sec-reading">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">Section 08</p>
+      <h2>Reading <span class="hi">पठन-अभ्यास</span></h2>
+      <p class="sub">Exam-style comprehension passages with interactive questions — read, answer, and get instant feedback with an explanation.</p>
+    </div>
+    <div class="passages" id="passages"></div>
+  </div>
+</div>
+
+<!-- ============ QUIZ ============ -->
+<div class="tabsec" id="sec-quiz">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">Section 09</p>
+      <h2>Quizzes <span class="hi">प्रश्नोत्तरी</span></h2>
+      <p class="sub">Two engines: the <b>Vocab MCQ Trainer</b> draws multiple-choice questions straight from the vocabulary section — you choose the theme, direction and length — and the <b>Master Quiz</b> mixes every question type on the site. Best scores are saved on this device.</p>
+    </div>
+
+    <p class="sub-label">A · Vocab MCQ Trainer</p>
+    <div class="mcq-config">
+      <div><label>Theme</label><select class="select" id="mcq-theme"></select></div>
+      <div><label>Direction</label><select class="select" id="mcq-dir"><option value="mix">Mixed</option><option value="h2e">Hindi → English</option><option value="e2h">English → Hindi</option></select></div>
+      <div><label>Questions</label><select class="select" id="mcq-count"><option>10</option><option>20</option><option>30</option><option>50</option></select></div>
+    </div>
+    <div class="quiz-shell"><div class="qbar"><i id="mcq-bar"></i></div><div class="qbody" id="mcq-zone"></div></div>
+
+    <p class="sub-label" style="margin-top:60px">B · Master Quiz — every question type</p>
+    <div class="quiz-shell"><div class="qbar"><i id="qbarfill"></i></div><div class="qbody" id="qzone"></div></div>
+  </div>
+</div>
+
+<!-- ============ EXAM ============ -->
+<div class="tabsec" id="sec-exam">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-num">Section 10</p>
+      <h2>Exam <span class="hi">मार्गदर्शिका</span></h2>
+      <p class="sub">How the qualification is assessed, skill-by-skill strategy, and the classic mistakes to strike from your writing before exam day.</p>
+    </div>
+    <p class="sub-label">Papers at a glance</p>
+    <div class="papers" id="papers"></div>
+    <p class="syllabus-note"><b>Always verify with the official syllabus.</b> Paper weightings, durations and question counts change between syllabus years — check the current Cambridge 0549 syllabus document and past papers for your exam year.</p>
+    <p class="sub-label">Skill strategy</p>
+    <div class="tips-tabs" id="tiptabs"></div>
+    <ol class="tips-list" id="tiplist"></ol>
+    <p class="sub-label" style="margin-top:50px">The red-flag checklist · tick these off before the exam</p>
+    <ul class="mistakes" id="mistakes"></ul>
+  </div>
+</div>
+</main>
+
+<footer><div class="wrap">
+  <div class="ft-base"><span>© 2025 · IGCSE Hindi 0549 Study Companion</span><span>बिना विज्ञापन के — विद्यार्थियों के लिए</span></div>
+</div></footer>
+
+<div id="toast"><svg><use href="#i-check"/></svg><span id="toastmsg"></span></div>
+
+<script>
+/* ================================================================
+   IGCSE Hindi 0549 — data + engine
+   ================================================================ */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const rand=a=>a[Math.floor(Math.random()*a.length)];
+const sample=(arr,n,not)=>{const pool=arr.filter(x=>x!==not);const out=[];while(out.length<n&&pool.length)out.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);return out;};
+
+/* ---------- CORE DETAILED THEMES (banks 1–20) ----------
+   entry: [word, gender, hindiMeaning, english, example, advanced?] */
+const THEMES=[
+{name:"Family & Relationships",hi:"परिवार और रिश्ते",desc:"Kinship, home life and bonds — the backbone of informal letters and 'my family' essays.",w:[
+["परिवार","m","माता-पिता और संतान का समूह","family","हमारा परिवार रविवार को साथ बैठता है।"],["पालन-पोषण","m","बच्चों को पालना और देखभाल करना","upbringing","अच्छा पालन-पोषण आवश्यक है।"],["संतान","f","बेटे-बेटियाँ","offspring","संतान घर की शोभा है।"],["स्नेह","m","प्रेम, दुलार","affection","दादी का स्नेह अमूल्य है।"],["विरासत","f","पूर्वजों से मिली धरोहर","heritage","भाषा हमारी विरासत है।"],["आशीर्वाद","m","बड़ों का शुभ आशीस","blessing","बड़ों का आशीर्वाद लिया।"],["गृहस्थी","f","घर-परिवार का व्यवस्थित जीवन","household","माँ गृहस्थी सँभालती हैं।"],["रिश्तेदारी","f","परिवार से जुड़े संबंध","kinship","रिश्तेदारी का महत्व बड़ा है।"],["वंश","m","पीढ़ियों की कड़ी","lineage","हमारे वंश की परंपरा है।"],["त्याग","m","अपने हित को छोड़ना","sacrifice","माता-पिता का त्याग महान है।"],["अपनापन","m","घनिष्ठता की भावना","belonging","गाँव में अपनापन दिखता है।"],["बंधन","m","रिश्ते की डोर","bond","भाई-बहन का बंधन पवित्र है।"],["कुटुंब","m","संयुक्त परिवार","extended family","पूरा कुटुंब साथ बैठा।"],["विवाह","m","शादी","marriage","उनका विवाह अगले माह है।"],["सगाई","f","विवाह का पहला चरण","engagement","बहन की सगाई हुई।"],["मातृत्व","m","माँ बनने की अवस्था","motherhood","मातृत्व एक वरदान है।"],["भाई-चारा","m","भाई जैसा व्यवहार","brotherhood","भाई-चारा समाज की ताक़त है।",1],["बचपन","m","बाल्यकाल","childhood","बचपन की यादें मीठी हैं।"],["किशोर","m","तेरह से उन्नीस वर्ष की आयु","adolescent","किशोर अवस्था नाज़ुक होती है।",1],["वयस्क","m","बड़ा, प्रौढ़","adult","वयस्कों की ज़िम्मेदारी बढ़ती है।"],["प्रियजन","m","अपने प्यारे लोग","loved ones","प्रियजनों से मिला।"],["दंपति","m","विवाहित जोड़ा","married couple","दंपति ने आशीर्वाद लिया।",1],["घरेलू","adj","घर से जुड़ा","domestic","घरेलू काम सबने बाँटे।"],["पारिवारिक","adj","परिवार से जुड़ा","familial","पारिवारिक रिश्ते मज़बूत होते हैं।",1]]},
+{name:"Daily Routine & Time",hi:"दिनचर्या और समय",desc:"Habits, schedules and the shape of an ordinary day.",w:[
+["दिनचर्या","f","दिनभर का नियोजन","daily routine","नियमित दिनचर्या सफलता की सीढ़ी है।"],["व्यस्तता","f","काम का बोझ","busyness","परीक्षा में व्यस्तता चरम रहती है।"],["आलस्य","m","आलस","laziness","आलस्य को जीतना ज़रूरी है।"],["संतुलन","m","बराबरी, मेल","balance","पढ़ाई और खेल में संतुलन रखो।"],["समय-सारणी","f","नियत कार्यक्रम","timetable","मैंने समय-सारणी बना ली।"],["देखभाल","f","ध्यान रखना","care","बुज़ुर्गों की देखभाल करो।"],["व्यायाम","m","शरीर की कसरत","exercise","रोज़ व्यायाम करता हूँ।"],["आवागमन","m","आना-जाना","commuting","शहर में आवागमन बढ़ रहा है।"],["गृहकार्य","m","घर का दिया काम","homework","गृहकार्य पहले पूरा करो।"],["विश्राम","m","आराम","rest","थोड़ा विश्राम भी ज़रूरी है।"],["निद्रा","f","नींद","sleep","पर्याप्त निद्रा आवश्यक है।"],["भोर","f","सुबह का पहला प्रकाश","dawn","भोर की सैर करता हूँ।"],["प्रातःकाल","m","सुबह का समय","morning time","प्रातःकाल पढ़ाई सबसे अच्छी होती है।",1],["दोपहर","f","दिन का मध्य भाग","noon","दोपहर का भोजन साथ किया।"],["संध्या","f","शाम","evening","संध्या में सैर होती है।"],["नियमित","adj","हर दिन होने वाला","regular","नियमित अभ्यास आवश्यक है।"],["अनियमित","adj","बिना क्रम का","irregular","अनियमित दिनचर्या हानिकारक है।"],["व्यवस्थित","adj","क्रमबद्ध","organised","व्यवस्थित जीवन में समय मिलता है।"],["जीवन-शैली","f","जीने का ढंग","lifestyle","स्वस्थ जीवन-शैली अपनाओ।"],["अभ्यास","m","नियमित प्रशिक्षण","practice","अभ्यास से कला आती है।",1],["ग़फ़लत","f","लापरवाही","negligence","ग़फ़लत से नुक़सान होता है।",1]]},
+{name:"Education & School",hi:"शिक्षा और विद्यालय",desc:"Study, exams and school life — favourite territory for formal letters and essays.",w:[
+["शिक्षा","f","ज्ञान देने की प्रक्रिया","education","शिक्षा जीवन की दिशा बताती है।"],["अनुशासन","m","नियमों का पालन","discipline","अनुशासन सफलता की कुंजी है।"],["पाठ्यक्रम","m","पढ़ाए जाने वाले विषय","curriculum","पाठ्यक्रम में नए विषय आए।"],["अध्ययन","m","पढ़ाई करना","study","नियमित अध्ययन करो।"],["जिज्ञासा","f","जानने की इच्छा","curiosity","जिज्ञासा सीखने की शक्ति है।"],["प्रतिभा","f","अंदर की क्षमता","talent","हर बच्चे में प्रतिभा है।"],["उपलब्धि","f","हासिल की सफलता","achievement","यह मेरी बड़ी उपलब्धि है।"],["पुस्तकालय","m","किताबों का घर","library","रोज़ पुस्तकालय जाता हूँ।"],["छात्रवृत्ति","f","पढ़ाई हेतु धनराशि","scholarship","मेहनत से छात्रवृत्ति मिली।"],["प्रवेश","m","संस्था में भर्ती","admission","कॉलेज में प्रवेश मिला।"],["पुनरावृत्ति","f","दोहराव","revision","परीक्षा से पहले पुनरावृत्ति करो।"],["स्मरण-शक्ति","f","याद रखने की क्षमता","memory","लिखकर पढ़ने से स्मरण-शक्ति बढ़ती है।"],["अध्यापक","m","शिक्षक","teacher","अध्यापक दीपक के समान हैं।"],["विद्यार्थी","m","पढ़ने वाला","student","विद्यार्थी जीवन सुनहरा है।"],["प्रधानाचार्य","m","विद्यालय के प्रमुख","principal","प्रधानाचार्य ने भाषण दिया।"],["प्रश्न-पत्र","m","परीक्षा का प्रश्न सेट","question paper","प्रश्न-पत्र आसान था।"],["सहपाठी","m","साथ पढ़ने वाला","classmate","सहपाठियों से मिलकर पढ़ो।"],["व्याख्यान","m","पाठ/भाषण","lecture","व्याख्यान बड़ा उपयोगी था।"],["प्रयोगशाला","f","प्रयोग करने का स्थान","laboratory","प्रयोगशाला में प्रयोग किया।"],["प्रेरणा","f","आगे बढ़ने की प्रेरणा देने वाली शक्ति","inspiration","गुरु की प्रेरणा से आगे बढ़ा।",1],["गुरु","m","शिक्षक, मार्गदर्शक","mentor","गुरु का स्थान सर्वोच्च है।"],["विद्या","f","ज्ञान","learning","विद्या सबसे बड़ा धन है।",1],["प्रवीण","adj","किसी काम में दक्ष","proficient","वह गणित में प्रवीण है।",1]]},
+{name:"Health & Fitness",hi:"स्वास्थ्य",desc:"Wellbeing, medicine and lifestyle.",w:[
+["स्वास्थ्य","m","सेहत","health","स्वास्थ्य ही असली दौलत है।"],["पौष्टिक","adj","पोषक तत्वों से भरपूर","nutritious","पौष्टिक भोजन खाओ।"],["पाचन","m","भोजन पचाने की क्रिया","digestion","हल्का भोजन पाचन में अच्छा है।"],["तनाव","m","मानसिक बोझ","stress","तनाव से बचो।"],["महामारी","f","फैलने वाली बीमारी","epidemic","महामारी से सावधान रहो।"],["प्रतिरोधक क्षमता","f","बीमारी से लड़ने की शक्ति","immunity","प्रतिरोधक क्षमता बढ़ाओ।"],["कुपोषण","m","अनुचित भोजन से कमज़ोरी","malnutrition","कुपोषण गंभीर समस्या है।"],["चिकित्सा","f","इलाज","medical treatment","चिकित्सा का खर्च बढ़ा है।"],["व्यसन","m","लत","addiction","व्यसन छोड़ो।"],["सावधानी","f","पहले से जतनी","precaution","सावधानी बरतो।"],["ताज़गी","f","तरावट","freshness","सुबह की हवा में ताज़गी है।"],["लक्षण","m","बीमारी का चिह्न","symptom","बुख़ार लक्षण है।",1],["निदान","m","बीमारी पहचानना","diagnosis","सही निदान ज़रूरी है।",1],["उपचार","m","इलाज की प्रक्रिया","treatment","उपचार समय पर हो।"],["चिकित्सक","m","डॉक्टर","doctor","चिकित्सक से मिला।"],["स्फूर्ति","f","जोश, ऊर्जा","verve","व्यायाम से स्फूर्ति आती है।"],["चुस्ती","f","फुर्ती","agility","चुस्ती से काम निपटाया।",1],["मानसिक","adj","मन से जुड़ा","mental","मानसिक शांति ज़रूरी है।"],["शारीरिक","adj","शरीर से जुड़ा","physical","शारीरिक श्रम करो।"],["बीमारी","f","अस्वस्थता","illness","बीमारी से बचाव ही बेहतर है।"],["स्वस्थ","adj","सेहतमंद","healthy","स्वस्थ रहो।"],["संतुलित आहार","m","सभी तत्वों वाला भोजन","balanced diet","संतुलित आहार लो।"]]},
+{name:"Food & Cuisine",hi:"खान-पान",desc:"The kitchen, the table and hospitality.",w:[
+["भोजन","m","खाना","food","भोजन सादा लेता हूँ।"],["स्वाद","m","जीभ पर पड़ने वाला अनुभव","taste","स्वाद उत्तम है।"],["खान-पान","m","भोजन की प्रणाली","dietary habits","खान-पान सुधारो।"],["व्यंजन","m","बनाया हुआ पकवान","dish","माँ का व्यंजन अद्भुत है।",1],["नाश्ता","m","सुबह का हल्का भोजन","breakfast","नाश्ता करके निकलो।"],["रसोई","f","खाना बनाने का स्थान","kitchen","रसोई साफ़ रखो।"],["सामग्री","f","बनाने में लगी चीज़ें","ingredients","सामग्री खरीद लाओ।"],["मसाला","m","स्वाद बढ़ाने वाला पदार्थ","spice","मसाला कम डालो।"],["स्वादिष्ट","adj","स्वाद वाला","delicious","खीर बहुत स्वादिष्ट थी।"],["मिष्ठान्न","m","मीठे व्यंजन","sweets","मिष्ठान्न बाँटा गया।",1],["पेय","m","पीने की चीज़","beverage","ठंडा पेय पसंद है।"],["आहार","m","भोजन/डाइट","diet","आहार हल्का रखो।"],["उपवास","m","भोजन न करना","fasting","उपवास रखा।",1],["दावत","m","बड़ा भोज","feast","दावत में सब आए।"],["जलपान","m","हल्का नाश्ता","light refreshments","जलपान के लिए रुके।",1],["शाकाहार","m","सिर्फ़ वनस्पति भोजन","vegetarianism","शाकाहार स्वस्थ है।"],["मांसाहार","m","मांस युक्त भोजन","non-vegetarian food","मांसाहार कम करो।"],["भूख","f","खाने की इच्छा","hunger","भूख बहुत लगी थी।"],["अतिथि","m","मेहमान","guest","अतिथि आज आएँगे।"],["स्वागत","m","आगत स्वागत","welcome","अतिथि का स्वागत किया।"],["स्थानीय","adj","उस जगह का","local","स्थानीय व्यंजन चखा।"]]},
+{name:"Travel & Tourism",hi:"यात्रा और पर्यटन",desc:"Journeys, places and getting around.",w:[
+["यात्रा","f","कहीं जाना","journey","शिमला की यात्रा अविस्मरणीय रही।"],["गंतव्य","m","जहाँ पहुँचना है","destination","गंतव्य राजस्थान है।"],["भ्रमण","m","घूमना","tour","शैक्षिक भ्रमण का आयोजन हुआ।"],["प्रवास","m","विदेश में रहना","stay abroad","प्रवास में देश याद आता है।"],["साहसिक","adj","हिम्मत भरा","adventurous","राफ्टिंग साहसिक खेल है।"],["यातायात","m","सड़क की हलचल","traffic","यातायात बहुत घना था।"],["परिवहन","m","ढुलाई की व्यवस्था","transport","परिवहन सुधरना चाहिए।"],["पर्यटन","m","घूमने का व्यवसाय","tourism","पर्यटन से रोज़गार मिलता है।"],["अनुभव","m","महसूस की गई जानकारी","experience","हर यात्रा नया अनुभव है।"],["मार्गदर्शन","m","रास्ता दिखाना","guidance","पहाड़ों में मार्गदर्शन लो।"],["ठहराव","m","रुकने का स्थान","stopover","यात्रा में दो ठहराव थे।"],["स्मृति-चिन्ह","m","याद दिलाने वाली वस्तु","souvenir","एक स्मृति-चिन्ह लाया।"],["आरक्षण","m","सीट आदि की बुकिंग","reservation","आरक्षण पहले कर लो।"],["यात्रा-साथी","m","साथ यात्रा करने वाला","travel companion","यात्रा-साथी मिल गया।",1],["सुदूर","adj","बहुत दूर का","distant","सुदूर गाँव तक गए।",1],["दुर्गम","adj","जहाँ पहुँचना कठिन हो","remote","दुर्गम इलाक़ों तक सड़क पहुँचे।",1],["पदयात्रा","f","पैदल यात्रा","trek","हिमालय में पदयात्रा की।"],["दर्शनीय स्थल","m","घूमने लायक़ जगह","tourist attraction","यह दर्शनीय स्थल प्रसिद्ध है।"],["आवास","m","ठहरने की व्यवस्था","accommodation","आवास सस्ता मिला।",1],["विदेश","m","अपने देश से बाहर","abroad","विदेश यात्रा की योजना है।"],["सीमा","f","दो देशों को बाँटने वाली रेखा","border","सीमा पर जाँच होती है।"]]},
+{name:"Environment & Nature",hi:"पर्यावरण और प्रकृति",desc:"Pollution, conservation and the natural world — the most common essay territory.",w:[
+["पर्यावरण","m","आसपास की प्रकृति","environment","पर्यावरण की रक्षा करो।"],["प्रदूषण","m","गंदगी फैलना","pollution","प्रदूषण बढ़ रहा है।"],["वन्यजीव","m","जंगल के जीव","wildlife","वन्यजीव बचाओ।"],["संरक्षण","m","बचाकर रखना","conservation","प्रकृति का संरक्षण ज़रूरी है।"],["ऊर्जा","f","शक्ति का स्रोत","energy","सौर ऊर्जा अपनाओ।"],["जल-संकट","m","पानी की कमी","water crisis","गर्मी में जल-संकट आता है।"],["जैव विविधता","f","जीव-जातियों की विविधता","biodiversity","जैव विविधता अनमोल है।"],["जागरूकता","f","सचेत होना","awareness","जागरूकता फैलाओ।"],["पुनर्चक्रण","m","दोबारा इस्तेमाल","recycling","पुनर्चक्रण से कचरा घटाओ।"],["उत्सर्जन","m","धुआँ-गैस निकलना","emissions","उत्सर्जन घटाना होगा।"],["वनोन्मूलन","m","जंगलों का सफ़ाया","deforestation","वनोन्मूलन रोको।"],["जलवायु","f","मौसम का दीर्घ स्वरूप","climate","जलवायु बदल रही है।"],["प्राकृतिक","adj","प्रकृति से बना","natural","प्राकृतिक संसाधन बचाओ।"],["संसाधन","m","उपयोगी साधन","resources","संसाधन बर्बाद मत करो।"],["नवीकरणीय","adj","जो दोबारा बनता रहे","renewable","नवीकरणीय ऊर्जा भविष्य है।",1],["पारिस्थितिक","adj","पारिस्थितिकी से जुड़ा","ecological","पारिस्थितिक संतुलन टूट रहा है।",1],["प्रजाति","f","जीवों की किस्म","species","कई प्रजातियाँ संकट में हैं।",1],["विलुप्त","adj","जो नष्ट हो चुका हो","extinct","कई प्रजातियाँ विलुप्त हो गईं।",1],["मृदा","f","मिट्टी","soil","मृदा की उर्वरता घट रही है।",1],["संकट","m","मुश्किल दौर","crisis","पर्यावरण संकट गहरा रहा है।"],["प्रदूषित","adj","गंदा हुआ","polluted","नदी प्रदूषित हो गई।"]]},
+{name:"Weather & Seasons",hi:"मौसम और ऋतुएँ",desc:"Sky, storm and season — descriptive weather vocabulary.",w:[
+["मौसम","m","वायुमंडल की दशा","weather","आज मौसम सुहावना है।"],["वर्षा","f","बारिश","rainfall","इस साल वर्षा अच्छी हुई।"],["बादल","m","आसमान का जल-भंडार","cloud","काले बादल छाए।"],["गर्मी","f","उमस भरा मौसम","heat","गर्मी में पानी पिओ।"],["ठंड","f","शीत का अनुभव","cold","पहाड़ों में ठंड पड़ती है।"],["सर्दी","f","शीत ऋतु","winter","सर्दी में धूप अच्छी लगती है।"],["आँधी","f","तेज़ धूल भरी हवा","dust storm","आँधी आई तो दरवाज़े बंद किए।"],["तूफ़ान","m","बहुत तेज़ झंझा","storm","तूफ़ान से पेड़ गिरे।"],["बिजली","f","आसमान की चमक","lightning","बिजली कौंधी।"],["गरज","f","बादलों की आवाज़","thunder","गरज सुनाई दी।"],["ऋतु","f","मौसम का चक्र","season","हर ऋतु का अपना आनंद है।"],["वसंत","m","फूलों की ऋतु","spring","वसंत में फूल खिलते हैं।"],["शरद","m","पतझड़ की ऋतु","autumn","शरद में पत्ते झड़ते हैं।",1],["आर्द्र","adj","नमी वाला","humid","जुलाई में मौसम आर्द्र होता है।",1],["तापमान","m","गर्मी का माप","temperature","तापमान बढ़ता जा रहा है।"],["कोहरा","m","धुंध","fog","सुबह कोहरा छाया रहा।"],["धूप","f","सूरज की रोशनी","sunshine","धूप सेंक रहे थे।"],["झोंका","m","हवा का तेज़ फुहार","gust","ठंडी हवा के झोंके चले।",1]]},
+{name:"Technology & Digital Life",hi:"तकनीक",desc:"Machines, screens and progress.",w:[
+["तकनीक","f","औज़ार-विद्या का ज्ञान","technology","तकनीक ने जीवन बदला।"],["संचार","m","सूचना पहुँचाना","communication","संचार आसान हुआ।"],["उपकरण","m","काम का साधन","device","यह उपयोगी उपकरण है।"],["आभासी","adj","स्क्रीन पर बना","virtual","आभासी कक्षाएँ चलीं।"],["गोपनीयता","f","छिपाने का अधिकार","privacy","गोपनीयता की रक्षा करो।"],["आविष्कार","m","नई चीज़ बनाना","invention","टेलीफ़ोन का आविष्कार क्रांति था।"],["सूचना","f","जानकारी","information","सूचना छाँटकर लो।"],["कृत्रिम बुद्धि","f","मशीनी सोच","artificial intelligence","कृत्रिम बुद्धि भविष्य है।"],["दूरसंचार","m","दूर से संपर्क","telecommunications","दूरसंचार ने दुनिया सहेज दी।"],["विज्ञापन","m","प्रचार का साधन","advertisement","विज्ञापन पढ़ना सीखो।"],["यंत्र","m","मशीन","machine","यंत्र से काम निपटाया।"],["स्वचालित","adj","अपने आप चलने वाला","automatic","स्वचालित दरवाज़ा लगा।",1],["उपग्रह","m","अंतरिक्ष में घूमता यंत्र","satellite","उपग्रह से मौसम पता चलता है।",1],["क्रांति","f","आमूल परिवर्तन","revolution","डिजिटल क्रांति आई।"],["अनुसंधान","m","गहन शोध","research","अनुसंधान में धन लगाओ।",1],["प्रयोग","m","परख","experiment","प्रयोग सफल रहा।"],["सुविधा","f","आसानी","convenience","सुविधा बढ़ी, मेहनत घटी।"],["लत","f","बिना न रह सकना","addiction","फ़ोन की लत बुरी है।",1],["अति-प्रयोग","m","ज़रूरत से अधिक उपयोग","overuse","स्क्रीन के अति-प्रयोग से आँखें खराब होती हैं।",1]]},
+{name:"Media & Communication",hi:"मीडिया और संचार",desc:"News, influence and public opinion.",w:[
+["मीडिया","m","सूचना के माध्यम","media","मीडिया की ज़िम्मेदारी बड़ी है।"],["समाचार","m","ख़बर","news","सुबह समाचार सुनता हूँ।"],["पत्रकार","m","ख़बर लिखने वाला","journalist","पत्रकारों का काम कठिन है।",1],["प्रकाशन","m","छापकर जारी करना","publication","पत्रिका का प्रकाशन शुरू हुआ।",1],["संपादक","m","प्रकाशन सँभालने वाला","editor","संपादक ने लेख छापा।",1],["पत्रिका","f","नियमित प्रकाशित पुस्तिका","magazine","हिंदी पत्रिका पढ़ी।"],["अख़बार","m","समाचार-पत्र","newspaper","अख़बार पढ़ने की आदत डालो।"],["प्रसारण","m","प्रसार करना","broadcasting","रेडियो प्रसारण जारी रहा।",1],["दर्शक","m","देखने वाला","viewer","दर्शकों ने तालियाँ बजाईं।"],["श्रोता","m","सुनने वाला","listener","श्रोताओं ने प्रश्न पूछे।"],["प्रभाव","m","असर","influence","मीडिया का प्रभाव बढ़ा है।"],["अफ़वाह","f","बिना आधार की ख़बर","rumour","अफ़वाह पर भरोसा मत करो।"],["जनमत","m","जनता की राय","public opinion","जनमत बनाने में मीडिया का हाथ है।",1],["आलोचना","f","दोष दिखाना","criticism","रचनात्मक आलोचना अच्छी होती है।"],["विश्वास","m","भरोसा","trust","विश्वास जीतना आसान नहीं।"],["जवाबदेही","f","काम का उत्तरदायित्व","accountability","मीडिया की जवाबदेही ज़रूरी है।",1]]},
+{name:"Work, Business & Money",hi:"काम, व्यापार और धन",desc:"Careers, commerce and finance.",w:[
+["व्यवसाय","m","पेशा","profession","चिकित्सा का व्यवसाय अपनाऊँगा।"],["उद्यमी","m","व्यापार शुरू करने वाला","entrepreneur","युवा उद्यमी आगे आएँ।"],["महत्वाकांक्षा","f","बड़ा सपना","ambition","मेरी महत्वाकांक्षा लेखिका बनना है।"],["योग्यता","f","काबिलियत","qualification","योग्यता के अनुसार काम मिले।"],["साक्षात्कार","m","आमने-सामने बातचीत","interview","साक्षात्कार में आत्मविश्वास दिखाओ।"],["वेतन","m","काम की मज़दूरी","salary","उचित वेतन मिलना चाहिए।"],["कुशलता","f","हुनर","skill","कुशलता डिग्री से बड़ी है।"],["रोज़गार","m","काम मिलना","employment","रोज़गार के अवसर बढ़े।"],["संघर्ष","m","हिम्मत से लड़ना","struggle","संघर्ष ही सफलता की राह है।"],["लक्ष्य","m","जो पाना है","goal","लक्ष्य निर्धारित करो।"],["अवसर","m","मौका","opportunity","अवसर खोजो, बनाओ।"],["धन","m","दौलत","wealth","धन ही सब कुछ नहीं।"],["बचत","f","बचाया धन","savings","बचत की आदत डालो।"],["निवेश","m","लाभ के लिए पैसा लगाना","investment","सोच-समझकर निवेश करो।",1],["लाभ","m","फ़ायदा","profit","ईमानदारी से लाभ कमाओ।"],["हानि","f","नुक़सान","loss","हानि से सबक़ लिया।"],["व्यापार","m","क्रय-विक्रय","trade","व्यापार ईमानदारी से करो।"],["बाज़ार","m","ख़रीद-बिक्री की जगह","market","बाज़ार में भीड़ थी।"],["उपभोक्ता","m","ख़रीदने वाला","consumer","उपभोक्ता अधिकार जानो।",1],["अर्थव्यवस्था","f","देश की आर्थिक व्यवस्था","economy","अर्थव्यवस्था सुधर रही है।",1],["पदोन्नति","f","ऊँचे पद पर जाना","promotion","मेहनत से पदोन्नति मिली।",1],["बेरोज़गारी","f","काम न मिलने की स्थिति","unemployment","बेरोज़गारी बड़ी समस्या है।"]]},
+{name:"Leisure & Culture",hi:"अवकाश और संस्कृति",desc:"Hobbies, performance and heritage.",w:[
+["अवकाश","m","छुट्टी का समय","leisure","गर्मी का अवकाश प्रिय है।"],["मनोरंजन","m","दिल बहलाना","entertainment","मनोरंजन भी ज़रूरी है।"],["शौक़","m","पसंद का काम","hobby","मेरा शौक़ किताबें इकट्ठा करना है।"],["संगीत","m","सुर-ताल की कला","music","संगीत मन को शांति देता है।"],["चित्रकला","f","चित्र बनाने की कला","painting","चित्रकला बचपन से प्रिय है।"],["नाटक","m","खेल, ड्रामा","play","वार्षिकोत्सव में नाटक हुआ।"],["साहित्य","m","लेखन की दुनिया","literature","प्रेमचंद साहित्य के सूर्य हैं।"],["मेला","m","सबका जमावड़ा","fair","गाँव का मेला लगा।"],["उत्सव","m","ख़ुशी का आयोजन","festival","दीपोत्सव मनाया।"],["प्रतियोगिता","f","होड़","competition","निबंध प्रतियोगिता जीती।"],["परंपरा","f","पीढ़ी-दर-पीढ़ी चली आदत","tradition","परंपराएँ निभाते हैं।"],["संस्कृति","f","जीवन-जाँच का स्वरूप","culture","संस्कृति पहचान है।"],["कविता","f","पद्य रचना","poem","यह कविता मन को छू जाती है।"],["कहानी","f","कथा","story","दादी की कहानियाँ याद हैं।"],["उपन्यास","m","लंबी कथा","novel","गोदान महान उपन्यास है।"],["नृत्य","m","नाच","dance","नृत्य प्रदर्शन उत्कृष्ट था।"],["त्योहार","m","उत्सव का दिन","festival","त्योहार ऊर्जा देते हैं।"],["लोकगीत","m","जनता के गीत","folk song","लोकगीत गाँवों की आत्मा हैं।",1]]},
+{name:"Society & Citizenship",hi:"समाज और नागरिकता",desc:"Rights, justice and community.",w:[
+["समानता","f","बराबरी","equality","सबको समानता का अधिकार है।"],["भेदभाव","m","जात-पात का फ़र्क़","discrimination","भेदभाव समाज का कैंसर है।"],["नैतिकता","f","चरित्र का माप","morality","नैतिकता से शिक्षा पूरी होती है।"],["सहिष्णुता","f","दूसरों को जगह देना","tolerance","सहिष्णुता लोकतंत्र की जान है।"],["दान","m","परोपकार","charity","शिक्षा-दान श्रेष्ठ है।"],["अधिकार","m","हक़","rights","अधिकार जानो, समझो।"],["कर्तव्य","m","जो करना ही है","duty","कर्तव्य पालन करो।"],["नागरिक","m","देश का वासी","citizen","जागरूक नागरिक बनो।"],["एकता","f","साथ रहना","unity","एकता में शक्ति है।"],["स्वच्छता","f","सफ़ाई","cleanliness","स्वच्छता आधी बीमारी का इलाज है।"],["जनसंख्या","f","लोगों की संख्या","population","जनसंख्या नियंत्रण ज़रूरी है।"],["शांति","f","अमन","peace","शांति से ही विकास है।"],["ग़रीबी","f","धन का अभाव","poverty","ग़रीबी और भूख अपमान हैं।"],["साक्षरता","f","पढ़ने-लिखने की योग्यता","literacy","साक्षरता दर बढ़ी।",1],["स्वतंत्रता","f","आज़ादी","freedom","स्वतंत्रता अमूल्य है।"],["संविधान","m","देश का मूल क़ानून","constitution","संविधान सर्वोच्च है।",1],["भ्रष्टाचार","m","रिश्वत व बेईमानी","corruption","भ्रष्टाचार रोकना होगा।",1],["न्याय","m","इंसाफ़","justice","न्याय सबको मिले।"]]},
+{name:"Character & Emotions",hi:"चरित्र और भावनाएँ",desc:"Virtues and feelings — vocabulary that makes people come alive.",w:[
+["ईमानदारी","f","सच्चाई","honesty","ईमानदारी सर्वश्रेष्ठ नीति है।"],["साहस","m","हिम्मत","courage","साहस का परीक्षा मुसीबत में होता है।"],["धैर्य","m","सहनशीलता","patience","धैर्य से काम बनता है।"],["विनम्रता","f","नम्रता","humility","विनम्रता ही सच्ची शान है।"],["करुणा","f","दूसरों के दुख पर दर्द","compassion","करुणा हमें इंसान बनाती है।"],["ईर्ष्या","f","दूसरे से जलना","jealousy","ईर्ष्या मित्रता खा जाती है।"],["अहंकार","m","घमंड","arrogance","अहंकार पतन की सीढ़ी है।"],["उदारता","f","देने की भावना","generosity","उदारता से दोस्ती गहरी होती है।"],["संतोष","m","हालत में तृप्ति","contentment","संतोष सबसे बड़ा धन है।"],["आत्मविश्वास","m","अपने पर भरोसा","confidence","आत्मविश्वास जगाओ।"],["निराशा","f","हिम्मत टूटना","disappointment","निराशा में भी आगे बढ़ो।"],["उत्साह","m","जोश","enthusiasm","उत्साह से काम करो।"],["क्रोध","m","ग़ुस्सा","anger","क्रोध पर विजय पाओ।"],["प्रेम","m","प्यार","love","प्रेम सबसे बड़ी शक्ति है।"],["घृणा","f","नफ़रत","hatred","घृणा मन को जलाती है।",1],["आशा","f","आगे की चाह","hope","आशा कभी मत छोड़ो।"],["भय","m","डर","fear","भय पर विजय साहस है।"],["शर्म","f","लज्जा","shyness","शर्म से चेहरा लाल हो गया।"],["ममता","f","वात्सल्य","maternal affection","माँ की ममता अपार है।",1],["स्वाभिमान","m","आत्म-सम्मान","self-respect","स्वाभिमान छोड़ो मत।",1]]},
+{name:"Time, Change & Progress",hi:"समय और परिवर्तन",desc:"Evolution, challenge and decision-making.",w:[
+["परिवर्तन","m","बदलाव","change","परिवर्तन जीवन का नियम है।"],["प्रगति","f","आगे बढ़ना","progress","प्रगति का माप धन नहीं।"],["विकास","m","वृद्धि","development","समग्र विकास ज़रूरी है।"],["आधुनिक","adj","नए ज़माने का","modern","आधुनिक जीवन तेज़ है।"],["भविष्य","m","आने वाला कल","future","भविष्य के लिए बचाओ।"],["अतीत","m","बीता समय","the past","अतीत से सीखो।"],["क्षण","m","पल","moment","कुछ क्षण रुक जाओ।"],["गति","f","रफ़्तार","speed","जीवन की गति बढ़ी है।"],["चुनौती","f","कठिन परीक्षा","challenge","चुनौती स्वीकार करो।"],["संकट","m","मुश्किल दौर","crisis","संकट में धैर्य रखो।"],["निर्णय","m","फ़ैसला","decision","सही निर्णय लो।"],["परिणाम","m","नतीजा","outcome","परिणाम अच्छा आया।"],["पीढ़ी","f","आयु-श्रेणी","generation","नई पीढ़ी तकनीक-प्रेमी है।"],["प्रवृत्ति","f","स्वभाव या झुकाव","tendency","बदलती प्रवृत्तियाँ दिख रही हैं।",1],["नवीन","adj","नया","novel","नवीन विचार लाओ।",1],["क्रमिक","adj","धीरे-धीरे बढ़ता","gradual","क्रमिक परिवर्तन टिकता है।",1],["आशावाद","m","आशा से भरा दृष्टिकोण","optimism","आशावाद शक्ति देता है।",1]]},
+{name:"City & Village Life",hi:"शहर और गाँव",desc:"Urban and rural contrast — a classic comparative essay topic.",w:[
+["शहर","m","बड़ी बस्ती","city","शहर की रौनक अलग है।"],["गाँव","m","छोटी बस्ती","village","गाँव की हवा स्वच्छ है।"],["आबादी","f","बसने वालों की संख्या","population","शहर की आबादी बढ़ी।"],["भीड़","f","घना जमावड़ा","crowd","बाज़ार में भीड़ थी।"],["पड़ोस","m","आसपास का इलाक़ा","neighbourhood","पड़ोस में सब जानते हैं।"],["पड़ोसी","m","पास रहने वाला","neighbour","पड़ोसी मेहमान आए।"],["बुनियादी ढाँचा","m","विकास की आधारभूत व्यवस्था","infrastructure","बुनियादी ढाँचा सुधरे।",1],["सुविधा","f","आसानी देने वाली व्यवस्था","amenity","सुविधाएँ बढ़ीं।"],["अभाव","m","कमी","scarcity","संसाधनों का अभाव है।"],["शहरी","adj","शहर से जुड़ा","urban","शहरी जीवन व्यस्त है।",1],["ग्रामीण","adj","गाँव से जुड़ा","rural","ग्रामीण क्षेत्र विकसित हो।",1],["बसावट","f","बसेरे की व्यवस्था","settlement","बसावट पुरानी है।",1],["व्यस्त","adj","काम में डूबा","busy","दिनभर व्यस्त रहा।"],["शांत","adj","सुकून भरा","peaceful","गाँव शांत है।"],["सौहार्द","m","आपसी मेल","harmony","दोनों समुदायों में सौहार्द है।",1]]},
+{name:"Abstract & Exam-Tier",hi:"अमूर्त और परीक्षा-स्तरीय शब्द",desc:"The heavy machinery of top-band essays — concepts, ideals and philosophy.",w:[
+["सत्य","m","सच","truth","सत्य की जीत होती है।"],["अवधारणा","f","संकल्पना","concept","यह अवधारणा नई है।",1],["मूल्य","m","नैतिक आदर्श","values","मूल्यों की शिक्षा दो।",1],["सिद्धांत","m","सिद्ध किया नियम","principle","सिद्धांत निर्धारित किए।",1],["तर्क","m","युक्ति","logic","तर्कसंगत बात करो।",1],["प्रमाण","m","सबूत","proof","प्रमाण पेश किए।",1],["धारणा","f","मान्यता","notion","यह धारणा ग़लत है।",1],["उद्देश्य","m","निशाना","aim","उद्देश्य स्पष्ट रखो।"],["प्रयास","m","कोशिश","effort","लगातार प्रयास करो।"],["सफलता","f","कामयाबी","success","सफलता मेहनत से आती है।"],["विफलता","f","असफलता","failure","विफलता सीखने का अवसर है।"],["यथार्थ","m","जैसा है वैसा","reality","यथार्थ से मुँह मत मोड़ो।",1],["भ्रांति","f","ग़लतफ़हमी","misconception","यह भ्रांति दूर हो।",1],["विवेक","m","सही-ग़लत पहचानने की बुद्धि","discretion","विवेक से निर्णय लो।",1],["गरिमा","f","मर्यादा व शान","dignity","मानव गरिमा रक्षित रहे।",1],["समर्पण","m","पूरी तरह समर्पित होना","dedication","कार्य में समर्पण दिखाओ।",1],["आत्म-निर्भरता","f","अपने बल पर टिकना","self-reliance","आत्म-निर्भरता सबसे बड़ी ताक़त है।",1],["संकल्प","m","दृढ़ निश्चय","resolve","दृढ़ संकल्प से कुछ भी संभव है।"],["मानवता","f","इंसानियत","humanity","मानवता सबसे बड़ा धर्म है।",1],["अनुभूति","f","भीतर का बोध","realisation","आत्म-अनुभूति महत्वपूर्ण है।",1]]}];
+
+/* ---------- MASSIVE EXPANSION BANKS (banks 21–54 · 1,000+ words)
+   compact format: "word|gender|english|example" */
+const MASSIVE=[
+["Body & Appearance","शरीर और रूप","Describing people, health and physical detail.",[
+"सिर|m|head|उसका सिर दर्द है।","बाल|m|hair|बाल काटवा लिए।","आँख|f|eye|आँखों में दर्द है।","कान|m|ear|धीरे बोलो, कान दुख रहे हैं।","नाक|f|nose|नाक बह रही है।","मुँह|m|mouth|मुँह बंद रखो।","होंठ|m|lips|होंठ सूख गए।","दाँत|m|teeth|दाँत साफ़ करो।","जीभ|f|tongue|जीभ से स्वाद आता है।","गर्दन|f|neck|गर्दन में दर्द है।","कंधा|m|shoulder|कंधे पर बस्ता रखा।","हाथ|m|hand/arm|हाथ धो लो।","उँगली|f|finger|उँगली कट गई।","अँगूठा|m|thumb|अँगूठे का निशान लगा।","पैर|m|foot/leg|पैर में मोच आई।","घुटना|m|knee|घुटने ज़मीन पर रखे।","पीठ|f|back|पीठ में दर्द है।","छाती|f|chest|छाती में दर्द मत लेना।","दिल|m|heart|दिल तेज़ धड़क रहा है।","ख़ून|m|blood|ख़ून बह रहा है।","त्वचा|f|skin|त्वचा नरम है।","हड्डी|f|bone|हड्डी टूट गई।","मांसपेशी|f|muscle|मांसपेशियाँ दुख रही हैं।","शरीर|m|body|शरीर को व्यायाम से तेज़ करो।","स्वास्थ्य|m|health|स्वास्थ्य का ध्यान रखो।","बुख़ार|m|fever|बुख़ार उतर गया।","ज़ुकाम|m|a cold|ज़ुकाम से नाक बह रही है।","खाँसी|f|cough|खाँसी बंद नहीं हो रही।","घाव|m|wound|घाव पर पट्टी बाँधी।","दवा|f|medicine|दवा समय पर लो।","इलाज|m|treatment|इलाज शुरू हो गया।","डॉक्टर|m|doctor|डॉक्टर ने जाँची।","नर्स|f|nurse|नर्स ने सेवा की।","अस्पताल|m|hospital|अस्पताल ले जाओ।","रोगी|m|patient|रोगी सो रहा है।","ऊँचा|adj|tall|वह लड़का ऊँचा है।","छोटा|adj|short|मेरा कद छोटा है।","दुबला|adj|thin|वह दुबला-पतला है।","मोटा|adj|fat|मोटा होना स्वास्थ्य नहीं।","सुंदर|adj|beautiful|फूल बहुत सुंदर है।","रूप|m|appearance|रूप से इंसान नहीं पहचाना जाता।"]],
+["Clothing & Jewellery","वस्त्र और आभूषण","What people wear — detail that brings characters alive.",[
+"कपड़े|m|clothes|कपड़े धो लो।","कमीज़|f|shirt|कमीज़ इस्त्री करो।","पतलून|m|trousers|नई पतलून खरीदी।","साड़ी|f|sari|माँ ने साड़ी पहनी।","कुर्ता|m|kurta|कुर्ता पहनकर निकला।","धोती|f|dhoti|दादा धोती पहनते हैं।","जूते|m|shoes|जूते साफ़ करो।","चप्पल|f|slippers|चप्पल पहन लो।","टोपी|f|cap|टोपी ओढ़ ली।","दुपट्टा|m|scarf|दुपट्टा गिर गया।","बेल्ट|f|belt|बेल्ट कस लो।","घड़ी|f|watch|घड़ी बंद हो गई।","अँगूठी|f|ring|अँगूठी खो गई।","हार|m|necklace|हार पहना।","बाला|f|earring|बालियाँ चमक रहीं।","कंगना|m|bangle|कंगन पहने।","गहना|n|jewellery|गहने तिजोरी में रखो।","वर्दी|f|uniform|वर्दी नई बनवाई।","ओवरकोट|m|overcoat|ओवरकोट ओढ़ लो।","स्वेटर|m|sweater|स्वेटर पहन लो।","शाल|f|shawl|शाल लपेट ली।","दर्जी|m|tailor|दर्जी से कपड़े सिलवाए।","सिलाई|f|sewing|सिलाई आती है।","कपास|f|cotton|कपास के कपड़े ठंडे होते हैं।","रेशम|m|silk|रेशम महँगा है।","ऊन|m|wool|ऊन से स्वेटर बनता है।","रंगीन|adj|colourful|रंगीन कपड़े पहने।","सादा|adj|plain|सादा कुर्ता पहना।","नया|adj|new|नए कपड़े आए।","पुराना|adj|old|पुराने कपड़े दान कर दिए।","फटा|adj|torn|कमीज़ फट गई।","साफ़|adj|clean|साफ़ कपड़े पहनो।","गंदा|adj|dirty|गंदे कपड़े उतारो।","महँगा|adj|expensive|यह कपड़ा महँगा है।","सस्ता|adj|cheap|सस्ता सामान खरीदा।"]],
+["Colours & Shapes","रंग और आकार","Colour and form — vital for descriptive writing.",[
+"लाल|adj|red|लाल गुलाब खिला।" ,"नीला|adj|blue|आसमान नीला है।","हरा|adj|green|घास हरी है।","पीला|adj|yellow|पीला फूल दिखा।","काला|adj|black|काली बिल्ली दौड़ी।","सफ़ेद|adj|white|सफ़ेद कबूतर उड़ा।","भूरा|adj|brown|भूरे रंग का घोड़ा।","गुलाबी|adj|pink|गुलाबी साड़ी पहनी।","नारंगी|adj|orange|नारंगी रंग दिखा।","बैंगनी|adj|purple|बैंगनी किताब रखी।","सुनहरा|adj|golden|सुनहरी धूप फैली।","चाँदी जैसा|adj|silvery|चाँदी जैसी चमक।","गहरा|adj|dark/deep|गहरा नीला साड़ी।","हल्का|adj|light|हल्का हरा रंग।","रंग|m|colour|रंग भरो।","रंगीन|adj|colourful|रंगीन दीवार बनी।","चमक|f|shine|चमक दिख रही है।","आकार|m|shape|आकार गोल है।","गोल|adj|round|गोल गेंद लाओ।","चौकोर|adj|square|चौकोर डिब्बा रखा।","लंबा|adj|long|लंबा सड़क था।","चौड़ा|adj|wide|चौड़ी सड़क है।","पतला|adj|thin|पतली किताब है।","मोटा|adj|thick|मोटी किताब है।","सीधा|adj|straight|सीधा रास्ता लो।","टेढ़ा|adj|crooked|टेढ़ी लकीर बनी।","नुकीला|adj|pointed|नुकीली कलम है।","सपाट|adj|flat|सपाट मैदान है।","खाली|adj|empty|खाली बोतल रखी।","भरा|adj|full|भरा गिलास लाओ।"]],
+["Animals & Birds","पशु और पक्षी","Fauna for stories, descriptions and fables.",[
+"कुत्ता|m|dog|कुत्ता भौंक रहा है।","बिल्ली|f|cat|बिल्ली दूध पी रही है।","गाय|f|cow|गाय घास चर रही है।","बैल|m|ox|बैल गाड़ी खींचता है।","भैंस|f|buffalo|भैंस तालाब में है।","बकरी|f|goat|बकरी चर रही है।","घोड़ा|m|horse|घोड़ा तेज़ दौड़ा।","ऊँट|m|camel|ऊँट रेगिस्तान में चला।","हाथी|m|elephant|हाथी पानी पी रहा है।","शेर|m|lion|शेर जंगल का राजा है।","बाघ|m|tiger|बाघ शिकार को निकला।","चीता|m|leopard|चीता तेज़ दौड़ता है।","भालू|m|bear|भालू शहद खा रहा है।","बंदर|m|monkey|बंदर पेड़ पर कूदा।","लोमड़ी|f|fox|लोमड़ी चालाक होती है।","खरगोश|m|rabbit|खरगोश फुदक रहा है।","चूहा|m|mouse|चूहा छेद में घुसा।","साँप|m|snake|साँप फुंफकारा।","मछली|f|fish|मछली पानी में तैरती है।","मोर|m|peacock|मोर नाच रहा है।","तोता|m|parrot|तोता बोल रहा है।","कौआ|m|crow|कौआ काँव-काँव करता है।","कबूतर|m|pigeon|कबूतर उड़ गया।","चिड़िया|f|bird/sparrow|चिड़िया घोंसला बना रही है।","उल्लू|m|owl|उल्लू रात में जागता है।","बाज़|m|falcon|बाज़ उड़ा करता है।","हंस|m|swan|हंस झील में तैरता है।","मुर्गी|f|hen|मुर्गी अंडा देती है।","मुर्गा|m|rooster|मुर्गा बांग देता है।","बत्तख|f|duck|बत्तख पानी में तैरती है।","कीड़ा|m|insect|कीड़ा पत्ते पर चला।","तितली|f|butterfly|तितली फूल पर बैठी।","मधुमक्खी|f|bee|मक्खी फूलों पर मँडराती है।","चींटी|f|ant|चींटी दाना ढो रही है।","जाल|m|web|मकड़ी का जाल बना।","पालतू|adj|pet|पालतू कुत्ता है।","जंगली|adj|wild|जंगली जानवर से बचो।","पिंजरा|m|cage|पिंजरे में तोता बंद है।","घोंसला|m|nest|घोंसले में अंडे हैं।","पशु|m|animal|पशुओं से दूर रहो।","शिकार|m|hunting|शेर शिकार पर निकला।","चरागाह|f|pasture|गाय चरागाह में है।"]],
+["Plants & Farming","पौधे और खेती","Flora, crops and agriculture.",[
+"पेड़|m|tree|पेड़ के नीचे बैठे।","पौधा|m|plant|पौधा रोज़ सींचो।","पत्ता|m|leaf|पत्ते झड़ गए।","जड़|f|root|जड़ ज़मीन में होती है।","फूल|m|flower|फूल खिल गए।","डाली|f|branch|डाली टूट गई।","तना|m|stem|तना मोटा है।","बीज|m|seed|बीज बो दिया।","फल|m|fruit|फल पक गया।","आम|m|mango|आम रसदार है।","सेब|m|apple|सेब खाया।","केला|m|banana|केला पक गया।","अंगूर|m|grapes|अंगूर मीठे हैं।","नारियल|m|coconut|नारियल पानी पिया।","अनार|m|pomegranate|अनार के दाने लाल हैं।","सब्ज़ी|f|vegetable|सब्ज़ी काट लो।","आलू|m|potato|आलू खरीद लाए।","प्याज़|m|onion|प्याज़ काटकर डाला।","टमाटर|m|tomato|टमाटर लाल है।","गन्ना|m|sugarcane|गन्ना चूसना स्वादिष्ट है।","गेहूँ|m|wheat|गेहूँ पक गया।","चावल|m|rice|चावल खा लिए।","दाल|f|lentils|दाल बना ली।","खेत|m|field|खेत में फ़सल है।","फ़सल|f|crop|फ़सल अच्छी हुई।","किसान|m|farmer|किसान खेत में था।","जुताई|f|ploughing|जुताई हो रही है।","बुवाई|f|sowing|बुवाई का मौसम आया।","कटाई|f|harvesting|कटाई शुरू हो गई।","खाद|f|fertiliser|खाद डाल दी।","सिंचाई|f|irrigation|सिंचाई ज़रूरी है।","बगीचा|m|garden|बगीचे में टहल रहे हैं।","माली|m|gardener|माली पौधे काट रहा है।","घास|f|grass|घास कट रही है।","जंगल|m|forest|जंगल घना है।","बाँस|m|bamboo|बाँस का झुरमुट था।","छाँव|f|shade|पेड़ की छाँव में बैठे।","सूखा|adj|dry|सूखे पत्ते जलाए।","हरियाली|f|greenery|बारिश से हरियाली आई।","उर्वर|adj|fertile|यह ज़मीन उर्वर है।"]],
+["House & Rooms","घर और कमरे","The home and its spaces.",[
+"घर|m|house/home|घर आराम देता है।","कमरा|m|room|कमरा बड़ा है।","दरवाज़ा|m|door|दरवाज़ा बंद करो।","खिड़की|f|window|खिड़की खोल दो।","दीवार|f|wall|दीवार पर तस्वीर है।","छत|f|roof/ceiling|छत पर सोए।","फ़र्श|m|floor|फ़र्श साफ़ करो।","सीढ़ियाँ|f|stairs|सीढ़ियाँ चढ़े।","आँगन|m|courtyard|आँगन में खेले।","बरामदा|m|veranda|बरामदे में झूला है।","बाथरूम|m|bathroom|बाथरूम में नहाए।","रसोई|f|kitchen|रसोई में माँ हैं।","अलमारी|f|cupboard|अलमारी बंद करो।","ताला|m|lock|ताला लगा दिया।","चाबी|f|key|चाबी खो गई।","बिजली का तार|m|wire|तार ठीक करवाओ।","पंखा|m|fan|पंखा चालू करो।","बल्ब|m|bulb|बल्ब बदल दो।","दीवारघड़ी|f|wall clock|दीवारघड़ी रुक गई।","दर्पण|m|mirror|दर्पण के सामने खड़े।","तकिया|m|pillow|तकिया ले लो।","चादर|f|bedsheet|चादर बिछा दो।","कंबल|m|blanket|कंबल ओढ़ लो।","पर्दा|m|curtain|पर्दा डाल दो।","झाड़ू|f|broom|झाड़ू लाओ।","बाल्टी|f|bucket|बाल्टी भर लाओ।","मग|m|mug|मग में पानी लाओ।","कुर्सी|f|chair|कुर्सी पर बैठो।","मेज़|f|table|मेज़ पर किताब रखी।","बिस्तर|m|bed|बिस्तर बिछा दो।","अलावा|f|bonfire|अलावा से गर्मी मिली।","छत से पानी|—|leak|छत से पानी टपक रहा है।","मकान|m|building|मकान निर्माण चल रहा है।","किराया|m|rent|किराया दे दिया।","मकान मालिक|m|landlord|मकान मालिक आए।","पड़ोसी|m|neighbour|पड़ोसी से मिले।","सोसाइटी|f|housing society|सोसाइटी की सभा हुई।","प्रवेश द्वार|m|entrance|प्रवेश द्वार बंद है।","आवास|m|residence|सरकारी आवास मिला।","गृहस्थ|m|householder|वह गृहस्थ हो गया।","साफ़-सफ़ाई|f|cleanliness|साफ़-सफ़ाई ज़रूरी है।"]],
+["Kitchen & Utensils","रसोई और बर्तन","Cooking vocabulary — warm domestic detail.",[
+"बर्तन|m|utensils|बर्तन धो लो।","थाली|f|plate|थाली रख दो।","कटोरी|f|bowl|कटोरी में दाल।","चम्मच|m|spoon|चम्मच से खाओ।","काँटा|m|fork|काँटे से खाओ।","चाकू|m|knife|चाकू से काटा।","गिलास|m|glass|गिलास में पानी।","कप|m|cup|कप में चाय।","केतली|f|kettle|केतली चढ़ा दी।","बर्तन धोने का साबुन|m|detergent|साबुन से बर्तन धोए।","चूल्हा|m|stove|चूल्हा जल रहा है।","गैस|m|gas|गैस बंद कर दो।","तवा|m|griddle|तवे पर रोटी बनी।","कड़ाही|f|wok|कड़ाही में तला।","प्रेशर कुकर|m|pressure cooker|कुकर में चावल।","डोना|m|leaf bowl|डोने में खाना।","चाय बनाना|—|to make tea|माँ चाय बना रही हैं।","उबालना|—|to boil|दूध उबाल दो।","तलना|—|to fry|पकौड़े तल दिए।","सेंकना|—|to bake/roast|चपाती सेंक लो।","काटना|—|to cut|सब्ज़ी काट लो।","छानना|—|to strain|दूध छान लो।","मिलाना|—|to mix|आटा मिला दो।","चखना|—|to taste|स्वाद चख लो।","परोसना|—|to serve|खाना परोस दो।","खिलाना|—|to feed|बच्चे को खिलाया।","भरना|—|to fill|पानी भर दो।","उड़ादना|—|to season|तड़का डाला।","स्वादिष्ट|adj|delicious|खीर स्वादिष्ट थी।","कच्चा|adj|raw|कच्चा आम खट्टा है।","पका|adj|ripe/cooked|आम पक गया।","खट्टा|adj|sour|नींबू खट्टा है।","मीठा|adj|sweet|मिठाई मीठी है।","कड़वा|adj|bitter|करेला कड़वा है।","तीखा|adj|spicy/hot|मिर्च तीखी है।","नमकीन|adj|salty|नमकीन बना।","भोजन करना|—|to dine|सबने भोजन किया।","जलपान|—|refreshments|जलपान तैयार है।","भोजनशाला|f|dining hall|भोजनशाला में खाया।","भंडारा|—|community feast|भंडारे में खाना।","रसोईया|m|cook|रसोईया भोजन बना रहा है।"]],
+["People & Professions","लोग और पेशे","Who does what — names of jobs and roles.",[
+"डॉक्टर|m|doctor|डॉक्टर ने दवा दी।","अध्यापक|m|teacher|अध्यापक पढ़ा रहे हैं।","वकील|m|lawyer|वकील ने केस लड़ा।","इंजीनियर|m|engineer|इंजीनियर ने नक्शा बनाया।","किसान|m|farmer|किसान खेत पर गया।","मज़दूर|m|labourer|मज़दूर काम कर रहे हैं।","दुकानदार|m|shopkeeper|दुकानदार ने बिल दिया।","व्यापारी|m|merchant|व्यापारी आए।","लेखक|m|writer|लेखक ने पुस्तक लिखी।","कवि|m|poet|कवि ने पंक्तियाँ पढ़ीं।","चित्रकार|m|painter|चित्रकार तस्वीर बना रहा है।","गायक|m|singer|गायक ने गाना गाया।","नर्तक|m|dancer|नर्तक नाच रहा है।","अभिनेता|m|actor|अभिनेता ने अभिनय किया।","पत्रकार|m|journalist|पत्रकार ने ख़बर लिखी।","पायलट|m|pilot|पायलट ने विमान उड़ाया।" ,"चालक|m|driver|चालक गाड़ी चला रहा है।","मल्लाह|m|boatman|मल्लाह नाव चलाता है।","लुहार|m|blacksmith|लुहार लोहा गर्म करता है।","बढ़ई|m|carpenter|बढ़ई ने कुर्सी बनाई।","दर्जी|m|tailor|दर्जी कपड़े सिलता है।","नाई|m|barber|नाई ने बाल काटे।","धोबी|m|washerman|धोबी कपड़े लाया।","बढ़ई का काम|—|carpentry|काम ख़त्म हुआ।","सिपाही|m|soldier|सिपाही देश की रक्षा करता है।","पुलिसकर्मी|m|policeman|पुलिसकर्मी आ गया।","प्रहरी|m|guard|प्रहरी दरवाज़े पर था।","नौकर|m|servant|नौकर ने झाड़ू लगाई।","मालिक|m|owner/master|मालिक ने बुलाया।","ग्राहक|m|customer|ग्राहक खरीद रहे हैं।","बालक|m|child (boy)|बालक खेल रहा है।","बालिका|f|child (girl)|बालिका नृत्य कर रही है।","युवक|m|young man|युवक तेज़ दौड़ा।","युवती|f|young woman|युवती हँस रही है।","बुज़ुर्ग|m|elderly person|बुज़ुर्ग से उठकर सम्मान किया।","अजनबी|m|stranger|अजनबी रास्ता पूछ रहा है।","पड़ोसी|m|neighbour|पड़ोसी आए।","मेहमान|m|guest|मेहमान बैठे हैं।","मित्र|m|friend|मित्र मिला।","दोस्त|m|friend|दोस्त आज आएगा।","सहयोगी|m|colleague|सहयोगी ने मदद की।","प्रतिद्वंद्वी|m|rival|प्रतिद्वंद्वी भी प्रतिभाशाली था।"]],
+["Everyday Verbs I","रोज़मर्रा की क्रियाएँ १","The verbs of daily life — part one.",[
+"जागना|—|to wake up|सुबह छह बजे जागा।","उठना|—|to get up|पलंग से उठ गया।","सोना|—|to sleep|रात दस बजे सोए।","खाना|—|to eat|भोजन कर लिया।","पीना|—|to drink|पानी पी लिया।","चलना|—|to walk|पैदल चला गया।","दौड़ना|—|to run|मैदान में दौड़ा।","बैठना|—|to sit|कुर्सी पर बैठ गया।","खड़ा होना|—|to stand|दरवाज़े पर खड़ा हुआ।","देखना|—|to see|सिनेमा देखा।","सुनना|—|to listen|गाना सुना।","बोलना|—|to speak|धीरे बोलो।","कहना|—|to say|उसने कुछ कहा।","पूछना|—|to ask|रास्ता पूछा।","जवाब देना|—|to answer|जवाब दे दिया।","लिखना|—|to write|पत्र लिखा।","पढ़ना|—|to read|किताब पढ़ी।","सीखना|—|to learn|हिंदी सीख रहा हूँ।","सिखाना|—|to teach|माँ ने सिखाया।","खरीदना|—|to buy|फल खरीदे।","बेचना|—|to sell|दुकानदार ने बेचा।","देना|—|to give|किताब दे दी।","लेना|—|to take|पैसे ले लिए।","रखना|—|to keep|मेज़ पर रख दो।","खोलना|—|to open|दरवाज़ा खोला।","बंद करना|—|to close|बत्ती बंद करो।","आना|—|to come|वह घर आया।","जाना|—|to go|बाज़ार गए।","लौटना|—|to return|शाम को लौटे।","पहुँचना|—|to arrive|समय पर पहुँचे।","छोड़ना|—|to leave|स्टेशन पर छोड़ दिया।","मिलना|—|to meet|मित्र से मिले।","बुलाना|—|to call|घर बुलाया।","रोना|—|to cry|बच्चा रो रहा है।","हँसना|—|to laugh|ज़ोर से हँसे।","खेलना|—|to play|बच्चे खेल रहे हैं।","गाना|—|to sing|गीत गाया।","नहाना|—|to bathe|नहा लिया।","कपड़े पहनना|—|to wear|स्कूल के कपड़े पहने।","काम करना|—|to work|दिनभर काम किया।","आराम करना|—|to rest|थोड़ा आराम करो।","इंतज़ार करना|—|to wait|बस का इंतज़ार था।","शुरू करना|—|to begin|काम शुरू किया।","बंद होना|—|to end|कार्यक्रम बंद हुआ।"]],
+["Everyday Verbs II","रोज़मर्रा की क्रियाएँ २","The verbs of daily life — part two.",[
+"बनाना|—|to make|माँ ने खाना बनाया।","समझना|—|to understand|बात समझ गया।","सोचना|—|to think|कुछ सोच रहा हूँ।","जानना|—|to know|मैं उसे जानता हूँ।","मानना|—|to believe|मैं तुम्हारी बात मानता हूँ।","याद रखना|—|to remember|पता याद रखना।","भूलना|—|to forget|नाम भूल गया।","चाहना|—|to want|मैं चाय चाहता हूँ।","पसंद करना|—|to like|मुझे संगीत पसंद है।","नापसंद करना|—|to dislike|मुझे धूल नापसंद है।","कोशिश करना|—|to try|कोशिश करोगे तो होगा।","मिल जाना|—|to be found|चाबी मिल गई।","खोना|—|to lose|बटुआ खो गया।","ढूँढना|—|to search|घर ढूँढ रहा था।","पकड़ना|—|to catch|गेंद पकड़ ली।","फेंकना|—|to throw|काग़ज़ फेंक दिया।","उठाना|—|to lift|बस्ता उठाया।","गिराना|—|to drop|कप गिर गया।","बाँटना|—|to distribute|मिठाई बाँटी।","जोड़ना|—|to join|डोरियाँ जोड़ीं।","काटना|—|to cut|रस्सी काट दी।","सिलना|—|to stitch|कपड़ा सिल दिया।","धोना|—|to wash|कपड़े धोए।","पोंछना|—|to wipe|मेज़ पोंछ दी।","साफ़ करना|—|to clean|कमरा साफ़ किया।","सजाना|—|to decorate|घर सजाया।","बदलना|—|to change|कपड़े बदले।","मरम्मत करना|—|to repair|साइकिल मरम्मत कराई।","बन्धना|—|to be tied|गाँठ बंध गई।","खुलना|—|to open|फूल खिल गया।","मदद करना|—|to help|माँ की मदद की।","रक्षा करना|—|to protect|देश की रक्षा की।","बचाना|—|to save|डूबते को बचाया।","इस्तेमाल करना|—|to use|कलम इस्तेमाल की।","चुनना|—|to choose|रंग चुन लिया।","ठीक करना|—|to fix|खाना ठीक बना।","भरना|—|to fill|फ़ॉर्म भरा।","बाँधना|—|to tie|पट्टी बाँधी।","मोड़ना|—|to fold|कंबल मोड़ा।","गिनना|—|to count|पैसे गिने।","तौलना|—|to weigh|आटा तौला।","मापना|—|to measure|कपड़ा मापा।","दिखाना|—|to show|चित्र दिखाया।","छिपाना|—|to hide|खिलौना छिपा दिया।"]],
+["Speaking & Thinking Verbs","बोलने और सोचने की क्रियाएँ","Verbs for communication and thought — essay fuel.",[
+"बताना|—|to tell|सच बताया।","समझाना|—|to explain|शिक्षक ने समझाया।","वर्णन करना|—|to describe|दृश्य का वर्णन किया।","चर्चा करना|—|to discuss|समस्या पर चर्चा हुई।","बहस करना|—|to argue|बहस गरम हो गई।","सलाह देना|—|to advise|डॉक्टर ने सलाह दी।","प्रशंसा करना|—|to praise|सबने प्रशंसा की।","आलोचना करना|—|to criticise|आलोचना सुनी।","कहानी सुनाना|—|to narrate|दादी कहानी सुनाती हैं।","सवाल उठाना|—|to raise a question|प्रश्न उठाया।","जवाब माँगना|—|to demand an answer|उत्तर माँगा।","कबूल करना|—|to admit|ग़लती कबूल की।","इनकार करना|—|to deny|बात इनकार की।","वादा करना|—|to promise|वादा किया।","आग्रह करना|—|to insist|ज़ोर डाला।","सुझाव देना|—|to suggest|सुझाव दिया।","निवेदन करना|—|to request|निवेदन किया।","शिकायत करना|—|to complain|मालिक से शिकायत की।","सूचित करना|—|to inform|परिवार को सूचित किया।","घोषणा करना|—|to announce|परिणाम घोषित हुआ।","किराया देना|—|to pay fare|किराया दे दिया।","सोच-विचार करना|—|to ponder|सोच-विचार कर लिया।","निर्णय लेना|—|to decide|निर्णय ले लिया।","अनुमान लगाना|—|to guess|अनुमान सही निकला।","तुलना करना|—|to compare|दोनों की तुलना की।","योजना बनाना|—|to plan|यात्रा की योजना बनाई।","स्वीकार करना|—|to accept|निमंत्रण स्वीकार किया।","अस्वीकार करना|—|to refuse|प्रस्ताव अस्वीकार किया।","ध्यान देना|—|to pay attention|ध्यान से सुनो।","याद करना|—|to memorise|कविता याद की।","दोहराना|—|to repeat|बात दोहराई।","स्पष्ट करना|—|to clarify|शंका स्पष्ट की।","विश्वास करना|—|to trust|उस पर विश्वास किया।","शक करना|—|to doubt|शक हुआ।","आशा करना|—|to hope|बेहतर की आशा है।","डरना|—|to fear|अंधेरे से डरता है।","चाहत रखना|—|to desire|मन में चाहत थी।"]],
+["Adjectives: Quality & Size","विशेषण: गुण और आकार","Describing words for things and places.",[
+"अच्छा|adj|good|यह अच्छा विचार है।","बुरा|adj|bad|मौसम बुरा है।","बड़ा|adj|big|बड़ा घर खरीदा।","छोटा|adj|small|छोटी दुकान है।","नया|adj|new|नई किताब आई।","पुराना|adj|old|पुराना मकान है।","सुंदर|adj|beautiful|सुंदर फूल थे।","भद्दा|adj|ugly|भद्दा चित्र बना।","साफ़|adj|clean|कमरा साफ़ है।","गंदा|adj|dirty|गली गंदी थी।","आसान|adj|easy|प्रश्न आसान था।","कठिन|adj|difficult|परीक्षा कठिन थी।","तेज़|adj|fast|तेज़ रफ़्तार से गया।","धीमा|adj|slow|धीमी गाड़ी थी।","मज़बूत|adj|strong|मज़बूत रस्सी थी।","कमज़ोर|adj|weak|कमज़ोर दिल था।","भारी|adj|heavy|बस्ता भारी है।","हल्का|adj|light|हल्का बोझ था।","महँगा|adj|expensive|घड़ी महँगी है।","सस्ता|adj|cheap|यह सस्ता है।","गर्म|adj|hot|चाय गर्म है।","ठंडा|adj|cold|पानी ठंडा है।","मीठा|adj|sweet|मिठाई मीठी है।","खट्टा|adj|sour|अचार खट्टा है।","नरम|adj|soft|तकिया नरम है।","कड़ा|adj|hard|लकड़ी कड़ी है।","चिकना|adj|smooth|चिकना पत्थर था।","खुरदरा|adj|rough|खुरदरी सतह थी।","उज्ज्वल|adj|bright|उज्ज्वल भविष्य है।","अंधेरा|adj|dark|अंधेरा कमरा था।","सूखा|adj|dry|सूखी ज़मीन थी।","गीला|adj|wet|गीले कपड़े टाँगे।","खाली|adj|empty|कमरा खाली था।","भरा हुआ|adj|full|बस भरी थी।","सही|adj|correct|उत्तर सही है।","ग़लत|adj|wrong|जवाब ग़लत था।","महत्वपूर्ण|adj|important|यह महत्वपूर्ण है।","साधारण|adj|ordinary|साधारण जीवन था।","असाधारण|adj|extraordinary|असाधारण प्रतिभा थी।","प्रसिद्ध|adj|famous|प्रसिद्ध लेखक हैं।","मशहूर|adj|well-known|मशहूर जगह है।","आधुनिक|adj|modern|आधुनिक इमारत है।","प्राचीन|adj|ancient|प्राचीन मंदिर है।"]],
+["Adjectives: Character & Mood","विशेषण: स्वभाव और मनोदशा","Words to describe people's nature and states of mind.",[
+"ख़ुश|adj|happy|वह बहुत ख़ुश है।","दुखी|adj|sad|वह दुखी दिखा।","उदास|adj|gloomy|मन उदास था।","प्रसन्न|adj|glad|प्रसन्न मुद्रा थी।" ,"ग़ुस्सैला|adj|angry|ग़ुस्सैला स्वभाव है।","शांत|adj|calm|शांत स्वभाव है।","चिढ़िया हुआ|adj|irritated|चिढ़ गया।","उत्साही|adj|enthusiastic|उत्साही छात्र है।","आलसी|adj|lazy|आलसी लड़का है।","मेहनती|adj|hardworking|मेहनती किसान था।","ईमानदार|adj|honest|ईमानदार आदमी है।","बेईमान|adj|dishonest|बेईमान व्यापारी था।","चालाक|adj|clever|चालाक लोमड़ी थी।","सीधा-सादा|adj|simple|सीधा-सादा इंसान है।","भोला|adj|innocent|भोला बच्चा है।","दयालु|adj|kind|दयालु स्वभाव है।","क्रूर|adj|cruel|क्रूर राजा था।","विनम्र|adj|humble|विनम्र व्यवहार किया।","घमंडी|adj|arrogant|घमंडी लड़का था।","डरपोक|adj|timid|डरपोक बच्चा था।","साहसी|adj|brave|साहसी सिपाही था।","धैर्यवान|adj|patient|धैर्यवान शिक्षक हैं।","बुद्धिमान|adj|wise|बुद्धिमान व्यक्ति थे।","मूर्ख|adj|foolish|मूर्ख बात मत करो।","समझदार|adj|sensible|समझदार लड़की है।","होशियार|adj|intelligent|होशियार छात्र है।","तेज़-तर्रार|adj|sharp|तेज़-तर्रार विद्यार्थी है।","मिलनसार|adj|sociable|मिलनसार पड़ोसी हैं।","अकेलापन भरा|adj|lonely|अकेलापन महसूस हुआ।","व्यस्त|adj|busy|व्यस्त दिन था।","तनावग्रस्त|adj|stressed|तनावग्रस्त मन था।","आत्मविश्वासी|adj|confident|आत्मविश्वासी खिलाड़ी था।","निराश|adj|dejected|निराश होकर लौटा।","आशावादी|adj|optimistic|आशावादी दृष्टिकोण रखो।","निर्भीक|adj|fearless|निर्भीक योद्धा था।","अनुशासित|adj|disciplined|अनुशासित जीवन जिया।","स्वार्थी|adj|selfish|स्वार्थी व्यवहार मत करो।","परोपकारी|adj|altruistic|परोपकारी प्रवृत्ति थी।","ज़िम्मेदार|adj|responsible|ज़िम्मेदार नागरिक बनो।","लापरवाह|adj|careless|लापरवाही से गिरा।","सतर्क|adj|alert|सतर्क रहो।"]],
+["Adverbs & Frequency","क्रिया-विशेषण","How often and how much — sentence-finishing words.",[
+"हमेशा|—|always|वह हमेशा समय पर आता है।","अक्सर|—|often|हम अक्सर मिलते हैं।","कभी-कभी|—|sometimes|कभी-कभी सिनेमा देखते हैं।","शायद ही कभी|—|rarely|शायद ही कभी बीमार पड़ता है।","कभी नहीं|—|never|वह कभी झूठ नहीं बोलता।","रोज़|—|daily|रोज़ प्रातः टहलते हैं।","प्रतिदिन|—|every day|प्रतिदिन व्यायाम करो।","सप्ताह में एक बार|—|once a week|सप्ताह में एक बार बाज़ार जाते हैं।","बार-बार|—|repeatedly|बार-बार दस्तक दी।","फिर से|—|again|फिर से प्रयास किया।","अभी|—|right now|अभी आता हूँ।","तुरंत|—|immediately|तुरंत दौड़ा।","जल्दी|—|quickly|जल्दी करो।","धीरे|—|slowly|धीरे बोलो।","धीरे-धीरे|—|gradually|धीरे-धीरे सुधार आया।","अचानक|—|suddenly|अचानक बारिश आई।","यकायक|—|all of a sudden|यकायक सन्नाटा छा गया।","ज़ोर से|—|loudly|ज़ोर से हँसे।","धीरे से|—|softly|धीरे से कहा।","सावधानी से|—|carefully|सावधानी से रखा।","झट से|—|at once|झट से उठा।","बिल्कुल|—|absolutely|बिल्कुल सही कहा।","लगभग|—|almost|लगभग दस बजे आए।","क़रीब-क़रीब|—|nearly|क़रीब-क़रीब पूरा हुआ।","ज़रा भी|—|at all (neg.)|ज़रा भी नहीं डरा।","काफ़ी|—|quite/enough|काफ़ी समय मिला।","थोड़ा|—|a little|थोड़ा रुक जाओ।","बहुत ज़्यादा|—|too much|बहुत ज़्यादा खा लिया।","इतना|—|so much|इतना प्यार दिया।","उतना|—|that much|उतना ही काफ़ी है।","कैसे|—|how|कैसे आए?","क्यों|—|why|क्यों देर हुई?","कब|—|when|कब लौटोगे?","कहाँ|—|where|कहाँ रहते हो?","यहाँ|—|here|यहाँ बैठो।","वहाँ|—|there|वहाँ मत जाओ।","हाँ|—|yes|हाँ, आ गया।","नहीं|—|no|नहीं, नहीं आया।","शायद|—|perhaps|शायद बारिश हो।","अवश्य|—|certainly|अवश्य आएँगे।","निश्चय ही|—|definitely|निश्चय ही जीतेंगे।","सचमुच|—|truly|सचमुच सुंदर है।"]],
+["Time & Calendar","समय और पंचांग","Days, months and expressions of time.",[
+"सोमवार|m|Monday|सोमवार को छुट्टी है।","मंगलवार|m|Tuesday|मंगलवार बाज़ार जाएँगे।","बुधवार|m|Wednesday|बुधवार को परीक्षा है।","गुरुवार|m|Thursday|गुरुवार उपवास रखा।","शुक्रवार|m|Friday|शुक्रवार जुमा की नमाज़।","शनिवार|m|Saturday|शनिवार क्रिकेट मैच।","रविवार|m|Sunday|रविवार घर पर रहे।","आज|—|today|आज बहुत गर्मी है।","कल|—|yesterday/tomorrow|कल मिलेंगे।","परसों|—|day before/after|परसों आए थे।","सुबह|f|morning|सुबह टहलने गए।","दोपहर|f|afternoon|दोपहर भोजन किया।","शाम|f|evening|शाम की सैर।","रात|f|night|रात दस बजे सोए।","मध्य रात्रि|f|midnight|मध्य रात्रि हो गई।","पहर|m|watch (of time)|पहर बीत गया।","घंटा|n|hour|एक घंटा प्रतीक्षा की।","मिनट|m|minute|पाँच मिनट देर हुई।","सप्ताह|m|week|इस सप्ताह व्यस्त रहे।","पखवाड़ा|m|fortnight|पखवाड़े भर की छुट्टी।","महीना|m|month|महीने में एक बार।","साल|m|year|साल भर की मेहनत।","वर्ष|m|year (formal)|इस वर्ष बारिश अच्छी।","सदी|f|century|बीसवीं सदी में।","दशक|m|decade|एक दशक बीत गया।","युग|m|era|सत्ययुग की कथा।","पल|m|moment|एक पल रुक जाओ।","क्षण|m|instant|क्षण भर में गायब।","मौसम|m|season|मौसम बदल गया।","बहार|f|spring bloom|बगीचे में बहार है।","जनवरी|—|January|जनवरी में ठंड रहती है।","फ़रवरी|—|February|फ़रवरी में परीक्षाएँ।","बारहमासी|adj|perennial|बारहमासी नदी।","देर|f|delay|देर हो गई।","समय पर|—|on time|समय पर पहुँचे।","जल्दबाज़ी|f|haste|जल्दबाज़ी मत करो।","देरी|f|lateness|देरी के लिए क्षमा।","पहले|—|earlier/before|पहले आ जाना।","बाद में|—|later|बाद में बात करेंगे।","दौरान|—|during|यात्रा के दौरान।","अंत तक|—|until the end|अंत तक लड़े।","शुरुआत|f|beginning|शुरुआत अच्छी हुई।","अंत|m|end|अंत में जीते।"]],
+["Directions & Position","दिशा और स्थान","Where things are — prepositions and directions.",[
+"ऊपर|—|above/up|छत के ऊपर पंछी।","नीचे|—|below/down|पहाड़ के नीचे गाँव।","अंदर|—|inside|घर के अंदर आओ।","बाहर|—|outside|बाहर मत जाओ।","आगे|—|ahead|आगे बढ़ो।","पीछे|—|behind|पीछे मुड़कर देखा।","दाएँ|—|to the right|दाएँ मुड़ जाओ।","बाएँ|—|to the left|बाएँ रास्ता है।","बीच में|—|in the middle|मैदान के बीच कुआँ।","सामने|—|in front|मेरे सामने बैठो।","पास|—|near|मेरे पास आओ।","दूर|—|far|स्टेशन दूर है।","के पास|—|beside|मेरे पास खड़ा है।","साथ|—|with|मित्र के साथ गया।","उत्तर|m|north|उत्तर भारत में।","दक्षिण|f|south|दक्षिण की ओर गए।","पूर्व|m|east|सूरज पूर्व से उगता है।","पश्चिम|m|west|पश्चिम में डूबा।","दिशा|f|direction|दिशा भटक गए।","मार्ग|m|route|यही मार्ग लो।","रास्ता|m|way/path|रास्ता लंबा है।","गली|f|lane|गली सँकरी है।","सड़क|f|road|सड़क चौड़ी हो गई।","चौराहा|m|crossroads|चौराहे पर मिले।","मोड़|m|turn|अगले मोड़ पर रुको।","किनारा|m|edge|तालाब के किनारे।","कोना|m|corner|कमरे के कोने में।","ऊँचाई|f|height|पहाड़ की ऊँचाई।","गहराई|f|depth|कुएँ की गहराई।","दूरी|f|distance|दूरी लंबी थी।","स्थान|m|place|यह पवित्र स्थान है।","क्षेत्र|m|region|यह क्षेत्र बरसाती है।","इलाक़ा|m|area|यह इलाक़ा सुरक्षित है।","स्थिति|f|position/condition|परिवार की स्थिति ठीक है।"]],
+["Quantity & Measure","परिमाण और माप","Amounts, numbers and measurements.",[
+"एक|—|one|एक किताब है।","दो|—|two|दो लड़के आए।","दस|—|ten|दस रुपये दिए।","सौ|—|hundred|सौ रुपये लगे।","हज़ार|m|thousand|हज़ार की भीड़।","लाख|m|hundred thousand|लाखों लोग आए।","करोड़|m|ten million|करोड़ों की लागत।","आधा|adj|half|आधा किलो लिया।","पौना|—|three-quarters|पौने चार बजे।","सवा|—|one and a quarter|सवा चार बजे।","डेढ़|—|one and a half|डेढ़ घंटा हुआ।","दुगुना|adj|double|दुगुनी मेहनत की।","आधे से ज़्यादा|—|majority|आधे से ज़्यादा आए।","कुछ|—|some|कुछ लोग बचे।","सब|—|all|सब लोग गए।","कोई|—|anyone|कोई नहीं आया।","हर एक|—|each|हर एक को मिला।","दोनों|—|both|दोनों भाई आए।","कई|—|several|कई बार कहा।","अनेक|—|many (formal)|अनेक समस्याएँ हैं।","बहुत सारा|—|a lot of|बहुत सारा काम है।","थोड़ा|—|a little|थोड़ा दूध लो।","पूरा|adj|whole|पूरा दिन लगा।","कम|adj|less|समय कम है।","ज़्यादा|adj|more|ज़्यादा मत खाओ।","पर्याप्त|adj|sufficient|पानी पर्याप्त है।","अपर्याप्त|adj|insufficient|जगह अपर्याप्त है।","संख्या|f|number|छात्रों की संख्या बढ़ी।","मात्रा|f|quantity|मात्रा कम करो।","गिनती|f|counting|गिनती कर लो।","औसत|m|average|औसत अंक बढ़े।","अधिकतम|adj|maximum|अधिकतम तापमान रिकॉर्ड हुआ।","न्यूनतम|adj|minimum|न्यूनतम वेतन बढ़ा।","माप|m|measurement|माप सही लो।","तौल|f|weight|तौल कर दी।","किलो|m|kilogram|दो किलो आटा।","मीटर|m|metre|दस मीटर दूर।","किलोमीटर|m|kilometre|पाँच किलोमीटर पैदल।","मुल्तवा|—|installment|किश्तों में दिया।","हिस्सा|m|share|हिस्सा बाँट दिया।","बराबर|adj|equal|बराबर हिस्सा मिला।","अंश|m|portion|कुछ अंश सही हैं।"]],
+["Nature & Landscape","प्रकृति और भूदृश्य","Landforms and scenery for descriptive writing.",[
+"पहाड़|m|mountain|पहाड़ ऊँचा था।","पर्वत|m|mountain (formal)|हिमालय पर्वत है।","पहाड़ी|f|hill|पहाड़ी पर चढ़े।","घाटी|f|valley|घाटी सुंदर थी।","नदी|f|river|नदी बह रही है।","नाला|m|stream|नाला सूख गया।","झरना|m|waterfall|झरना गिर रहा था।","झील|f|lake|झील में नाव।","तालाब|m|pond|तालाब किनारे बैठे।","कुआँ|m|well|कुएँ से पानी निकाला।","समुद्र|m|sea|समुद्र किनारे गए।","सागर|m|ocean|सागर विशाल है।","लहर|f|wave|लहरें ऊँची उठीं।","किनारा|m|shore|किनारे पर बैठे।","रेत|f|sand|रेत पर कदम छापे।","टापू|m|island|निकट का टापू।","मैदान|m|plain/field|मैदान फैला था।","रेगिस्तान|m|desert|रेगिस्तान में ऊँट।","बंजर भूमि|f|barren land|बंजर भूमि रह गई।","जंगल|m|forest|जंगल घना था।","झाड़ी|f|bush|झाड़ी में छिपा।","गुफ़ा|f|cave|गुफ़ा में रहते थे।","चट्टान|f|rock|चट्टान फिसलती है।","मिट्टी|f|soil|मिट्टी गीली थी।","धरती|f|earth|धरती हिल गई।","ज़मीन|f|ground/land|ज़मीन समतल है।","आकाश|m|sky|आकाश साफ़ है।","सूरज|m|sun|सूरज उग आया।","चाँद|m|moon|चाँद निकल आया।","तारे|m|stars|तारे चमक रहे हैं।","ब्रह्मांड|m|universe|ब्रह्मांड विशाल है।","पृथ्वी|f|the Earth|पृथ्वी गोल है।","क्षितिज|m|horizon|क्षितिज तक फैला।","सूर्योदय|m|sunrise|सूर्योदय देखा।","सूर्यास्त|m|sunset|सूर्यास्त मनमोहक था।","छाया|f|shadow|पेड़ की छाया।","प्रकाश|m|light|प्रकाश फैल गया।","अंधकार|m|darkness|अंधकार छा गया।","तूफ़ानी लहरें|f|stormy waves|लहरें तूफ़ानी थीं।","वनस्पति|f|vegetation|वनस्पति घनी है।","प्राकृतिक सौंदर्य|m|natural beauty|प्राकृतिक सौंदर्य देखा।","दृश्य|n|scene|दृश्य सुंदर था।","परिवेश|m|surroundings|परिवेश शांत था।"]],
+["Sky & Weather More","आकाश और मौसम — अधिक","Extended weather and sky vocabulary.",[
+"हवा|f|wind|हवा तेज़ चल रही है।","समीर|m|gentle breeze|समीर ठंडी बह रही थी।","बूँद|f|drop|पहली बूँद गिरी।","बूँदाबाँदी|f|drizzle|हल्की बूँदाबाँदी हुई।","मूसलाधार बारिश|f|torrential rain|मूसलाधार बारिश हुई।","बादल घिरना|—|to be overcast|बादल घिर आए।","ओस|f|dew|ओस की बूँदें चमकीं।","पाला|m|frost|पाला पड़ा।","बर्फ़|f|snow|बर्फ़ गिर रही है।","हिमालय|m|the Himalayas|हिमालय बर्फ़ से ढका।","गर्म लू|f|hot wind|लू चल रही थी।","उमस|f|humidity|उमस भरी गर्मी थी।","सर्द हवा|f|cold wind|सर्द हवा चली।","साफ़ मौसम|m|clear weather|मौसम साफ़ है।","बदलता मौसम|m|changing weather|बदलता मौसम बीमारी लाता है।","ऋतु परिवर्तन|m|change of season|ऋतु परिवर्तन से बचो।","गर्मी की छुट्टियाँ|f|summer holidays|गर्मी की छुट्टियाँ आईं।","बरसात|m|rainy season|बरसात आ गई।","शीतकाल|m|winter season|शीतकाल शुरू हुआ।","वर्षा ऋतु|f|monsoon|वर्षा ऋतु आ गई।","मौसम का पूर्वानुमान|m|weather forecast|पूर्वानुमान सही निकला।","तापक्रम|m|temperature|तापक्रम गिरा।","गर्मी पड़ना|—|to be very hot|कड़ी गर्मी पड़ रही है।","ठंड पड़ना|—|to be very cold|कड़ाके की ठंड पड़ी।","भीगना|—|to get wet|बारिश में भीग गए।","सूखना|—|to dry|कपड़े सूख गए।","तपना|—|to scorch|सूरज तप रहा है।","चमकना|—|to shine|सूरज चमक रहा है।","डुबकी लगाना|—|to dive|झील में डुबकी लगाई।","बहना|—|to flow|नदी तेज़ बह रही है।","बढ़ना|—|to rise|पानी बढ़ गया।","सूख जाना|—|to dry up|नदी सूख गई।"]],
+["Market & Shopping","बाज़ार और ख़रीदारी","Shops, goods and transactions.",[
+"दुकान|f|shop|दुकान बंद है।","बाज़ार|m|market|बाज़ार चले गए।","हाट|m|weekly market|गाँव का हाट लगा।","दुकानदार|m|shopkeeper|दुकानदार ने कहा।","सौदा|m|deal|सौदा पक्का हुआ।","मोलभाव|m|bargaining|मोलभाव कर लिया।","ख़रीदारी|f|shopping|ख़रीदारी की।","बिक्री|f|sale|बिक्री बढ़ गई।","रुपया|m|rupee|दस रुपये दिए।","पैसा|m|money|पैसे नहीं हैं।","नोट|m|note (currency)|सौ का नोट दिया।","चिल्लम|—|coins|चिल्ले जमा किए।","बटुआ|m|wallet|बटुआ गिरा हुआ मिला।","बिल|m|bill|बिल बना लिया।","रसीद|f|receipt|रसीद रख लो।","क़ीमत|f|price|क़ीमत बढ़ गई।","दाम|m|price/rate|दाम कम करो।","भाव|m|rate|आज भाव ऊँचे हैं।","छूट|f|discount|दस प्रतिशत छूट मिली।","मुफ़्त|adj|free|मुफ़्त में मिला।","महँगाई|f|inflation|महँगाई बढ़ी।","सस्ता बाज़ार|m|cheap market|यह सस्ता बाज़ार है।","ग्राहक|m|customer|ग्राहक खुश हुए।","सामान|m|goods|सामान बाँध लो।","थैला|m|bag|थैला साथ लाओ।","पैकिंग|f|packaging|पैकिंग अच्छी थी।","तौलना|—|to weigh|आधा किलो तौला।","नापना|—|to measure|कपड़ा नापा।","लेन-देन|m|transaction|नक़द लेन-देन।","उधार|f|credit|उधार मत लो।","क़र्ज़|m|debt/loan|क़र्ज़ चुका दिया।","ब्याज|m|interest|ब्याज बढ़ गया।","हिसाब|m|account/calculation|हिसाब मिला लिया।","खर्च|m|expense|खर्च बढ़ गया।","बचत|f|saving|बचत करो।","फ़ायदा|m|profit|फ़ायदा हुआ।","घाटा|m|loss|घाटा हो गया।","माँग|f|demand|माँग बढ़ी।","आपूर्ति|f|supply|आपूर्ति कम थी।","स्टॉक|m|stock|स्टॉक ख़त्म हो गया।","खिड़की खोलना|—|to open shop|दुकान खोल दी।","सौदागर|m|trader|सौदागर आए।"]],
+["Money & Banking","धन और बैंकिंग","Finance and banking basics for formal writing.",[
+"बैंक|m|bank|बैंक गए।","खाता|n|account|खाता खुलवाया।","जमा|f|deposit|पैसे जमा किए।","निकासी|f|withdrawal|निकासी की।","चेक|m|cheque|चेक भेजा।","एटीएम|m|ATM|एटीएम से पैसे निकाले।","पिन नंबर|m|PIN|पिन गुप्त रखो।","लेन-देन|m|transaction|ऑनलाइन लेन-देन।","भुगतान|m|payment|भुगतान कर दिया।","नक़द|m|cash|नक़द दिया।","ऑनलाइन भुगतान|m|online payment|UPI से भुगतान।","शेष राशि|f|balance|शेष राशि देखी।","ब्याज दर|f|interest rate|ब्याज दर घटी।","ऋण|m|loan|शिक्षा ऋण लिया।","किश्त|f|installment|किश्त भर दी।","धनराशि|f|amount (of money)|पूरी धनराशि मिली।","गुप्त संख्या|f|password|गुप्त संख्या बदलो।","जालसाज़ी|f|forgery|जालसाज़ी पकड़ी गई।","साइबर ठगी|f|cyber fraud|साइबर ठगी से बचो।","निवेश करना|—|to invest|शेयर में निवेश किया।","बचत खाता|m|savings account|बचत खाता खोला।","विदेशी मुद्रा|f|foreign exchange|विदेशी मुद्रा बदली।","आय|f|income|आय बढ़ी।","व्यय|m|expenditure|व्यय घटाओ।","बजट|m|budget|घर का बजट बनाया।","आर्थिक स्थिति|f|financial condition|आर्थिक स्थिति ठीक है।","संपत्ति|f|asset/property|संपत्ति बाँटी।","धनी|adj|wealthy|धनी व्यापारी थे।","निर्धन|adj|poor|निर्धन परिवार।","अमीर|adj|rich|अमीर आदमी।","ग़रीब|adj|poor|ग़रीब की मदद की।","भिखारी|m|beggar|भिखारी को दान दिया।","दानदाता|m|donor|दानदाता आए।","न्यायोचित|adj|fair|न्यायोचित क़ीमत।","सौदा करना|—|to negotiate|सौदा पक्का हुआ।"]],
+["Transport & Vehicles","यातायात और वाहन","Vehicles, stations and journeys.",[
+"गाड़ी|f|vehicle/train|गाड़ी आ गई।","रेलगाड़ी|f|train|रेलगाड़ी देर से आई।","बस|f|bus|बस में चढ़े।","कार|f|car|कार खरीदी।","साइकिल|f|bicycle|साइकिल चलाई।","स्कूटर|m|scooter|स्कूटर से गए।","मोटरसाइकिल|f|motorcycle|मोटरसाइकिल चलाई।","रिक्शा|m|rickshaw|रिक्शा बुलाया।","टैक्सी|f|taxi|टैक्सी ली।","नाव|f|boat|नाव में सवार हुए।","जहाज़|m|ship|जहाज़ रवाना हुआ।","विमान|m|aeroplane|विमान उड़ा।","हवाई अड्डा|m|airport|हवाई अड्डे गए।","रेलवे स्टेशन|m|railway station|स्टेशन पहुँचे।","प्लेटफ़ॉर्म|m|platform|दूसरे प्लेटफ़ॉर्म पर।","टिकट|f|ticket|टिकट कटवाई।","किराया|m|fare|किराया दिया।","सामान|m|luggage|सामान रखा।","संदूक|m|trunk|पुराना संदूक था।","यात्री|m|passenger|यात्री उतरे।","चालक|m|driver|चालक ने गाड़ी रोकी।","सीट|f|seat|खिड़की वाली सीट।","रुकना|—|to stop|अगले स्टॉप पर रुकेगी।","चढ़ना|—|to board|बस में चढ़े।","उतरना|—|to alight|अगले स्टॉप पर उतरे।","सफ़र करना|—|to travel|लंबा सफ़र किया।","रवाना होना|—|to depart|गाड़ी रवाना हुई।","पहुँचना|—|to arrive|मंज़िल पहुँचे।","ट्रैफ़िक जाम|m|traffic jam|ट्रैफ़िक जाम था।","सावधानी से चलाना|—|to drive safely|धीरे चलाओ।","सड़क पार करना|—|to cross the road|सावधानी से पार करो।","संकेत|m|signal|संकेत लाल हो गया।","हेलमेट|m|helmet|हेलमेट पहनो।","पार्किंग|f|parking|पार्किंग में खड़ी।","पेट्रोल पंप|m|petrol pump|पेट्रोल भरवाया।","मंज़िल|f|destination|मंज़िल नज़दीक थी।","रास्ता भूलना|—|to lose one's way|रास्ता भटक गए।","शॉर्टकट|m|shortcut|शॉर्टकट लिया।","एक्सप्रेसवे|m|expressway|एक्सप्रेसवे से गए।","मेल गाड़ी|f|mail train|मेल गाड़ी थी।"]],
+["Services & Post Office","सेवाएँ और डाकघर","Post, phone and public services.",[
+"डाकघर|m|post office|डाकघर गए।","डाक|m|mail|डाक आ गई।","पत्र|m|letter|पत्र लिखा।","लिफ़ाफ़ा|m|envelope|लिफ़ाफ़े में रखा।","टिकट चिपकाना|—|to affix stamp|टिकट चिपकाया।","पिन कोड|m|postal code|पिन कोड लिखा।","पता|n|address|पता साफ़ लिखो।","पार्सल|m|parcel|पार्सल भेजा।","तार|m|telegram|तार भेजा था।","डाकिया|m|postman|डाकिया आया।","प्रेषक|m|sender|प्रेषक का नाम लिखो।","प्राप्तकर्ता|m|recipient|प्राप्तकर्ता का पता।","संदेश|m|message|संदेश छोड़ दिया।","फ़ोन करना|—|to phone|फ़ोन किया।","कॉल|f|call|कॉल आई।","घंटी बजना|—|to ring|घंटी बजती रही।","नंबर|m|number|नंबर डायल किया।","मोबाइल फ़ोन|m|mobile phone|मोबाइल साथ रखो।","स्क्रीन|f|screen|स्क्रीन टूट गई।","चार्जर|m|charger|चार्जर लाओ।","बैटरी|f|battery|बैटरी ख़त्म हुई।","नेटवर्क की समस्या|f|network issue|नेटवर्क नहीं था।","इंटरनेट|m|internet|इंटरनेट चल रहा है।","ईमेल|m|email|ईमेल भेजा।","अटैचमेंट|m|attachment|फ़ाइल अटैच की।","साइबर कैफ़े|m|cyber café|साइबर कैफ़े गए।","प्रिंट निकालना|—|to print|प्रिंट निकलवाया।","स्कैन करना|—|to scan|दस्तावेज़ स्कैन किया।","फ़ोटोकॉपी|f|photocopy|फ़ोटोकॉपी कराई।","फ़ाइल|f|file|फ़ाइल सँभालो।","दस्तावेज़|m|document|दस्तावेज़ जमा किए।","प्रमाण-पत्र|m|certificate|प्रमाण-पत्र मिला।","आवेदन|m|application|आवेदन भरा।","फ़ॉर्म|m|form|फ़ॉर्म भरा।","हस्ताक्षर|m|signature|हस्ताक्षर किए।","फोटो|f|photograph|फोटो लगाई।","पुलिस स्टेशन|m|police station|थाने गए।","अस्पताल|m|hospital|अस्पताल भर्ती हुए।","दवा की दुकान|f|pharmacy|दवा की दुकान खुली।","सरकारी दफ़्तर|m|government office|दफ़्तर गए।"]],
+["School & Stationery","विद्यालय और लेखन-सामग्री","Objects of study and the classroom.",[
+"किताब|f|book|किताब पढ़ी।","कॉपी|f|notebook|कॉपी खरीदी।","कलम|f|pen|कलम से लिखा।","पेंसिल|f|pencil|पेंसिल तेज़ की।","रबड़|m|eraser|रबड़ मिल गया।","स्केल|m|ruler|स्केल से रेखा खींची।","स्याही|f|ink|स्याही भरी।","शार्पनर|m|sharpener|शार्पनर लाओ।","बस्ता|m|school bag|बस्ता उठाया।","ब्लैकबोर्ड|m|blackboard|बोर्ड पर लिखा।","चॉक|f|chalk|चॉक से लिखा।","डस्टर|m|duster|डस्टर से मिटाया।","पीठक|—|homework (old)|गृहकार्य करो।","कक्षा|f|class|कक्षा में बैठे।","कक्षा-कक्ष|m|classroom|कक्षा-कक्ष साफ़ है।","छुट्टी|f|holiday|आज छुट्टी है।","अवकाश|m|leave/vacation|अवकाश पर गए।","पीरियड|m|period|पहला पीरियड हुआ।","सभा|f|assembly|प्रातः सभा हुई।","उपस्थिति|f|attendance|उपस्थिति भरी।","अनुपस्थित|adj|absent|वह अनुपस्थित था।","परीक्षा|f|examination|परीक्षा शुरू हुई।","नतीजा|m|result|नतीजा आ गया।","अंक|m|marks|अंक अच्छे आए।","प्रमाण-पत्र|m|certificate|प्रमाण-पत्र मिला।","पुरस्कार|m|prize|पुरस्कार जीता।","इनाम|m|reward|इनाम मिला।","प्रतियोगिता|f|competition|प्रतियोगिता हुई।","वार्षिकोत्सव|m|annual day|वार्षिकोत्सव मनाया।","खेल का मैदान|m|playground|मैदान में खेले।","प्रयोगशाला|f|laboratory|प्रयोगशाला गए।","प्रदर्शनी|f|exhibition|विज्ञान प्रदर्शनी लगी।","शुल्क|m|fees|शुल्क जमा किया।","छात्रावास|m|hostel|छात्रावास में रहे।","पाठ्यपुस्तक|f|textbook|पाठ्यपुस्तक लाओ।","पाठ|m|lesson|आज का पाठ पढ़ो।","अध्याय|m|chapter|तीसरा अध्याय पढ़ा।","अभ्यास कार्य|m|exercise|अभ्यास करो।","जवाब|m|answer|जवाब लिखा।","सवाल|m|question|सवाल समझ आया।"]],
+["Sports & Games","खेल और क्रिकेट","Sports, games and play.",[
+"खेल|m|game/sport|खेल शुरू हुआ।","क्रिकेट|m|cricket|क्रिकेट देखा।","फुटबॉल|m|football|फुटबॉल खेला।","हॉकी|f|hockey|हॉकी टीम जीती।","कबड्डी|f|kabaddi|कबड्डी का मैच।","खो-खो|—|kho-kho|खो-खो खेले।","शतरंज|f|chess|शतरंज खेली।","कैरम|m|carrom|कैरम बोर्ड लाया।","गेंद|f|ball|गेंद फेंकी।","बल्ला|m|bat|बल्ले से मारा।","विकेट|f|wicket|विकेट गिर गई।","दौड़|f|race|दौड़ में पहले आए।","कूद|m|jump|लंबी कूद में जीता।","तैराकी|f|swimming|तैराकी सीखी।","साइकिल दौड़|f|cycling race|साइकिल दौड़ हुई।","खिलाड़ी|m|player|खिलाड़ी अच्छा खेला।","टीम|f|team|टीम जीत गई।","मैच|m|match|मैच रोमांचक था।","स्कोर|m|score|स्कोर बराबर रहा।","जीत|f|victory|जीत मिल गई।","हार|f|defeat|हार मान ली।","उपविजेता|m|runner-up|उपविजेता बने।","कप|m|trophy|कप उठाया।","प्रशिक्षक|m|coach|प्रशिक्षक ने सिखाया।","अंपायर|m|umpire|अंपायर का फ़ैसला।","मैदान|m|field|मैदान गीला था।","स्टेडियम|m|stadium|स्टेडियम भरा था।","दर्शक|m|spectators|दर्शकों ने तालियाँ बजाईं।","तालियाँ बजाना|—|to applaud|ज़ोर से तालियाँ।","खेल-भावना|f|sportsmanship|खेल-भावना दिखाओ।","अनुशासन|m|discipline|खेल में अनुशासन ज़रूरी।","अभ्यास|m|practice|रोज़ अभ्यास करो।","स्ट्राइकर|m|striker|स्ट्राइकर से मारा।","गोल|m|goal|गोल हो गया।","शॉट|m|shot|चौके का शॉट।","स्पर्धा|f|competition|स्पर्धा कड़ी थी।","ओलंपिक|m|Olympics|ओलंपिक में भाग लिया।","मेडल|m|medal|स्वर्ण पदक जीता।","कसरत|f|workout|रोज़ कसरत करो।","योग|m|yoga|प्रातः योग करो।"]],
+["Festivals & Worship","त्योहार और पूजा","Religion, rituals and celebration.",[
+"त्योहार|m|festival|त्योहार आया।","दीपावली|f|Diwali|दीपावली मनाई।","होली|f|Holi|होली खेली।","रक्षाबंधन|m|Raksha Bandhan|राखी बाँधी।","ईद|f|Eid|ईद की बधाई।","क्रिसमस|m|Christmas|क्रिसमस मनाया।","गणेशोत्सव|m|Ganesh festival|गणेशोत्सव आया।","दुर्गा पूजा|f|Durga Puja|पंडाल सजा।","नवरात्रि|f|Navratri|नवरात्रि का व्रत।","ओणम|m|Onam|ओणम मनाया।","बैसाखी|f|Baisakhi|बैसाखी का मेला।","पूजा|f|worship|सुबह पूजा हुई।" ,"आरती|f|aarti|आरती उतारी।","प्रसाद|m|offering|प्रसाद बाँटा।","मंदिर|m|temple|मंदिर गए।","गिरजाघर|m|church|गिरजाघर गए।","मस्जिद|f|mosque|मस्जिद गए।","गुरुद्वारा|m|gurudwara|गुरुद्वारे गए।","दीप जलाना|—|to light a lamp|दीप जलाए।","दीया|m|earthen lamp|दीये सजाए।","मोमबत्ती|f|candle|मोमबत्ती जलाई।","रंगोली|f|rangoli|रंगोली बनाई।","तोरण|m|festoon|दरवाज़े पर तोरण।","व्रत|m|fast|व्रत रखा।","कथा|f|tale/ritual story|कथा सुनाई।","भजन|m|devotional song|भजन गाया।","कीर्तन|m|kirtan|कीर्तन हुआ।","मंत्र|m|chant|मंत्र पढ़ा।","पाठ करना|—|to recite|दुर्गा सप्तशती का पाठ।","श्रद्धा|f|faith|श्रद्धा पूर्ण मन।","आस्था|f|belief|आस्था गहरी है।","तीर्थ|m|pilgrimage|तीर्थ गए।","तीर्थयात्रा|f|pilgrimage|तीर्थयात्रा निकली।","स्नान|m|ritual bath|संगम में स्नान।","दान करना|—|to donate|वस्त्र दान किए।","बधाई देना|—|to congratulate|बधाई दी।","उपहार देना|—|to gift|उपहार दिया।","मिठाई बाँटना|—|to distribute sweets|मिठाई बाँटी।","नई साड़ी|f|new sari|त्योहार की साड़ी।","नए कपड़े|m|new clothes|नए कपड़े पहने।","रौनक|f|festivity|बाज़ार में रौनक।","ख़ुशी का माहौल|m|festive mood|ख़ुशी का माहौल।"]],
+["People Words & Kinship","संबंध शब्दावली","Kinship terms — precise family vocabulary.",[
+"माता|f|mother (formal)|माता जी आशीर्वाद देती हैं।","पिता|m|father (formal)|पिता जी व्यापारी हैं।","माँ|f|mum|माँ खाना बनाती हैं।","पापा|m|dad|पापा ऑफ़िस गए।","बाबा|m|grandfather (maternal)|बाबा कहानी सुनाते हैं।","दादा|m|grandfather (paternal)|दादा जी पंचायत में गए।","दादी|f|grandmother (paternal)|दादी आईं।","नानी|f|grandmother (maternal)|नानी के घर गए।","भाई|m|brother|भाई पढ़ रहा है।","बहन|f|sister|बहन गाना गा रही है।","बड़ा भाई|m|elder brother|बड़े भाई ने कहा।","छोटी बहन|f|younger sister|छोटी बहन सो रही है।","चाचा|m|uncle (paternal)|चाचा जी आए।","मामा|m|uncle (maternal)|मामा का घर गए।","मौसी|f|aunt|मौसी मिठाई लाईं।","बुआ|f|aunt (father's sister)|बुआ आईं।","ताऊ|m|uncle (elder)|ताऊ जी की बात।","भतीजा|m|nephew|भतीजा आया।","भांजा|m|nephew (sister's son)|भांजा खेल रहा है।","बेटा|m|son|बेटा पहले आया।","बेटी|f|daughter|बेटी स्कूल गई।","पति|m|husband|पति नौकरी पर गए।","पत्नी|f|wife|पत्नी ने बुलाया।","शादीशुदा जोड़ा|—|married couple|दोनों साथ आए।","विधवा|f|widow|विधवा माँ ने पाला।","अनाथ|m|orphan|अनाथालय में पले।","गोद लेना|—|to adopt|बच्ची को गोद लिया।","ससुर|m|father-in-law|ससुर जी बैठे हैं।","सास|f|mother-in-law|सास ने बुलाया।","दामाद|m|son-in-law|दामाद आए।","बहू|f|daughter-in-law|बहू ने भोजन बनाया।","जेठ|m|brother-in-law (elder)|जेठ जी आए।","देवर|m|brother-in-law (younger)|देवर हँस रहा था।","ननद|f|sister-in-law|ननद आईं।","रिश्ता|n|relation|रिश्ता पक्का हुआ।","रिश्तेदार|m|relative|रिश्तेदार आए।","परिवार का सदस्य|m|family member|सब सदस्य आए।","पीढ़ी|f|generation|तीसरी पीढ़ी आई।","वंशज|m|descendant|राजा के वंशज।","ख़ानदान|m|lineage|अच्छे ख़ानदान से।"]],
+["Nation & Politics","राष्ट्र और राजनीति","Country, government and history.",[
+"देश|m|country|देश प्रेम सबसे ऊपर।","राष्ट्र|m|nation|राष्ट्र निर्माण में मदद।","भारत|m|India|भारत मेरा देश।","राजधानी|f|capital|दिल्ली राजधानी है।","झंडा|m|flag|झंडा फहराया।","स्वतंत्रता दिवस|m|Independence Day|परेड देखी।","गणतंत्र दिवस|m|Republic Day|झांकियाँ निकलीं।","देशभक्ति|f|patriotism|देशभक्ति जगाओ।","सेना|f|army|सेना सीमा पर है।","जवान|m|soldier|जवानों को सलाम।","किसान आंदोलन|m|farmers' movement|किसान एकजुट हुए।","सरकार|f|government|सरकार ने योजना बनाई।","मंत्री|m|minister|मंत्री आए।","प्रधानमंत्री|m|prime minister|प्रधानमंत्री ने बोला।","राष्ट्रपति|m|president|राष्ट्रपति का भाषण।","विधानसभा|f|legislative assembly|विधानसभा में बहस।","संसद|f|parliament|संसद का सत्र।","चुनाव|m|election|चुनाव हुए।","वोट|m|vote|वोट डाला।","भाग्यशाली विजेता|—|winning candidate|उम्मीदवार जीते।","उम्मीदवार|m|candidate|उम्मीदवार ने जीता।","राजनीति|f|politics|राजनीति से जुड़े।","नेता|m|leader|नेता बोले।","जनता|f|the public|जनता की राय।","नागरिक अधिकार|m|civil rights|अधिकारों की रक्षा।","क़ानून बनाना|—|to legislate|नया क़ानून बना।","नीति|f|policy|नई नीति आई।","योजना|f|scheme|सरकारी योजना चली।","विकास कार्य|m|development work|विकास तेज़ हुआ।","इतिहास|m|history|इतिहास गवाह है।","आज़ादी|f|freedom|आज़ादी की लड़ाई।","स्वतंत्रता सेनानी|m|freedom fighter|सेनानियों को याद किया।","अंग्रेज़|m|the British|अंग्रेज़ों से लड़े।","ग़ुलामी|f|slavery|ग़ुलामी के दिन।","संघर्ष करना|—|to struggle|संघर्ष करते रहे।","बलिदान|m|sacrifice|बलिदान दिया।","शहीद|m|martyr|शहीदों को नमन।","जय हिंद|—|victory to India|जय हिंद बोले।","एकता और अखंडता|f|unity and integrity|देश की एकता।","पड़ोसी देश|m|neighbouring country|पड़ोसी देश से संबंध।"]],
+["Law & Justice","क़ानून और न्याय","Crime, policing and courts.",[
+"अदालत|f|court|अदालत गए।","न्यायाधीश|m|judge|जज साहब आए।","वकील|m|lawyer|वकील ने दलील दी।","मुक़दमा|m|case|मुक़दमा चला।","फ़ैसला|n|verdict|फ़ैसला आ गया।","सज़ा|f|punishment|सज़ा सुनाई।","उम्रक़ैद|f|life imprisonment|उम्रक़ैद की सज़ा।","जुर्माना|m|fine|जुर्माना लगा।","गवाही|f|testimony|गवाही दी।","गिरफ़्तार|adj|arrested|चोर गिरफ़्तार हुआ।","थाना|m|police station|थाने ले गए।","एफ़आईआर|f|police report|रिपोर्ट दर्ज हुई।","जाँच-पड़ताल|f|investigation|जाँच चल रही है।","सबूत|m|evidence|सबूत मिला।","अपराध|m|crime|अपराध बढ़ रहा है।","अपराधी|m|criminal|अपराधी फरार है।","चोर|m|thief|चोर पकड़ा गया।","चोरी|f|theft|चोरी हो गई।","डकैती|f|robbery|डकैती हुई।","हत्या|f|murder|हत्याकांड हुआ।","झगड़ा|m|quarrel|झगड़ा हो गया।","मारपीट|f|fight|मारपीट हुई।","धोखा|m|fraud|धोखा दिया।","रिश्वत|f|bribe|रिश्वत लेते पकड़ा।","सूचना देना|—|to inform|पुलिस को बताया।","शिकायत दर्ज करना|—|to lodge a complaint|शिकायत दर्ज हुई।","सहायता माँगना|—|to seek help|मदद माँगी।","सुरक्षा|f|security|सुरक्षा बढ़ाई।","क़ानून व्यवस्था|f|law and order|क़ानून व्यवस्था बनी।","नियम|m|rule|नियम पालन करो।","उल्लंघन|m|violation|नियम का उल्लंघन।","स्वतंत्र न्यायपालिका|f|independent judiciary|न्यायपालिका स्वतंत्र है।","अधिकार पत्र|m|warrant|वारंट जारी हुआ।","ज़मानत|f|bail|ज़मानत मिली।","बंदी|f|prisoner|बंदी छूटा।","जेल|f|prison|जेल गया।","अपील|f|appeal|अपील दायर की।","निर्दोष|adj|innocent|निर्दोष छोड़ा गया।","दोषी|adj|guilty|दोषी क़रार दिया।","न्याय मिलना|—|to get justice|न्याय मिल गया।","कठोर क़ानून|m|strict law|कठोर क़ानून ज़रूरी।"]],
+["Science & Geography","विज्ञान और भूगोल","Science, geography and discovery.",[
+"विज्ञान|m|science|विज्ञान पसंद है।","वैज्ञानिक|m|scientist|वैज्ञानिक ने खोज की।","खोज|f|discovery|नई खोज हुई।","आविष्कारक|m|inventor|आविष्कारक सम्मानित।","प्रयोग करना|—|to experiment|प्रयोग किया।","प्रकृति|f|nature|प्रकृति से सीखो।","ऊर्जा स्रोत|m|energy source|नए स्रोत खोजे।","विद्युत|f|electricity|विद्युत गुल हो गई।","चुंबक|m|magnet|चुंबक ने खींचा।","कण|m|particle|कण विज्ञान।","परमाणु|m|atom|परमाणु शक्ति।","अणु|n|molecule|अणु का बंधन।","कीटाणु|m|germ|कीटाणु फैले।","वैक्सीन|m|vaccine|टीका लगवाया।","रोग प्रतिरोध|m|disease resistance|प्रतिरोध बढ़ा।","स्वास्थ्य विज्ञान|m|medical science|चिकित्सा विज्ञान बढ़ा।","रसायन|m|chemistry|रसायन शास्त्र।","भूगर्भ|m|geology|भूगर्भ में खनिज।","खनिज|m|mineral|खनिज मिले।","तेल|m|oil|तेल का भंडार।","गैस|f|gas|गैस की आपूर्ति।","मानचित्र|m|map|नक्शे पर दिखाया।","विश्व|m|world|विश्व के नक्शे।","महाद्वीप|m|continent|सात महाद्वीप।","देश की सीमा|f|border|सीमा पर सेना।","राज्य|m|state|राज्य सरकार।","ज़िला|m|district|ज़िले का मुख्यालय।","गाँव का प्रधान|m|village head|प्रधान चुने गए।","राजधानी की आबादी|f|capital's population|आबादी बढ़ी।","भाषा क्षेत्र|m|language region|हिंदी क्षेत्र।","उत्तर भारत|m|North India|उत्तर भारत के मैदान।","तटीय क्षेत्र|m|coastal area|तटीय क्षेत्र में बाढ़।","बाढ़|f|flood|बाढ़ आ गई।","सूखा पड़ना|—|drought|सूखे से फ़सल गई।","भूकंप|m|earthquake|भूकंप आया।","आपदा|f|disaster|आपदा की स्थिति।","राहत कार्य|m|relief work|राहत बाँटी।","पुनर्वास|m|rehabilitation|पुनर्वास शुरू।","पर्यावरण संतुलन|m|ecological balance|संतुलन बनाए रखो।","जनगणना|f|census|जनगणना हुई।","साक्षरता दर|f|literacy rate|दर बढ़ी।"]],
+["Abstract Nouns Bank","अमूर्त संज्ञा भंडार","Abstract nouns that lift essay writing.",[
+"ज्ञान|m|knowledge|ज्ञान बाँटो।","शिक्षा का अधिकार|m|right to education|अधिकार हर बच्चे का।","स्वतंत्र विचार|m|free thought|विचार स्वतंत्र रखो।","अनुभव का अभाव|m|lack of experience|अभाव महसूस हुआ।","आत्मबल|m|inner strength|आत्मबल जगाओ।","आत्मग्लानि|f|guilt|आत्मग्लानि महसूस हुई।","अपमान|m|insult|अपमान सहन नहीं।","सम्मान|m|respect|सम्मान दो।","अभिमान|m|pride|देश पर अभिमान।","अहंकार त्यागो|—|to shed ego|अहं छोड़ो।","नम्रता|f|humility|नम्रता रखो।","करुणा की भावना|f|compassion|करुणा जगाओ।","उदारता दिखाना|—|to show generosity|उदार बनो।","त्याग की भावना|f|spirit of sacrifice|त्याग करो।","सेवा भाव|m|spirit of service|सेवा करो।","परोपकार|m|altruism|परोपकार श्रेष्ठ है।","सहयोग|m|cooperation|सहयोग करो।","एकता की शक्ति|f|strength of unity|एकता में शक्ति।","अनुशासन का महत्त्व|m|importance of discipline|अनुशासन सीखो।","परिश्रम की महिमा|f|glory of hard work|परिश्रम करो।","सफलता की कुंजी|f|key to success|मेहनत ही कुंजी है।","नैतिक मूल्य|m|moral values|मूल्य सिखाओ।","आदर्श वादिता|f|idealism|आदर्शों से चलो।","वास्तविकता|f|reality|वास्तविकता देखो।","कल्पना|f|imagination|कल्पना शक्ति।","सृजनशीलता|f|creativity|सृजनशील बनो।","प्रतिभा का विकास|m|development of talent|प्रतिभा निखारो।","अवसर का लाभ|m|opportunity|अवसर का लाभ उठाओ।","चुनौती स्वीकारना|—|to accept challenge|चुनौती लो।","संघर्ष की राह|f|path of struggle|संघर्ष से गुज़रे।","विपरीत परिस्थिति|f|adverse circumstance|विपरीत समय में टिके।","धैर्य का परीक्षा|f|test of patience|धैर्य परखा।","आशा की किरण|f|ray of hope|आशा बनी रहो।","विश्वासघात|m|betrayal|विश्वासघात झेला।","मित्रता की गहराई|f|depth of friendship|मित्रता गहरी हुई।","अकेलापन|m|loneliness|अकेलापन छा गया।","सुकून|m|peace of mind|मन को सुकून।","संतोष की सीमा|—|contentment|संतोष रखो।","ईमानदारी की नीति|f|policy of honesty|ईमानदारी अपनाओ।","दृढ़ संकल्प|m|firm resolve|संकल्प दृढ़ रखो।","सहनशीलता|f|tolerance|सहनशील बनो।","क्षमा|f|forgiveness|क्षमा कर दी।","दया की भावना|f|mercy|दया दिखाओ।"]],
+["Feelings & Moods","भावनाएँ और मनोदशा","Emotion vocabulary for narrative and diary writing.",[
+"ख़ुशी|f|happiness|ख़ुशी का ठिकाना न रहा।","हर्ष|m|joy|हर्ष से नाच पड़े।","उल्लास|m|jubilation|उल्लास छा गया।","प्रसन्नता|f|delight|प्रसन्नता मिली।","आनंद|m|bliss|आनंद मिला।","सुख|m|comfort/happiness|सुख के पल।","दुख|m|sorrow|दुख बाँटा।","दर्द|m|pain|दर्द सहा।","पीड़ा|f|agony|पीड़ा झेली।","वेदना|f|ache|वेदना जागी।","आँसू|m|tears|आँसू बहाए।","रोना|—|to weep|ज़ोर से रोया।","विलाप|m|lament|विलाप करते रहे।","आह भरना|—|to sigh|गहरी आह भरी।","निराशा|f|despair|निराशा घेर ली।","हताशा|f|hopelessness|हताशा ने घेरा।","ख़ौफ़|m|dread|ख़ौफ़ छा गया।","आतंक|m|terror|आतंक फैला।","घबराहट|f|nervousness|घबराहट हुई।","असमंजस|m|confusion|असमंजस में रहे।","संताप|m|anguish|संताप उठा।","चिंता|f|worry|चिंता मत करो।","फ़िक्र|m|concern|फ़िक्र सता रही।","तकलीफ़|f|trouble|तकलीफ़ उठाई।","झुंझलाहट|f|annoyance|झुंझलाहट हुई।","ग़ुस्सा|m|anger|ग़ुस्सा भड़का।","क्रोध भड़कना|—|to flare up|क्रोध भड़क गया।","बैर|m|enmity|बैर भूल गए।","द्वेष|m|hatred|द्वेष मत रखो।","ईर्ष्या होना|—|to envy|ईर्ष्या हुई।","स्नेह जगाना|—|to feel affection|स्नेह बढ़ा।","आशीर्वाद लेना|—|to take blessings|आशीर्वाद लिया।","शुभकामना भेजना|—|to send wishes|शुभकामनाएँ भेजीं।","बधाई देना|—|to congratulate|बधाई दी।","माफ़ करना|—|to forgive|माफ़ कर दिया।","सहानुभूति रखना|—|to sympathise|सहानुभूती रखी।","उत्सुकता|f|eagerness|उत्सुकता बढ़ी।","जिज्ञासा जागना|—|to grow curious|जिज्ञासा जागी।","हल्कापन|m|lightness|मन हल्का हुआ।","भावुकता|f|emotionality|भावुक हो गए।","मुस्कान|f|smile|मुस्कान लौट आई।","हँसी|f|laughter|हँसी छूट गई।","रोमांच|m|thrill|रोमांच अनुभव हुआ।","उत्तेजना|f|excitement|उत्तेजना फैली।"]],
+["Light, Sound & Texture","प्रकाश, ध्वनि और बनावट","Sensory adjectives for description.",[
+"चमकीला|adj|shiny|चमकीला तारा।","मंद प्रकाश|m|dim light|मंद बत्ती जली।","तेज़ रोशनी|f|bright light|तेज़ रोशनी हुई।","धुंधलका|m|haze|धुंधलका छाया।","आभा|f|radiance|चाँद की आभा।","दीप्ति|f|brilliance|दीप्ति बिखेरी।","कांति|f|glow|कांति फैली।","झिलमिलाना|—|to shimmer|पानी झिलमिलाया।","चमकना|—|to sparkle|हीरा चमका।","गमगमाना|—|to glow|आँगन गमगमाया।","शोर|m|noise|शोर मच गया।","ख़ामोशी|f|silence|ख़ामोशी छा गई।","सन्नाटा|m|dead silence|सन्नाटा पसरा।","कोलाहल|m|din|कोलाहल हुआ।","गूँजना|—|to echo|गूँज घुनगुनाई।","सरगम की ध्वनि|f|musical sound|ध्वनि मीठी थी।","खनकना|—|to jingle|चूड़ियाँ खनकीं।","खड़खड़ाहट|f|rattling|खड़खड़ की आवाज़।","सरसराहट|f|rustling|पत्तों की सरसराहट।","फुसफुसाहट|f|whispering|फुसफुसाहट सुनी।","चीखना|—|to scream|चीख पड़ी।","गाना|—|to sing|गाना गाया।","गुनगुनाना|—|to hum|गुनगुनाती रहीं।","धीमी आवाज़|f|soft voice|धीमी आवाज़ में बोले।","भारी आवाज़|f|deep voice|भारी आवाज़ थी।","कोमल|adj|soft/delicate|कोमल हाथ थे।","मुलायम|adj|smooth/soft|मुलायम गद्दा।","रेशमी|adj|silky|रेशमी बाल।","बर्फ़ जैसा|adj|icy|बर्फ़ जैसी ठंड।","रेगिस्तानी गर्मी|f|scorching heat|तपती गर्मी।","सुगंध|f|fragrance|फूलों की सुगंध।","महक|f|aroma|महक फैल गई।","बदबू|f|stench|बदबू आई।","स्वाद की अनुभूति|f|sense of taste|स्वाद याद रहा।","ताज़गी का एहसास|m|feeling of freshness|ताज़गी मिली।","मुलायम हवा|f|gentle breeze|मुलायम हवा बही।"]],
+["Advanced Exam Bank","उच्च प्रयोग — परीक्षा बैंक","High-register words with strong exam currency.",[
+"परिश्रमी|adj|hardworking|परिश्रमी विद्यार्थी बनो।","उत्कृष्ट|adj|excellent|उत्कृष्ट कार्य किया।","अद्भुत|adj|wonderful|अद्भुत दृश्य था।","अनूठा|adj|unique|अनूठा अनुभव।","अत्यंत|—|extremely|अत्यंत आवश्यक है।","विशेषकर|—|especially|विशेषकर बच्चों के लिए।","प्रायः|—|usually|प्रायः सुबह आते हैं।","नितांत|—|absolutely|नितांत आवश्यक।","निरंतर|—|continuously|निरंतर प्रयास करो।","निश्चित रूप से|—|certainly|निश्चित रूप से आएँगे।","असंदिग्ध|adj|unambiguous|असंदिग्ध भाषा में लिखा।","प्रतिष्ठित|adj|renowned|प्रतिष्ठित संस्था।","उत्कर्ष|m|excellence|उत्कर्ष की ओर बढ़ो।","उन्नति|f|progress|उन्नति होती रही।","प्रगतिशील|adj|progressive|प्रगतिशील विचार।","परिवर्तनशील|adj|ever-changing|परिवर्तनशील दुनिया।","सुदूरप्रसारी|adj|far-reaching|सुदूरप्रसारी परिणाम।","अभूतपूर्व|adj|unprecedented|अभूतपूर्व सफलता।","अनुकरणीय|adj|exemplary|अनुकरणीय कार्य।","सुलभ|adj|accessible|सुलभ सामग्री।","दुर्लभ|adj|rare|दुर्लभ दृश्य।","अनिवार्य|adj|mandatory|अनिवार्य उपस्थिति।","अत्यावश्यक|adj|indispensable|अत्यावश्यक चीज़।","अल्प|—|little/few|अल्प समय में।","बहुमूल्य|adj|precious|बहुमूल्य उपहार।","अमूल्य|adj|priceless|अमूल्य धन।","अतुलनीय|adj|incomparable|अतुलनीय सेवा।","निर्णायक|adj|decisive|निर्णायक मोड़।","अटल|adj|unwavering|अटल विश्वास।","दृढ़ संकल्प से|—|with firm resolve|दृढ़ता से काम किया।","अदम्य|adj|indomitable|अदम्य साहस।","अथक परिश्रम|m|tireless effort|अथक मेहनत की।","सार्थक|adj|meaningful|सार्थक संवाद।","व्यर्थ|adj|futile|व्यर्थ कोशिश।","अकारण|—|without reason|अकारण डरा।","यथार्थवादी|adj|realistic|यथार्थवादी लक्ष्य।","संतुलित|adj|balanced|संतुलित भोजन।","व्यापक|adj|extensive|व्यापक सुधार।","सूक्ष्म|adj|subtle|सूक्ष्म अंतर।","स्पष्ट|adj|evident|स्पष्ट संकेत।","सुप्रसिद्ध|adj|eminent|सुप्रसिद्ध कलाकार।","प्रबल|adj|formidable|प्रबल दावेदार।","तीव्रतम|adj|most intense|तीव्र प्रतिस्पर्धा।","अद्वितीय|adj|peerless|अद्वितीय प्रतिभा।"]]
+]];
+
+/* ---------- IDIOMS & PROVERBS ---------- */
+const IDIOMS=[
+["आँखों का तारा","आँखों में पड़ा तारा","the most cherished person or thing","सबसे प्रिय","दादा जी के लिए छोटा भाई आँखों का तारा है।"],
+["लोहे के चने चबाना","लोहे के चने चबाना","to attempt an extremely difficult task","असंभव-सा कठिन काम","पूरा पाठ्यक्रम एक रात में पूरा करना लोहे के चने चबाने जैसा था।"],
+["नौ दो ग्यारह होना","नौ और ग्यारह बन जाना","to slip away quietly","चुपचाप भाग जाना","शिक्षक ने जैसे ही गृहकार्य माँगा, वह नौ दो ग्यारह हो गया।"],
+["हाथ-पाँव फूलना","हाथ-पाँव फूल जाना","to panic and feel helpless","घबराहट से निरुपाय होना","मंच पर जाते ही मेरे हाथ-पाँव फूल गए।"],
+["आसमान सिर पर उठाना","आसमान उठा लेना","to make a huge fuss","बहुत शोर मचाना","छोटी-सी बात पर उसने आसमान सिर पर उठा लिया।"],
+["दाँतों तले उँगली दबाना","दाँतों तले उँगली रखना","to be stunned in admiration","दंग रह जाना","नतीज़े आते ही सब दाँतों तले उँगली दबा बैठे।"],
+["ईद का चाँद होना","ईद के दिन चाँद देखना","to see someone after ages","बहुत दिनों बाद दिखना","मिलने आए भाई को देखकर लगा, ईद का चाँद देख लिया।"],
+["पानी-पानी होना","पानी जैसा होना","to feel deeply embarrassed","बेहद लज्जित होना","अपनी ग़लती सुनकर मैं पानी-पानी हो गया।"],
+["कमर कसना","कमर में कसाव आना","to prepare with determination","दृढ़ संकल्प से तैयार होना","बोर्ड परीक्षा के लिए मैंने कमर कस ली है।"],
+["मुँह में पानी आना","मुँह में पानी भरना","to crave something intensely","तीव्र इच्छा होना","हलवे की याद में मुँह में पानी आ गया।"],
+["दाल न गलना","दाल पकनी बाक़ी","for a plan to fail","योजना नाकाम होना","बिना अभ्यास के योजनाओं की दाल नहीं गलती।"],
+["अपना उल्लू सीधा करना","उल्लू को सीधा करना","to serve one's own interest","स्वार्थ पूरा करना","वह हर काम में अपना उल्लू सीधा करता है।"],
+["डंके की चोट पर","ढोल की चोट के साथ","openly, without hiding","खुलेआम","उसने अपनी सफलता डंके की चोट पर मनाई।"],
+["आँखें खुलना","आँखें खुल जाना","to realise the truth suddenly","सच का बोध होना","परिणाम देखकर उसकी आँखें खुल गईं।"],
+["हाथ बँटाना","हाथ बाँटना","to lend a helping hand","मदद करना","मुश्किल समय में मित्र ने हाथ बँटाया।"],
+["टेढ़ी खीर","टेढ़ी बनी खीर","a very tricky matter","अत्यंत कठिन काम","नए शहर में राशन का इंतज़ाम टेढ़ी खीर साबित हुआ।"],
+["घड़ों पानी पड़ना","घड़ों की मात्रा पानी गिरना","to be acutely embarrassed","बेहद शर्मिंदा होना","झूठ पकड़े जाने पर उस पर घड़ों पानी पड़ गया।"],
+["आड़े हाथों लेना","आड़े हाथों में लेना","to rebuke someone squarely","खरी-खोटी सुनाना","देर से आने पर प्रधानाचार्य ने उसे आड़े हाथों लिया।"],
+["ईंट से ईंट बजाना","ईंटों को आपस में बजाना","to rattle someone completely","पूरी तरह बौखला देना","बहस में छोटी बहन ने बड़े भाई की ईंट से ईंट बजा दी।"],
+["आँखों में धूल झोंकना","आँखों में धूल डालना","to deceive someone","धोखा देना","कामचोर मालिक की आँखों में धूल झोंकता है।"],
+["नाक में दम करना","नाक में साँस रोक देना","to harass someone endlessly","सताना","बकाया माँगकर उसने मेरी नाक में दम कर दिया।"],
+["सिर पर चढ़ाना","सिर पर बिठा लेना","to spoil with excess indulgence","अति लाड़ से बिगाड़ना","ज़्यादा लाड़ से बच्चे सिर पर चढ़ जाते हैं।"],
+["आग में घी डालना","आग पर घी उड़ेलना","to make matters worse","मुसीबत बढ़ाना","उसकी बातों ने झगड़े की आग में घी डाल दिया।"],
+["फूला न समाना","फूलकर एक जगह न टिक पाना","to be overjoyed","अत्यधिक प्रसन्न होना","पुरस्कार पाकर वह फूला नहीं समाया।"],
+["हाथ मलना","हाथों को रगड़ना","to regret doing nothing","पछताना","मौक़ा निकल जाने पर हाथ मलने के सिवा कुछ न बचा।"],
+["नाक कटना","नाक कट जाना","to be publicly disgraced","अपमानित होना","मैच हारने से टीम की नाक कट गई।"],
+["सिर खाना","सिर पर चढ़कर खाना","to pester someone constantly","परेशान करना","रोज़ शिकायत करके वह मेरा सिर खा गया।"],
+["पेट में चूहे कूदना","पेट में चूहे कूदना","to be extremely hungry","तेज़ भूख लगना","दोपहर से कुछ नहीं खाया — पेट में चूहे कूद रहे हैं।"],
+["ईंट का जवाब पत्थर से देना","पत्थर से बदला लेना","to retaliate with double force","दुगने जोश से जवाब","हर आरोप का उसने ईंट का जवाब पत्थर से दिया।"],
+["कलेजा मुँह को आना","कलेजा गले तक आना","to be terrified","भयभीत होना","साँप देखते ही कलेजा मुँह को आ गया।"],
+["श्रीगणेश करना","गणेश जी का पूजन","to begin a task","कार्य आरंभ करना","शुभ मुहूर्त में कार्यक्रम का श्रीगणेश किया।"],
+["धूल चाटना","मिट्टी चाटना","to be utterly defeated","बुरी तरह हारना","प्रतियोगिता में प्रतिद्वंद्वी धूल चाटते रह गए।"],
+["दम तोड़ना","प्राण लगाना","to give it everything","पूरी शक्ति लगाना","मेहनत में दम तोड़ दिया।"],
+["दाल-भात में मूसलचंद","भोजन में बेमतलब का तीसरा","a needless complication","बेकार का झंझट","सीधे काम में वह दाल-भात में मूसलचंद बन गया।"],
+["आधा तीतर आधा बटेर","आधा तीतर, आधा बटेर","neither one thing nor the other","न यह न वह","ऐसा उत्तर अंक नहीं दिलाता।"],
+["जान में आना","जान में साँस भरना","to be utterly fed up","बहुत तंग आना","उसकी बड़बोली से जान में आ चुकी थी।"],
+["अंत भला तो सब भला","अंत अच्छा तो सब अच्छा","all's well that ends well","अंत अच्छा तो सब अच्छा","देर से ही सही, मंच पर आकर सब ठीक हुआ।"],
+["अपने मुँह मियाँ मिट्ठू बनना","तोते की तरह प्रशंसा","to praise oneself","स्वयं की प्रशंसा","अपने मुँह मियाँ मिट्ठू बनना अच्छी बात नहीं।"],
+["काठ का उल्लू","लकड़ी का उल्लू","a blockhead","मूर्ख व्यक्ति","बार-बार बताने पर भी काठ का उल्लू बना रहा।"],
+["दो टूक बात","दो टुकड़ों की बात","a plain statement","स्पष्ट बात","उसने दो टूक बात कह दी।"]];
+
+const PROVERBS=[
+["जहाँ चाह, वहाँ राह।","Where there is a will, there is a way.","Motivational essays and speeches."],
+["अंधों में काना राजा।","In the land of the blind, the one-eyed is king.","Comparing a weak group's 'best' option."],
+["दूर के ढोल सुहावने।","Distant drums sound sweeter.","Comparisons and travel writing."],
+["एक अनार सौ बीमार।","One pomegranate, a hundred claimants.","Essays on resources and population."],
+["जैसा देश, वैसा भेस।","When in Rome, do as the Romans do.","Travel and cultural adaptation."],
+["जो गरजते हैं, वे बरसते नहीं।","Barking dogs seldom bite.","Character descriptions and satire."],
+["अब पछताए होत क्या जब चिड़िया चुग गई खेत।","No use crying over spilt milk.","Narratives about missed chances."],
+["ऊँची दुकान, फीका पकवान।","All that glitters is not gold.","Debunking appearances; consumerism."],
+["बहती गंगा में हाथ धोना।","Make the most of a ready opportunity.","Essays on seizing opportunities."],
+["ऊँट के मुँह में जीरा।","A drop in the ocean.","Small efforts vs big problems."],
+["जिसकी लाठी उसकी भैंस।","Might is right.","Essays on power and justice."],
+["एक और एक ग्यारह।","Unity multiplies strength.","Teamwork and unity essays."]];
+
+/* ---------- WRITING PHRASE BANKS ---------- */
+const WWORDS=[
+{c:"Sequencing & Structure",hi:"क्रम-बोधक",items:[
+["सर्वप्रथम","first of all","सर्वप्रथम, मैं आपका ध्यान इस ओर खींचना चाहता हूँ।"],["आरंभ में","in the beginning","आरंभ में सब कुछ कठिन लगता है।"],["इसके बाद","after this","इसके बाद हमने नियम बनाए।"],["तत्पश्चात","thereafter (formal)","तत्पश्चात सभा सम्पन्न हुई।"],["दूसरे स्थान पर","secondly","दूसरे स्थान पर, समय की कमी थी।"],["अंत में","finally","अंत में, सबने भोजन किया।"],["उपरोक्त","above-mentioned","उपरोक्त बिंदु विचारणीय हैं।"],["निम्नलिखित","the following","निम्नलिखित कारण हैं —"]]},
+{c:"Adding & Including",hi:"संयोजन",items:[
+["इसके अतिरिक्त","in addition","इसके अतिरिक्त, समय की बचत भी हुई।"],["साथ ही","along with this","साथ ही, सेहत भी सुधरी।"],["तथा","and (formal)","मैंने पत्र तथा दस्तावेज़ भेजे।"],["न केवल … बल्कि","not only … but also","वह न केवल विद्वान बल्कि विनम्र भी है।"],["विशेष रूप से","especially","विशेष रूप से बच्चों के लिए उपयोगी है।"],["साथ ही साथ","together with","साथ ही साथ, जागरूकता भी बढ़ी।"]]},
+{c:"Contrast & Concession",hi:"विरोधाभास",items:[
+["इसके विपरीत","on the contrary","इसके विपरीत, परिणाम बेहतर रहा।"],["दूसरी ओर","on the other hand","दूसरी ओर, लागत बढ़ी।"],["यद्यपि","although","यद्यपि वह थका था, फिर भी पढ़ता रहा।"],["तथापि","nevertheless","कठिनाइयाँ थीं; तथापि सफल हुए।"],["फिर भी","even so","फिर भी उसने उम्मीद नहीं छोड़ी।"],["के बावजूद","despite","बारिश के बावजूद मैच हुआ।"],["इसके बजाय","instead","इसके बजाय साइकिल चुनो।"]]},
+{c:"Cause & Effect",hi:"कारण-परिणाम",items:[
+["क्योंकि","because","मैं विलंब से आया क्योंकि बस छूट गई।"],["चूँकि","since (formal)","चूँकि छुट्टी थी, सब घर थे।"],["इसलिए","therefore","बारिश हुई, इसलिए फ़सल अच्छी हुई।"],["अतः","hence","अतः सावधानी आवश्यक है।"],["परिणामस्वरूप","as a result","परिणामस्वरूप, भर्ती रुकी।"],["इसी कारण","for this reason","इसी कारण योजना टली।"]]},
+{c:"Opinion & Stance",hi:"मत",items:[
+["मेरे विचार में","in my opinion","मेरे विचार में यह कदम सही है।"],["मुझे पूर्ण विश्वास है","I firmly believe","मुझे पूर्ण विश्वास है कि परिश्रम रंग लाता है।"],["यदि मुझे पूछा जाए","if asked","यदि मुझे पूछा जाए, तो मैं पक्ष में हूँ।"],["जहाँ तक मेरी बात है","as far as I am concerned","जहाँ तक मेरी बात है, अनुशासन पहले आता है।"],["मेरा मत है","my view is","मेरा मत है कि दोनों पक्ष सुनने चाहिए।"]]},
+{c:"Emphasis",hi:"बल-बोधक",items:[
+["वास्तव में","in reality","वास्तव में समस्या अलग है।"],["निस्संदेह","undoubtedly","निस्संदेह, यह सर्वोत्तम योजना है।"],["अवश्य ही","certainly","अवश्य ही, परिवर्तन आएगा।"],["वस्तुतः","in fact","वस्तुतः, आँकड़े उलट बताते हैं।"],["स्पष्टतः","clearly","स्पष्टतः, प्रयास कम थे।"]]},
+{c:"Conclusion",hi:"निष्कर्ष",items:[
+["अंततः","ultimately","अंततः, निर्णय लेना ही होगा।"],["निष्कर्षतः","in conclusion","निष्कर्षतः, संतुलन ही मार्ग है।"],["संक्षेप में","in brief","संक्षेप में — परिश्रम ही कुंजी है।"],["उपरोक्त विवेचन से स्पष्ट है","from the above it is clear","उपरोक्त विवेचन से स्पष्ट है कि…"],["कुल मिलाकर","all in all","कुल मिलाकर, यात्रा सफल रही।"]]},
+{c:"Formal Letter Toolkit",hi:"औपचारिक पत्र-सामग्री",items:[
+["सविनय निवेदन है कि","I respectfully submit that","सविनय निवेदन है कि मेरी छुट्टी स्वीकृत हो।"],["उपरोक्त विषय में आपका ध्यान आकृष्ट करना चाहता/चाहती हूँ","I wish to draw your attention","Standard opening for formal requests."],["आपसे अनुरोध है कि","I request you to","आपसे अनुरोध है कि आदेश जारी करें।"],["यथाशीघ्र","at the earliest","कृपया यथाशीघ्र उत्तर दें।"],["धन्यवाद सहित","with thanks","Closing line above the signature."],["भवदीय","yours faithfully","Formal sign-off — never in informal letters."]]},
+{c:"Narrative & Tension",hi:"कथा-वर्णन",items:[
+["अचानक","suddenly","अचानक दरवाज़ा खुल गया।"],["ठीक उसी समय","at that very moment","ठीक उसी समय बिजली कौंधी।"],["धीरे-धीरे","gradually","धीरे-धीरे हालात सुधरे।"],["बिना सोचे-समझे","without a second thought","बिना सोचे-समझे उसने छलांग लगाई।"],["किसी तरह","somehow","किसी तरह वह पहुँच गया।"],["आख़िरकार","at long last","आख़िरकार सच सामने आया।"],["भाग्यवश","fortunately","भाग्यवश कोई हताहत नहीं हुआ।"]]},
+{c:"Descriptive Atmosphere",hi:"वर्णन-शब्दावली",items:[
+["सुनसान","deserted","रात का प्लेटफ़ॉर्म सुनसान था।"],["गुलज़ार","bustling","मेले का मैदान गुलज़ार था।"],["मनमोहक","enchanting","घाटी का दृश्य मनमोहक था।"],["भव्य","grand","महल की भव्यता देखते ही बनती है।"],["सुरम्य","serene","पहाड़ों का सुरम्य वातावरण…"],["आलीशान","luxurious","होटल का कमरा आलीशान था।"],["प्राचीन","ancient","प्राचीन मंदिर की दीवारें…"]]}];
+const ALLPH=WWORDS.flatMap(c=>c.items.map(i=>({ph:i[0],en:i[1],note:i[2],cat:c.c})));
+const PFILL=[
+{s:"बारिश अच्छी हुई, ___ फ़सल भी अच्छी रही।",a:"इसलिए",d:["यद्यपि","इसके विपरीत","साथ ही"]},
+{s:"वह थका हुआ था, ___ उसने काम पूरा किया।",a:"फिर भी",d:["इसलिए","अतः","परिणामस्वरूप"]},
+{s:"___ मैं यही कहूँगा कि परिश्रम ही सफलता की कुंजी है।",a:"अंततः",d:["सर्वप्रथम","वास्तव में","दूसरी ओर"]},
+{s:"वह ___ अच्छा खिलाड़ी है, ___ पढ़ाई में भी तेज़ है।",a:"न केवल … बल्कि",d:["या … या","न … न","अथवा"]},
+{s:"मोबाइल सुविधा है; ___, इसका अति-प्रयोग हानिकारक है।",a:"दूसरी ओर",d:["इसके अतिरिक्त","चूँकि","सर्वप्रथम"]},
+{s:"बारिश रुक गई; ___, सड़कें सूखने में समय लगा।",a:"तथापि",d:["इसीलिए","निस्संदेह","साथ ही"]},
+{s:"छुट्टी थी, ___ घर में सब थे।",a:"चूँकि",d:["अतः","इसके बजाय","वस्तुतः"]}];
+
+/* ---------- UPGRADES / GLOSSARY / LAB ---------- */
+const UPGRADES=[["बहुत","अत्यधिक","The classic mark-limiter."],["अच्छा","उत्कृष्ट","Adds variety when praising."],["बड़ा","विशाल","Stronger for size."],["डर","भय","Literary register."],["ख़ुशी","उल्लास","For celebrations."],["दुख","वेदना","Deeper emotional register."],["काम","कार्य","Formal letters."],["शुरू","आरंभ","Elegant openings."],["आख़िर में","अंततः","Examiner's favourite conclusion opener."],["जल्दी","शीघ्र","Polite requests."],["मदद","सहायता","Formal applications."],["प्यार","अनुराग","Literary affection."],["ग़रीब","विपन्न","Social essays."],["तेज़","तीव्र","Speed and intensity."],["कम","न्यून","Data-style sentences."],["पुराना","प्राचीन","History and heritage."],["ज़रूरत","आवश्यकता","Neutral-formal arguments."],["सोच","विचार","Opinion sentences."],["राय","दृष्टिकोण","'My viewpoint' sounds top-band."],["हालात","परिस्थिति","Formal situations."],["इसलिए","अतः","Same meaning, formal register."],["परेशान","व्याकुल","Narrative emotion."]];
+const GLOSSARY=[["यथासम्भव","as far as possible","कृपया यथासम्भव शीघ्र उत्तर दें।"],["सुसंगत","relevant","उत्तर सुसंगत रहे।"],["संक्षिप्त","concise","संक्षिप्त में यही बात है।"],["विस्तृत","detailed","इस विषय पर विस्तृत लिखिए।"],["अनिवार्य","essential","अनुशासन शिक्षा का अनिवार्य अंग है।"],["अथक","tireless","अथक परिश्रम से लक्ष्य मिलता है।"],["स्वावलंबन","self-reliance","स्वावलंबन ही सच्ची ताक़त है।"],["कृतज्ञता","gratitude","गुरुओं के प्रति कृतज्ञता रखें।"],["अनुकरणीय","exemplary","उनका चरित्र अनुकरणीय है।"],["दृष्टिकोण","viewpoint","हर पक्ष का दृष्टिकोण सुनना चाहिए।"],["नवाचार","innovation","तकनीक में नवाचार बढ़ रहा है।"],["समृद्धि","prosperity","देश की समृद्धि सबकी मेहनत पर टिकी है।"],["प्रतिबिंब","reflection","चरित्र गृह-शिक्षा का प्रतिबिंब है।"],["अविस्मरणीय","unforgettable","वह यात्रा अविस्मरणीय रही।"],["परिश्रम","diligence","परिश्रम का फल मीठा होता है।"],["उत्कृष्ट","excellent","उत्कृष्ट कार्य के लिए पुरस्कार मिला।"],["संकल्प","resolve","दृढ़ संकल्प से कुछ भी संभव है।"],["वातावरण","atmosphere","कक्ष का वातावरण शांत था।"],["अभियान","campaign","स्वच्छता अभियान चलाया गया।"],["योगदान","contribution","हर नागरिक का योगदान मायने रखता है।"]];
+const LAB=[
+{pre:"आज का मौसम ",base:"बहुत",post:" सुहावना है।",swaps:["बहुत","अत्यधिक","असाधारण रूप से"],lv:["Everyday speech","Formal — letters & essays","Literary — exam-grade"]},
+{pre:"हमें पुस्तकालय में ",base:"जल्दी",post:" पहुँचना चाहिए।",swaps:["जल्दी","शीघ्र","यथाशीघ्र"],lv:["Everyday speech","Formal — polite request","Highly formal — official letters"]},
+{pre:"यह कार्य बड़ा ",base:"मुश्किल",post:" है।",swaps:["मुश्किल","कठिन","दुःसाध्य"],lv:["Everyday speech","Written Hindi","Literary — description"]}];
+
+/* ---------- GRAMMAR ---------- */
+const GRAMMAR=[
+{t:"Gender Traps",s:"पुल्लिंग vs स्त्रीलिंग",ic:"लि",html:`<table class="gtab"><tr><th>Word</th><th>Gender</th><th>Watch out</th></tr><tr><td>पानी</td><td>m</td><td>गर्म पानी ✔</td></tr><tr><td>चाबी</td><td>f</td><td>यह चाबी खो गई है</td></tr><tr><td>समाचार</td><td>m</td><td>यह समाचार सुना है</td></tr><tr><td>मेज़</td><td>f</td><td>मेज़ पर रख दो</td></tr><tr><td>वेतन</td><td>m</td><td>अच्छा वेतन</td></tr><tr><td>उपलब्धि</td><td>f</td><td>बड़ी उपलब्धि</td></tr></table><p class="gnote"><b>Rule of thumb:</b> -ई endings usually feminine; -आ endings usually masculine — learn the exceptions.</p>`},
+{t:"Confusable Pairs",s:"उलझाने वाले जोड़े",ic:"जो",html:`<ul class="glist"><li><b>जब … तब</b><span>They travel together.</span></li><li><b>कि / की</b><span>कि joins clauses; की shows possession.</span></li><li><b>भी / ही</b><span>भी = also; ही = only.</span></li><li><b>अभी / अब</b><span>अभी = right now; अब = from now on.</span></li><li><b>क्योंकि / चूँकि</b><span>Both 'because'; चूँकि is more formal.</span></li><li><b>केवल / मात्र</b><span>Both 'only'; केवल is safer in writing.</span></li></ul>`},
+{t:"Tense Snapshot",s:"काल",ic:"का",html:`<table class="gtab"><tr><th>Tense</th><th>Structure</th><th>Example</th></tr><tr><td>Simple present</td><td>stem + ता/ती/ते + है</td><td>मैं पढ़ता हूँ।</td></tr><tr><td>Present cont.</td><td>stem + रहा/रही + है</td><td>वह खेल रही है।</td></tr><tr><td>Simple past</td><td>stem + ा/ी/े</td><td>हमने देखा।</td></tr><tr><td>Past cont.</td><td>stem + रहा था</td><td>वे हँस रहे थे।</td></tr><tr><td>Simple future</td><td>stem + गा/गी/गे</td><td>मैं जाऊँगा।</td></tr><tr><td>Habitual past</td><td>stem + ता था</td><td>वह रोज़ आता था।</td></tr></table><p class="gnote"><b>Exam tip:</b> the participle must agree with the subject.</p>`},
+{t:"है / हैं / था Agreement",s:"क्रिया का मेल",ic:"मे",html:`<ul class="glist"><li><b>वह … है</b><span>Singular subject takes है।</span></li><li><b>वे / ये … हैं</b><span>Plural subject takes हैं।</span></li><li><b>मैं था / थी</b><span>Past agrees with the writer's gender.</span></li><li><b>राम और सीता आए</b><span>Mixed groups behave as masculine plural.</span></li></ul>`},
+{t:"का / के / की Mastery",s:"संबंध-कारक",ic:"का",html:`<table class="gtab"><tr><th>Owned thing</th><th>Form</th><th>Example</th></tr><tr><td>masculine singular</td><td>का</td><td>राम का घर</td></tr><tr><td>masculine plural</td><td>के</td><td>राम के घर</td></tr><tr><td>feminine</td><td>की</td><td>राम की बहन</td></tr></table><p class="gnote"><b>The trick:</b> it agrees with the thing <b>owned</b>, not the owner.</p>`},
+{t:"Spelling Red Flags",s:"वर्तनी",ic:"वर्",html:`<ul class="glist"><li><b>चूँकि ✔</b><span>The चंद्रबिंदु is required.</span></li><li><b>उसने ✔</b><span>One word — not उस ने।</span></li><li><b>क्योंकि ✔</b><span>Not क्युकि or क्यों कि।</span></li><li><b>अर्थात् ✔</b><span>Ends with a हलंत.</span></li><li><b>इत्यादि ✔</b><span>One word, ends lists.</span></li></ul>`},
+{t:"Punctuation & Layout",s:"विराम-चिह्न",ic:"।",html:`<ul class="glist"><li><b>पूर्ण विराम (।)</b><span>The Hindi full stop is a vertical line.</span></li><li><b>प्रश्नवाचक (?)</b><span>Only for direct questions.</span></li><li><b>Layout marks</b><span>Letters need दिनांक, सेवा में, विषय, संबोधन, समापन — marked separately.</span></li></ul>`}];
+
+/* ---------- WRITING FORMATS ---------- */
+const FORMATS=[
+{t:"Informal Letter",hi:"अनौपचारिक पत्र",desc:"To friends and family. Warm register — perfect layout.",
+ steps:[["Address & date","Top right, two lines."],["Salutation","'प्रिय रोहन,' — first name only."],["Opening pleasantries","One or two lines first."],["Body","2–3 paragraphs; vivid detail."],["Ask back","Question their news."],["Closing","'तुम्हारा स्नेही मित्र,' + name."]],
+ phr:[["कैसे हो? उम्मीद है, सब ठीक होगा।","Warm opener."],["तुम्हें यह जानकर ख़ुशी होगी कि…","Good news."],["यहाँ सब कुशल है।","Reassurance."],["लिखो ज़रूर।","Eager closing."]],
+ ex:[{t:"दिल्ली,\n२० मार्च २०२५",n:0},{t:"प्रिय रोहन,",n:1},{t:"कैसे हो? उम्मीद है, बोर्ड की तैयारी पूरी गति से चल रही होगी।",n:2},{t:"तुम्हें यह जानकर ख़ुशी होगी कि पिछले सप्ताह हम सब नैनीताल गए। वह यात्रा सचमुच अविस्मरणीय रही।",n:3},{t:"सुना है गाने की प्रतियोगिता में तुमने पहला स्थान जीता — बधाई!",n:4},{t:"गर्मी की छुट्टियों में एक बार मेरे साथ आना। जवाब ज़रूर लिखना।",n:5},{t:"तुम्हारा स्नेही मित्र,\nअमन",n:5}],
+ notes:["Layout marks: address and date, top right.","First-name salutation.","Pleasantry first.","High-tier adjective makes description memorable.","Two-way warmth.","Sign-off formula."]},
+{t:"Formal Letter / Email",hi:"औपचारिक पत्र",desc:"To principals, editors and officials. Polite, logical, organised.",
+ steps:[["Sender & date","Name/class and date; emails need a subject."],["Recipient","'सेवा में' + post and institution."],["Subject line","One clear line."],["Salutation","'महोदय,' / 'महोदया,'"],["Introduction","Identity + exact request."],["Arguments","Reasons with examples."],["Close","'धन्यवाद सहित' / 'भवदीय' + name."]],
+ phr:[["सविनय निवेदन है कि…","Request opener."],["आपसे अनुरोध है कि…","Making the ask."],["यथाशीघ्र","At the earliest."],["धन्यवाद सहित,","Above signature."]],
+ ex:[{t:"दिनांक: १५ अप्रैल २०२५\nसेवा में,\nप्रधानाचार्य महोदय,\nसरस्वती विद्या मंदिर, लखनऊ",n:0},{t:"विषय: पुस्तकालय में हिंदी साहित्य की उपलब्धता के संबंध में",n:1},{t:"महोदय,",n:2},{t:"सविनय निवेदन है कि मैं इस विद्यालय की कक्षा दसवीं की छात्रा हूँ। हमारे पुस्तकालय में हिंदी साहित्य की तालिका अत्यंत सीमित है।",n:3},{t:"जब से मैंने प्रेमचंद की 'गोदान' पढ़ी है, हिंदी साहित्य के प्रति मेरी जिज्ञासा बढ़ गई है।",n:4},{t:"आपसे निवेदन है कि इस वर्ष पुस्तकालय में हिंदी की मौलिक रचनाओं की व्यवस्था कराने की कृपा करें।",n:5},{t:"आशा है, आप इस ओर सक्रिय रुचि लेंगे। धन्यवाद सहित,\nभवदीय,\nअनन्या शर्मा, कक्षा १० 'ब'",n:6}],
+ notes:["Recipient's post in full — easy layout marks.","Subject: one line, specific.","'महोदय' / 'महोदया'.","Intro: identity + problem only.","A concrete example adds credibility.","Polite request language.","'भवदीय' is the formal sign-off."]},
+{t:"Essay",hi:"निबंध",desc:"Opinion, evidence, counter-view, verdict.",
+ steps:[["Hook introduction","2–3 lines ending with a stance."],["For side","2–3 points with examples."],["Against side","A balanced counter-view."],["Evidence everywhere","Every claim needs an example."],["Conclusion","Clear verdict; open with 'अंततः'."]],
+ phr:[["मेरे विचार में…","Opinion."],["एक ओर जहाँ… वहीं दूसरी ओर…","Balance."],["उदाहरण के लिए…","Evidence."],["अंततः…","Conclusion opener."]],
+ ex:[{t:"आज की दुनिया में मोबाइल फ़ोन जीवन का अनिवार्य अंग बन चुका है। प्रश्न यह है कि प्रयोग हमें कर रहा है, या हम इसे कर रहे हैं।",n:0},{t:"एक ओर यह उपकरण अभूतपूर्व सुविधा लाया है — ज्ञान की दुनिया अब जेब में है।",n:1},{t:"दूसरी ओर वही स्क्रीन आलस्य और व्यसन की ओर खींचती है; तनाव बढ़ता है।",n:2},{t:"उदाहरण के लिए — जिस छात्र ने रात ग्यारह बजे तक रीलें देखीं, वह सुबह के टेस्ट में सबसे पीछे रहा।",n:3},{t:"मेरे विचार में फ़ोन दर्पण है। अंततः उपयोग की सीमा तय करना हमें ही है।",n:4}],
+ notes:["The intro's last line sets direction.","For-side: concrete examples.","The counter-view pushes you up a band.","Evidence for every claim.","Clear verdict with 'अंततः'."]},
+{t:"Diary Entry",hi:"डायरी लेखन",desc:"One day, one feeling, one lesson.",
+ steps:[["Date & day","Just this."],["Address the diary","'प्रिय डायरी,'"],["Lead event","First sentence carries the day."],["Feelings","Vivid; idioms add colour."],["Lesson","One line of learning."],["Sign off","'कल फिर लिखूँगा/लिखूँगी।'"]],
+ phr:[["आज का दिन मैं जीवन भर याद रखूँगा।","A day worth remembering."],["शायद यही ज़िंदगी का सबक़ है।","The lesson line."],["कल फिर लिखूँगा/लिखूँगी।","Classic close."]],
+ ex:[{t:"१० अगस्त, रविवार",n:0},{t:"प्रिय डायरी,",n:1},{t:"आज का दिन मैं जीवन भर याद रखूँगी — आज मैंने पूरे विद्यालय के सामने अपना पहला भाषण दिया।",n:2},{t:"मंच के पीछे मेरे हाथ-पाँव फूल रहे थे। पर माँ का आशीर्वाद याद आते ही साँस सँभल गई।",n:3},{t:"शायद यही ज़िंदगी का सबक़ है — डर को पार करना बड़ा है। कल फिर लिखूँगी।",n:4}],
+ notes:["Date and day only.","Warm address to the diary.","First sentence carries the day.","An idiom colours the description.","Lesson + close."]},
+{t:"Dialogue",hi:"संवाद लेखन",desc:"Two voices, real speech, one conclusion.",
+ steps:[["Setting line","Where, when, who."],["Speaker labels","'अंश:' 'रुचि:'"],["Natural speech","Short, spoken rhythm."],["Question chains","Keep it moving."],["Resolution","End on a plan."]],
+ phr:[["अच्छा, फिर यह बताओ…","Handing over."],["तुम्हारी बात सही है, पर…","Polite disagreement."],["चलो, यही ठीक रहेगा।","Agreeing to close."]],
+ ex:[{t:"(कक्षा के अंतराल में — अंश और रुचि)",n:0},{t:"अंश: कल रात तीन घंटे रीलें देखती रह गई। आज नींद भी नहीं हुई।",n:1},{t:"रुचि: वही तो! माँ कहती हैं, फ़ोन ने बातचीत ही खा ली है।",n:1},{t:"अंश: इस रविवार से दोनों साथ पढ़ते हैं — नियम हमारा होगा।",n:2},{t:"रुचि: ठीक है — जहाँ चाह, वहाँ राह!",n:3}],
+ notes:["A setting line places the reader.","Spoken rhythm.","Questions keep it alive.","End on a plan."]},
+{t:"Descriptive Writing",hi:"वर्णनात्मक लेखन",desc:"Paint with all five senses, land one feeling.",
+ steps:[["Open with an image","First sentence creates a picture."],["Wake the senses","Scent, sound, texture."],["Add people","Human detail brings emotion."],["End with a feeling","Dissolve into reflection."]],
+ phr:[["जैसे आसमान ने घड़ा उलट दिया हो।","Monsoon image."],["हवा में मिट्टी की महक तैर रही थी।","Scent."],["मानो बाँसुरी बजा रहा हो।","Simile."]],
+ ex:[{t:"आज दोपहर जैसे आसमान ने अपना घड़ा उलट दिया था।",n:0},{t:"पहले कुछ बूँदें धूल पर गिरीं और मिट्टी की महक पूरे आँगन में फैल गई।",n:1},{t:"गली के बच्चे बादल देखते ही नंगे पाँव निकल पड़े।",n:2},{t:"शाम ढलते बारिश थम गई। मन हो रहा था — कल फिर ऐसी ही बारिश हो।",n:3}],
+ notes:["Simile opener.","Scent and sound add depth.","Human detail carries emotion.","Close on reflection."]}];
+
+/* ---------- READING ---------- */
+const PASSAGES=[
+{title:"The Night Train",hi:"रात की गाड़ी",meta:["Narrative","Core"],paras:[
+"रात के ठीक बारह बजे थे। प्लेटफ़ॉर्म पर सिर्फ़ कुछ लोग खड़े थे और चाय की टपरी से उठता धुआँ ठंडी हवा में घुल रहा था। दादी मेरा हाथ पकड़े हुए थीं और दूसरे हाथ से अपनी पुरानी ट्रंक सँभाले हुए।",
+"जब गाड़ी पहुँची, तो खिड़की वाली सीट मिलते ही दादी को लगा कि यह यात्रा शुभ होगी। गाड़ी चलते ही उन्होंने अपनी थैली से कुछ मूँगफली निकाली और कहा — बेटा, यात्रा में भूखा मत रहना।",
+"रातभर पहाड़ों के बीच से गुज़रती सुरंगों की आवाज़ें आ रही थीं। सुबह जब आँख खुली, तो खिड़की के बाहर पहाड़ों पर सूरज की पहली किरण फैल रही थी। दादी ने कहा — यही तो सफ़र का असली आनंद है।"],
+qs:[
+{q:"What time of day does the story take place?",opts:["Early morning","Midnight","Afternoon","Evening"],ans:1,why:"रात के ठीक बारह बजे थे — midnight."},
+{q:"How did grandmother feel about the window seat?",opts:["Annoyed","The journey would be auspicious","Wanted to change it","Indifferent"],ans:1,why:"दादी को लगा कि यह यात्रा शुभ होगी।"},
+{q:"The peanut gesture shows her…",opts:["Hunger","Caring nature","Business","Dislike of trains"],ans:1,why:"यात्रा में भूखा मत रहना — an act of care."},
+{q:"The real joy of travel, per grandmother:",opts:["Reaching quickly","The experience of the journey","Sleeping","Buying food"],ans:1,why:"यही तो सफ़र का असली आनंद है।"}]},
+{title:"Plastic and Us",hi:"प्लास्टिक और हम",meta:["Informative","Extended"],paras:[
+"पिछले पचास वर्षों में प्लास्टिक ने हमारे जीवन में इतनी जगह ले ली है कि उसे सोचे बिना एक दिन भी बिताना मुश्किल है। सुविधा हर जगह है, पर उसकी क़ीमत हमारा पर्यावरण चुका रहा है।",
+"विशेषज्ञों के अनुसार समुद्र में हर वर्ष लाखों टन प्लास्टिक पहुँचता है। मछलियाँ और समुद्री पक्षी छोटे टुकड़ों को भोजन समझकर खा जाते हैं। परिणाम — उनकी मृत्यु और जैव विविधता का क्षरण।",
+"समाधान कठिन नहीं है। कपड़े का थैला, स्टील की बोतल और पुनर्चक्रण की आदत — ये छोटे बदलाव मिलकर बड़ा प्रभाव डाल सकते हैं। ज़रूरत केवल जागरूकता और अनुशासन की है।"],
+qs:[
+{q:"The price of plastic convenience is…",opts:["Higher prices","Our environment","Delivery times","Nothing"],ans:1,why:"क़ीमत हमारा पर्यावरण चुका रहा है।"},
+{q:"Sea creatures die because…",opts:["Trapped in bottles","They mistake fragments for food","Poisoned air","Fighting"],ans:1,why:"टुकड़ों को भोजन समझकर खा जाते हैं।"},
+{q:"NOT mentioned as a solution:",opts:["Cloth bags","Steel bottles","Recycling","Banning all shops"],ans:3,why:"The passage lists bags, bottles, recycling — never a ban."},
+{q:"Two things needed:",opts:["Money & technology","Awareness & discipline","Laws & police","Time & luck"],ans:1,why:"ज़रूरत केवल जागरूकता और अनुशासन की है।"}]}];
+
+/* ---------- EXAM GUIDE ---------- */
+const PAPERS=[
+{n:"Paper 1",t:"Reading & Writing",d:"Reading comprehension, cloze passages and directed writing (letters, emails, essays, diary, dialogue, description).",li:["Skim questions first","Respect word counts","Claim layout marks","Leave 5 minutes to proofread"]},
+{n:"Paper 2",t:"Listening",d:"Recorded passages with objective and short-answer questions.",li:["Read questions in the pause","First play = listen, second = confirm","Never leave blanks","Watch numbers and names"]},
+{n:"Paper 3",t:"Speaking",d:"Individual conversation around a prepared topic plus general discussion.",li:["Prepare a topic you enjoy","Developed answers win","Ask for repetition if needed","Natural fillers buy time"]},
+{n:"All Papers",t:"Golden Rules",d:"Habits that lift candidates a full band.",li:["Match the question's tense","Use connectives: इसलिए, अतः, यद्यपि","High-tier vocabulary earns style marks","Never translate word-by-word"]}];
+const TIPS={
+Reading:[["Underline as you read","Mark names, dates, numbers."],["Questions follow the text","Answers appear in order."],["Exact words for 'find the word'","Not synonyms."],["Inference = one small step","Don't leap beyond evidence."]],
+Writing:[["Plan for 3 minutes","Three bullets save ten minutes."],["Respect the format","Layout is free marks."],["One idea per paragraph","Visible structure wins."],["Upgrade five words per piece","बहुत→अत्यधिक, आख़िर में→अंततः."],["Proofread gender & agreement","Most losses are gender slips."]],
+Listening:[["Read ahead in pauses","Predict the answer type."],["Numbers are the trap","Write digits immediately."],["Don't panic on a miss","Reset for the next item."],["Answer forms matter","English words score zero when Hindi is asked."]],
+Speaking:[["Develop every answer","Answer + reason + example."],["Steer to prepared ground","Have 2–3 'islands'."],["Repair naturally","Calm restarts show fluency."],["It's a conversation","Communication is the criterion."]]};
+const MISTAKES=[
+["Missing layout elements","Letters without दिनांक / सेवा में / विषय / संबोधन surrender easy marks."],
+["Register mix-ups","'महोदय' in an informal letter; 'यार' in a formal one."],
+["Gender agreement slips","चाबी is feminine — गर्म चाबी is wrong."],
+["कि / की confusion","Clause vs possession."],
+["Word count shortfalls","A 90-word 'essay' at 150 words caps the band."],
+["English syntax in Hindi","Build sentences natively."],
+["Half-understood idioms","A misused मुहावरा costs more than it earns."],
+["Ignoring bullet points","Bullets are the mark scheme in disguise."],
+["Skipping proofreading","Three minutes rescue 4–5 marks."],
+["Blank answers","A guess costs nothing."]];
+
+const CLOZE=[
+{s:"पर्यावरण की रक्षा हर ______ की ज़िम्मेदारी है।",a:"नागरिक",d:["प्रवासी","वेतन","यात्रा"]},
+{s:"बोर्ड परीक्षा के लिए मैंने ______ कस ली है।",a:"कमर",d:["पगड़ी","डोरी","पट्टी"]},
+{s:"हर यात्रा एक नया ______ देती है।",a:"अनुभव",d:["उपकरण","वेतन","अवकाश"]},
+{s:"बिना ______ के ज्ञान अधूरा रह जाता है।",a:"अनुशासन",d:["आराम","वेतन","आवागमन"]},
+{s:"सच्ची दोस्ती ज़िंदगी का ______ है।",a:"ख़ज़ाना",d:["बोझ","बाधा","ख़तरा"]},
+{s:"अपनी ग़लती सुनकर मैं ______ हो गया।",a:"पानी-पानी",d:["नौ दो ग्यारह","आँखों का तारा","लोहे के चने चबाने"],cat:"मुहावरा-वाक्य"},
+{s:"जहाँ ______, वहाँ राह।",a:"चाह",d:["चादर","चाँदनी","चारा"],cat:"कहावत"}];
+const GENDERQ=[["पानी","m"],["चाबी","f"],["समाचार","m"],["मेज़","f"],["पहाड़","m"],["दवा","f"],["वेतन","m"],["उपलब्धि","f"],["गाड़ी","f"],["शहर","m"],["आशा","f"],["कमर","f"],["किताब","f"],["सड़क","f"],["प्रदूषण","m"],["बात","f"]];
+
+/* ================================================================
+   ENGINE
+   ================================================================ */
+const store={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let learned=new Set(store.get("h0549-learned",[]));
+const saveLearned=()=>store.set("h0549-learned",[...learned]);
+
+/* merge massive banks into THEMES-shaped objects */
+MASSIVE.forEach(b=>{
+  THEMES.push({name:b[0],hi:b[1],desc:b[2],w:b[3].map(l=>{const p=l.split("|");return [p[0],p[1]||"", "", p[2], p[3]||""];})});
+});
+const ALLWORDS=THEMES.flatMap((th,ti)=>th.w.map(w=>({w,theme:th,ti})));
+const ADV_COUNT=ALLWORDS.filter(x=>x.w[5]===1).length;
+
+let toastT;
+function toast(msg){$("#toastmsg").textContent=msg;$("#toast").classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>$("#toast").classList.remove("show"),2400);}
+let hiVoice=null;
+function pickVoice(){const vs=speechSynthesis.getVoices();hiVoice=vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith("hi"))||null;}
+if("speechSynthesis" in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
+function speak(t){if(!("speechSynthesis" in window)){toast("Audio not supported here");return;}try{const u=new SpeechSynthesisUtterance(t);u.lang="hi-IN";if(hiVoice)u.voice=hiVoice;u.rate=.9;speechSynthesis.cancel();speechSynthesis.speak(u);}catch(e){}}
+
+/* theme (dark) */
+function applyTheme(t){document.documentElement.dataset.theme=t;store.set("h0549-theme",t);}
+applyTheme(store.get("h0549-theme","light"));
+ $("#themebtn").onclick=()=>applyTheme(document.documentElement.dataset.theme==="dark"?"light":"dark");
+
+/* ============ TAB NAVIGATION ============ */
+const hdr=$("#hdr");
+function showTab(id){
+  $$(".tabsec").forEach(s=>s.classList.toggle("on",s.id==="sec-"+id));
+  $$("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.t===id));
+  hdr.classList.remove("menu-open");
+  scrollTo({top:0});
+  history.replaceState(null,"","#"+id);
+}
+ $$("#tabs button").forEach(b=>b.onclick=()=>showTab(b.dataset.t));
+ $$("[data-goto]").forEach(b=>b.onclick=()=>showTab(b.dataset.goto));
+ $("#burger").onclick=()=>hdr.classList.add("menu-open");
+ $("#mclose").onclick=()=>hdr.classList.remove("menu-open");
+const initHash=location.hash.slice(1);
+if(initHash&&document.getElementById("sec-"+initHash))showTab(initHash);
+
+/* ============ WORD OF THE DAY ============ */
+(function(){
+  const d=new Date();
+  $("#wotd-date").textContent=d.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+  const idx=Math.floor(d.getTime()/864e5)%ALLWORDS.length;
+  const[w,pos,hi,en,ex,adv]=ALLWORDS[idx].w;
+  $("#wotd-word").textContent=w;
+  $("#wotd-gloss").innerHTML=`${hi?`<b>${hi}</b> · `:""}<i>${en}</i> <span style="opacity:.6">(${pos})</span>`;
+  $("#wotd-ex").textContent=ex;
+  $("#wotd-speak").onclick=()=>speak(w+". "+ex);
+  const upd=()=>{const on=learned.has(w);$("#wotd-learn").style.borderColor=on?"var(--green)":"";$("#wotd-learn").style.color=on?"var(--green)":"";};
+  upd();
+  $("#wotd-learn").onclick=()=>{learned.has(w)?learned.delete(w):learned.add(w);saveLearned();refreshLearnedUI();upd();toast(learned.has(w)?`"${w}" learned`:`"${w}" removed`);};
+})();
+
+/* ============ VOCAB ============ */
+let curTheme=store.get("h0549-theme-sel",0),hideLearned=false,lvlFilter="all";
+function themeProgress(t){return t.w.filter(w=>learned.has(w[0])).length;}
+function renderThemes(){
+  $("#themelist").innerHTML=THEMES.map((t,i)=>{const p=themeProgress(t),done=p===t.w.length;
+    return `<li class="${i===curTheme?"active":""} ${done?"done":""}"><button data-i="${i}"><span class="tn">${String(i+1).padStart(2,"0")}</span><span class="tdot"></span><span class="tname">${t.name}</span><span class="tprog">${p}/${t.w.length}</span></button></li>`;}).join("");
+  $$("#themelist button").forEach(b=>b.onclick=()=>{curTheme=+b.dataset.i;store.set("h0549-theme-sel",curTheme);renderThemes();renderEntries();});
+}
+function entryHTML(e,idx){
+  const[w,pos,hi,en,ex,adv]=e;const isL=learned.has(w);
+  return `<article class="ventry ${isL?"learned":""}">
+    <span class="no">${String(idx).padStart(2,"0")}</span>
+    <div class="vmain">
+      <div class="w-row"><span class="hw">${w}</span>${pos&&pos!=="—"?`<span class="gen">${pos}</span>`:""}${adv===1?'<span class="adv">★ Advanced</span>':""}<span class="glo">${en}</span></div>
+      ${hi?`<p class="vmean">${hi}</p>`:""}
+      ${ex?`<p class="vex">${ex}</p>`:""}
+    </div>
+    <div class="vside">
+      <button class="side-btn speak" data-say="${esc(w)}. ${esc(ex||"")}" title="Pronounce"><svg><use href="#i-vol"/></svg></button>
+      <button class="side-btn star ${isL?"starred":""}" data-w="${esc(w)}" title="Mark as learned"><svg><use href="#i-star"/></svg></button>
+    </div></article>`;
+}
+function bindEntryButtons(root){
+  root.querySelectorAll(".speak").forEach(b=>b.onclick=()=>speak(b.dataset.say));
+  root.querySelectorAll(".star").forEach(b=>b.onclick=()=>{
+    const w=b.dataset.w;learned.has(w)?learned.delete(w):learned.add(w);saveLearned();refreshLearnedUI();
+    const row=b.closest(".ventry");row.classList.toggle("learned",learned.has(w));b.classList.toggle("starred",learned.has(w));
+    if(hideLearned&&learned.has(w))row.remove();
+    toast(learned.has(w)?`"${w}" learned`:`"${w}" un-learned`);});
+}
+function renderEntries(){
+  const t=THEMES[curTheme];
+  $("#th-title").innerHTML=`${t.name} · <span class="hi">${t.hi}</span>`;
+  $("#th-desc").textContent=t.desc;
+  let list=t.w;
+  if(lvlFilter==="adv")list=list.filter(w=>w[5]===1);
+  if(lvlFilter==="core")list=list.filter(w=>w[5]!==1);
+  if(hideLearned)list=list.filter(w=>!learned.has(w[0]));
+  $("#entries").innerHTML=list.length?list.map((w,i)=>entryHTML(w,i+1)).join("")
+    :`<p style="padding:40px 0;color:var(--ink2);font-style:italic">Nothing here — try another filter or theme.</p>`;
+  bindEntryButtons($("#entries"));
+}
+function refreshLearnedUI(){renderThemes();renderEntries();$("#stat-learned").textContent=learned.size;$("#v-allnum").textContent=learned.size;$("#v-allbar").style.width=(learned.size/ALLWORDS.length*100)+"%";}
+renderThemes();renderEntries();refreshLearnedUI();
+ $("#v-total").textContent=ALLWORDS.length;
+ $("#stat-words").textContent=ALLWORDS.length.toLocaleString();
+ $("#stat-adv").textContent=ADV_COUNT;
+ $("#stat-ph").textContent=ALLPH.length;
+ $("#vsearch").addEventListener("input",e=>{
+  const q=e.target.value.trim().toLowerCase();
+  if(!q){renderEntries();return;}
+  const hits=ALLWORDS.filter(x=>[x.w[0],x.w[2],x.w[3],x.w[4],x.theme.name].some(s=>s&&s.toLowerCase().includes(q)))
+    .filter(x=>(lvlFilter!=="adv"||x.w[5]===1)&&(lvlFilter!=="core"||x.w[5]!==1))
+    .filter(x=>!hideLearned||!learned.has(x.w[0]));
+  $("#th-title").innerHTML=`Search — <span style="color:var(--acc-deep)">${hits.length}</span> result${hits.length===1?"":"s"}`;
+  $("#th-desc").textContent=`Matches for "${e.target.value.trim()}" across all ${THEMES.length} banks.`;
+  $("#entries").innerHTML=hits.length?hits.slice(0,300).map((h,i)=>entryHTML(h.w,i+1)).join("")
+    :`<p style="padding:40px 0;color:var(--ink2);font-style:italic">Nothing found. Try "environment", "पानी" or "teacher".</p>`;
+  bindEntryButtons($("#entries"));
+});
+ $$("#lvlchips button[data-lvl]").forEach(b=>b.onclick=()=>{lvlFilter=b.dataset.lvl;$$("#lvlchips button[data-lvl]").forEach(x=>x.classList.toggle("on",x===b));renderEntries();});
+ $("#unlearned-toggle").onclick=e=>{hideLearned=!hideLearned;e.currentTarget.classList.toggle("on",hideLearned);renderEntries();};
+ $("#printbtn").onclick=()=>setTimeout(()=>window.print(),60);
+
+/* ============ FLASHCARDS ============ */
+let fcDeck=[],fcI=0,fcKnown=0,fcFlipped=false;
+ $("#fc-deck").innerHTML=`<option value="-1">All words (${ALLWORDS.length})</option><option value="-2">★ Advanced only (${ADV_COUNT})</option>`+THEMES.map((t,i)=>`<option value="${i}">${t.name} (${t.w.length})</option>`).join("");
+function fcStart(shuf){
+  const di=+$("#fc-deck").value;
+  let src=di===-1?ALLWORDS.map(x=>({w:x.w,theme:x.theme})):di===-2?ALLWORDS.filter(x=>x.w[5]===1).map(x=>({w:x.w,theme:x.theme})):THEMES[di].w.map(w=>({w,theme:THEMES[di]}));
+  fcDeck=src.slice();if(shuf!==false)shuffle(fcDeck);fcI=0;fcKnown=0;fcFlipped=false;fcRender();
+}
+function fcRender(){
+  const stage=$("#fc-stage");
+  if(!fcDeck.length){stage.innerHTML=`<p style="text-align:center;color:var(--ink2)">This deck is empty.</p>`;return;}
+  if(fcI>=fcDeck.length){
+    stage.innerHTML=`<div class="fc-summary"><p class="big">${fcKnown}<small>/${fcDeck.length}</small></p><p style="color:var(--ink2);margin-top:10px">cards you knew in this run</p>
+      <div class="q-end-actions"><button class="btn btn-solid" id="fc-again">Run again</button><button class="btn btn-ghost" id="fc-shuf2">Reshuffle</button></div></div>`;
+    $("#fc-again").onclick=()=>fcStart(false);$("#fc-shuf2").onclick=()=>fcStart(true);return;
+  }
+  const[w,pos,hi,en,ex,adv]=fcDeck[fcI].w;
+  stage.innerHTML=`
+    <div class="fc-meta"><span>${esc(fcDeck[fcI].theme.name)}${adv===1?" · ★":""}</span><span>${fcI+1} / ${fcDeck.length}</span></div>
+    <div class="fc ${fcFlipped?"flipped":""}" id="fccard" role="button" tabindex="0">
+      <div class="fc-inner">
+        <div class="fc-face fc-front"><p class="fcl">Say the meaning, then flip</p><p class="fcw hi">${w}</p><p class="fcg">${pos||""} · tap to flip</p></div>
+        <div class="fc-face fc-back"><p class="fcw hi">${w}</p><p class="fcm">${hi?hi+"<i>"+en+"</i>":"<i>"+en+"</i>"}${pos&&pos!=="—"?`<i style="font-style:normal">(${pos})</i>`:""}</p>${ex?`<p class="fce">${ex}</p>`:""}</div>
+      </div></div>
+    <div class="fc-actions"><button class="btn btn-ghost" id="fc-speak">Hear it</button><button class="btn btn-ghost" id="fc-againbtn">↺ Again</button><button class="btn btn-green" id="fc-know">Got it</button></div>
+    <p class="fc-tip">Click the card (or Space) to flip. "Again" pushes the card to the end.</p>`;
+  const card=$("#fccard");
+  const flip=()=>{fcFlipped=!fcFlipped;card.classList.toggle("flipped",fcFlipped);};
+  card.onclick=flip;card.onkeydown=e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();flip();}};
+  $("#fc-speak").onclick=()=>speak(w+". "+(ex||en));
+  $("#fc-know").onclick=()=>{fcKnown++;fcI++;fcFlipped=false;fcRender();};
+  $("#fc-againbtn").onclick=()=>{fcDeck.push(fcDeck[fcI]);fcI++;fcFlipped=false;fcRender();};
+}
+ $("#fc-deck").onchange=()=>fcStart(true);
+ $("#fc-shuffle").onclick=()=>fcStart(true);
+fcStart(true);
+
+/* ============ IDIOMS ============ */
+ $("#idiomlist").innerHTML=IDIOMS.map((x,i)=>`
+  <article class="idiom"><span class="no">${String(i+1).padStart(2,"0")}</span><div>
+    <h3 class="hi">${x[0]}<button class="side-btn speak" style="vertical-align:4px;margin-left:8px" data-say="${esc(x[0]+'. '+x[4])}" title="Pronounce"><svg><use href="#i-vol"/></svg></button></h3>
+    <div class="mean-grid"><div class="cell"><b>Literal</b><p class="hi">${x[1]}</p></div><div class="cell fig"><b>Figurative</b><p>${x[3]} — ${x[2]}</p></div></div>
+    <p class="vex">${x[4]}</p></div></article>`).join("");
+ $("#provlist").innerHTML=PROVERBS.map((x,i)=>`
+  <article class="idiom"><span class="no">${String(i+1).padStart(2,"0")}</span><div>
+    <h3 class="hi">${x[0]}<button class="side-btn speak" style="vertical-align:4px;margin-left:8px" data-say="${esc(x[0])}" title="Pronounce"><svg><use href="#i-vol"/></svg></button><span class="tagchip">Proverb</span></h3>
+    <div class="mean-grid" style="grid-template-columns:1fr"><div class="cell fig"><b>Meaning</b><p>${x[1]}</p></div></div>
+    <p class="vex">${x[2]}</p></div></article>`).join("");
+ $$("#idiomlist .speak, #provlist .speak").forEach(b=>b.onclick=()=>speak(b.dataset.say));
+
+/* ============ PHRASES ============ */
+let curCat=0;
+function renderPh(){
+  $("#phcats").innerHTML=WWORDS.map((c,i)=>`<button class="${i===curCat?"on":""}" data-i="${i}">${c.c}</button>`).join("");
+  $$("#phcats button").forEach(b=>b.onclick=()=>{curCat=+b.dataset.i;renderPh();});
+  const c=WWORDS[curCat];
+  $("#phgrid").innerHTML=c.items.map(it=>`
+    <div class="ph-card"><p class="pwh hi">${it[0]}</p><p class="pe">${it[1]}</p><p class="pu">${it[2]}</p>
+      <div class="ph-act"><button class="side-btn speak" data-say="${esc(it[0]+'. '+it[2])}" title="Pronounce"><svg><use href="#i-vol"/></svg></button></div></div>`).join("");
+  $$("#phgrid .speak").forEach(b=>b.onclick=()=>speak(b.dataset.say));
+}
+renderPh();
+/* phrase quiz */
+function buildPhraseQs(){
+  const qs=[];
+  sample(ALLPH,3).forEach(p=>qs.push({cat:"Phrase",prompt:`Which phrase means <b>“${p.en}”</b>?`,opts:shuffle([p.ph,...sample(ALLPH.map(x=>x.ph),3,p.ph)]),ans:p.ph,why:`${p.ph} — ${p.en}.`}));
+  sample(ALLPH,2).forEach(p=>qs.push({cat:"Phrase",prompt:`What does <span class="hi">“${p.ph}”</span> mean?`,opts:shuffle([p.en,...sample(ALLPH.map(x=>x.en),3,p.en)]),ans:p.en,why:`${p.ph} — ${p.en}.`}));
+  sample(PFILL,2).forEach(f=>qs.push({cat:"Fill the blank",blank:true,blankSent:f.s,prompt:f.s.replace("___",""),opts:shuffle([f.a,...f.d]),ans:f.a,why:`Full sentence: “${f.s.replace("___",f.a)}”`}));
+  return shuffle(qs);
+}
+let PQ,PQi=0;
+function pqStart(){PQ=buildPhraseQs();PQi=0;pqShow();}
+function pqShow(){
+  const q=PQ[PQi];
+  $("#pq-bar").style.width=(PQi/PQ.length*100)+"%";
+  $("#pq-zone").innerHTML=`
+    <div class="qmeta"><span>Phrase quiz</span><span class="cat">${q.cat}</span><span>Q ${PQi+1}/${PQ.length}</span></div>
+    <p class="qprompt">${q.blank?`Complete — <span class="blank">___</span><br><span class="hi" style="font-weight:500;font-size:.9em;color:var(--ink2)">${q.blankSent.replace("___","……")}</span>`:q.prompt}</p>
+    <ul class="opts">${q.opts.map((o,i)=>`<li><button data-o="${esc(o)}"><span class="k">${String.fromCharCode(65+i)}</span><span class="hi">${o}</span></button></li>`).join("")}</ul>
+    <div id="pq-feed"></div><div class="qnext-row" id="pq-next"></div>`;
+  $$("#pq-zone .opts button").forEach(b=>b.onclick=()=>{
+    const ok=b.dataset.o===q.ans;
+    $$("#pq-zone .opts button").forEach(x=>{x.disabled=true;if(x.dataset.o===q.ans)x.classList.add("right");else if(x===b)x.classList.add("wrong");});
+    $("#pq-feed").innerHTML=`<div class="qfeed ${ok?"":"bad"}"><svg><use href="#${ok?"i-check":"i-cross"}"/></svg><div><b>${ok?"Correct.":"Not quite."}</b> <span class="muted">${q.why}</span></div></div>`;
+    $("#pq-next").innerHTML=`<button class="btn btn-solid" id="pqn">${PQi<PQ.length-1?"Next":"Finish"}</button>`;
+    $("#pqn").onclick=()=>{PQi<PQ.length-1?(PQi++,pqShow()):pqEnd();};
+  });
+}
+function pqEnd(){
+  $("#pq-bar").style.width="100%";
+  $("#pq-zone").innerHTML=`<div class="q-end"><p style="font-size:1.3rem;font-weight:600;font-family:var(--f-ed)">Phrase quiz complete</p>
+    <p class="muted" style="max-width:420px;margin:6px auto 0">Connectives are half your essay marks. Revisit the banks above, then try the MCQ trainer.</p>
+    <div class="q-end-actions"><button class="btn btn-acc" id="pqr">New phrase quiz</button><button class="btn btn-ghost" data-goto="quiz">Quizzes <svg><use href="#i-arrow"/></svg></button></div></div>`;
+  $("#pqr").onclick=pqStart;
+  $$("#pq-zone [data-goto]").forEach(b=>b.onclick=()=>showTab(b.dataset.goto));
+}
+pqStart();
+
+/* ============ WORD BANK / LAB ============ */
+ $("#upledger").innerHTML=UPGRADES.map(u=>`
+  <div class="lrow"><span class="basic hi">${u[0]}</span>
+    <span class="arrow"><svg viewBox="0 0 30 14" width="30" height="14"><path d="M0 7h24M19 2l7 5-7 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <span><span class="up hi">${u[1]}</span><span class="up-note">${u[2]}</span></span></div>`).join("");
+ $("#gloss").innerHTML=GLOSSARY.map(g=>`<div class="gitem"><b class="hi">${g[0]}</b><p class="gu">${g[2]}</p></div>`).join("");
+const labState=LAB.map(()=>0);
+function renderLab(){
+  $("#labbox").innerHTML=LAB.map((L,i)=>{const k=labState[i];
+    return `<p class="lab-s">${L.pre}<em class="pill hi" data-i="${i}" tabindex="0" role="button">${L.swaps[k]}</em>${L.post}</p><p class="reg"><i class="${k===1?"l1":k===2?"l2":""}"></i>${L.lv[k]}</p>`;}).join("");
+  $$("#labbox .pill").forEach(p=>{const cyc=()=>{const i=+p.dataset.i;labState[i]=(labState[i]+1)%LAB[i].swaps.length;renderLab();};p.onclick=cyc;p.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();cyc();}};});
+}
+renderLab();
+ $("#labreset").onclick=()=>{labState.fill(0);renderLab();};
+
+/* ============ GRAMMAR ============ */
+ $("#g-grid").innerHTML=GRAMMAR.map((g,i)=>`
+  <div class="gcard ${i===0?"open":""}"><button class="gcard-head">
+    <span class="gi hi">${g.ic}</span><span><b>${g.t}</b><small class="hi">${g.s}</small></span>
+    <svg class="chev" width="16" height="16"><use href="#i-chev"/></svg></button>
+    <div class="gcard-body">${g.html}</div></div>`).join("");
+ $$(".gcard-head").forEach(b=>b.onclick=()=>b.closest(".gcard").classList.toggle("open"));
+
+/* ============ WRITING ============ */
+let curFmt=store.get("h0549-fmt",0);
+function renderFmt(){
+  const F=FORMATS[curFmt];
+  $("#fmttabs").innerHTML=FORMATS.map((f,i)=>`<button class="${i===curFmt?"on":""}" data-i="${i}">${f.t}</button>`).join("");
+  $$("#fmttabs button").forEach(b=>b.onclick=()=>{curFmt=+b.dataset.i;store.set("h0549-fmt",curFmt);renderFmt();});
+  $("#fmt-title").innerHTML=`${F.t} · <span class="hi">${F.hi}</span>`;
+  $("#fmt-desc").textContent=F.desc;
+  $("#fmtsteps").innerHTML=F.steps.map((s,i)=>`<li><span class="sn">${i+1}</span><div><b>${s[0]}</b><p>${s[1]}</p></div></li>`).join("");
+  $("#fmtphrases").innerHTML=F.phrases.map(p=>`<li><p class="ph hi">“${p[0]}”</p><p class="pn">${p[1]}</p></li>`).join("");
+  $("#fmtex").innerHTML=F.ex.map(p=>{const seg=p.n!=null?`<sup>${p.n+1}</sup>`:"";
+    return `<p><span class="seg ${p.n!=null?"noted":""}" data-note="${p.n}">${p.t.replace(/\n/g,"<br>")}${seg}</span></p>`;}).join("");
+  $("#fmtnotes").innerHTML=F.notes.map((nt,i)=>`<li data-note="${i}"><span class="nn">${i+1}</span><span>${nt}</span></li>`).join("");
+  $$("#fmtnotes li").forEach(li=>{
+    li.addEventListener("mouseenter",()=>{const s=$(`#fmtex .seg[data-note="${li.dataset.note}"]`);if(s)s.classList.add("lit");});
+    li.addEventListener("mouseleave",()=>$$("#fmtex .seg.lit").forEach(s=>s.classList.remove("lit")));});
+}
+renderFmt();
+
+/* ============ READING ============ */
+ $("#passages").innerHTML=PASSAGES.map((p,pi)=>`
+  <article class="passage">
+    <div class="pas-head"><h3>${p.title} · <span class="hi">${p.hi}</span></h3><div class="pas-meta">${p.meta.map(m=>`<span>${m}</span>`).join("")}</div></div>
+    <div class="pas-body">${p.paras.map(t=>`<p>${t}</p>`).join("")}
+      <p style="text-align:right"><button class="side-btn speak" data-say="${esc(p.paras[0])}" title="Listen"><svg><use href="#i-vol"/></svg></button></p></div>
+    <div class="pas-qs">${p.qs.map((q,qi)=>`
+      <div class="pq"><h4>${pi+1}.${qi+1} ${q.q}</h4>
+        <div class="pq-opts">${q.opts.map((o,oi)=>`<button data-p="${pi}" data-q="${qi}" data-o="${oi}">${String.fromCharCode(65+oi)}. <span class="hi">${o}</span></button>`).join("")}</div>
+        <p class="pq-why" id="why-${pi}-${qi}"></p></div>`).join("")}</div></article>`).join("");
+ $$("#passages .speak").forEach(b=>b.onclick=()=>speak(b.dataset.say));
+ $$("#passages .pq-opts button").forEach(b=>b.onclick=()=>{
+  const p=PASSAGES[+b.dataset.p],q=p.qs[+b.dataset.q],oi=+b.dataset.o;
+  const sibs=b.parentElement.querySelectorAll("button");
+  sibs.forEach(x=>x.disabled=true);sibs[q.ans].classList.add("right");
+  if(oi!==q.ans)b.classList.add("wrong");
+  const why=$(`#why-${b.dataset.p}-${b.dataset.q}`);
+  why.innerHTML=`${oi===q.ans?"<b>Correct.</b> ":"<b>Not quite.</b> "}${q.why}`;why.classList.add("show");
+});
+
+/* ================================================================
+   QUIZ A — VOCAB MCQ TRAINER
+   ================================================================ */
+ $("#mcq-theme").innerHTML=`<option value="-1">All ${THEMES.length} banks (${ALLWORDS.length} words)</option>`+THEMES.map((t,i)=>`<option value="${i}">${t.name} (${t.w.length})</option>`).join("");
+let MQ,MQi=0,MQscore=0,MQmissed=[],MQlocked=false,MQstart,MQtimer;
+function mcqPool(){
+  const di=+$("#mcq-theme").value;
+  return di===-1?ALLWORDS:THEMES[di].w.map(w=>({w,theme:THEMES[di],ti:di}));
+}
+function mcqDistractorKey(dir,q){
+  // distractors from same theme if possible, else global
+  const pool=mcqPool();
+  const key=dir==="h2e"?"w[3]":"w[0]";
+  const sameTheme=pool.filter(x=>x.w!==q.w);
+  let opts=sample(sameTheme,3,q.w).map(x=>dir==="h2e"?x.w[3]:x.w[0]);
+  if(opts.length<3)opts=opts.concat(sample(ALLWORDS.filter(x=>x.w!==q.w),3-opts.length,q.w).map(x=>dir==="h2e"?x.w[3]:x.w[0]));
+  return [...new Set(opts)].slice(0,3);
+}
+function mcqStart(){
+  const dir=$("#mcq-dir").value,n=+$("#mcq-count").value;
+  const pool=shuffle(mcqPool().slice()).slice(0,n);
+  MQ=pool.map(x=>{
+    const d=Math.random()<.5? (dir==="mix"?(Math.random()<.5?"h2e":"e2h"):dir):dir;
+    if(d==="h2e")return{cat:"Hindi → English",prompt:`What does <span class="hi">“${x.w[0]}”</span> mean?`,opts:shuffle([x.w[3],...mcqDistractorKey("h2e",x)]),ans:x.w[3],why:`${x.w[0]}${x.w[2]?" — "+x.w[2]:""} (${x.w[3]})`,src:x.theme.name};
+    return{cat:"English → Hindi",prompt:`Which word means <b>“${x.w[3]}”</b>?`,opts:shuffle([x.w[0],...mcqDistractorKey("e2h",x)]),ans:x.w[0],why:`${x.w[0]} — ${x.w[3]}${x.w[2]?" ("+x.w[2]+")":""}`,src:x.theme.name};
+  });
+  MQi=0;MQscore=0;MQmissed=[];MQstart=Date.now();
+  clearInterval(MQtimer);
+  MQtimer=setInterval(()=>{const el=$("#mcq-clock");if(el)el.textContent=fmtT(Date.now()-MQstart);},500);
+  mcqShow();
+}
+function fmtT(ms){const s=Math.floor(ms/1000);return `${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`;}
+function mcqIntro(){
+  clearInterval(MQtimer);
+  $("#mcq-bar").style.width="0%";
+  const di=+$("#mcq-theme").value;
+  const pool=mcqPool();
+  const bkey="h0549-mcq-best-"+di;
+  const b=store.get(bkey,null);
+  $("#mcq-zone").innerHTML=`<div class="q-intro">
+    <h3>${di===-1?"Every word is fair game":THEMES[di].name+" — "+THEMES[di].w.length+" words"}.</h3>
+    <p>${pool.length} words in this pool. Questions are drawn at random, in your chosen direction, with distractors pulled from the same theme wherever possible — so wrong answers look tempting.</p>
+    ${b?`<span class="q-best">Best for this pool — <b>${b.score}/${b.total}</b> in ${b.time}</span>`:""}
+    <br><button class="btn btn-solid" id="mcq-go">Start MCQ quiz <svg><use href="#i-arrow"/></svg></button></div>`;
+  $("#mcq-go").onclick=mcqStart;
+}
+function mcqShow(){
+  const q=MQ[MQi];MQlocked=false;
+  $("#mcq-bar").style.width=(MQi/MQ.length*100)+"%";
+  $("#mcq-zone").innerHTML=`
+    <div class="qmeta"><span>Q ${MQi+1} / ${MQ.length}</span><span class="cat">${q.cat} · ${q.src}</span><span><span id="mcq-clock">${fmtT(Date.now()-MQstart)}</span> · ★ ${MQscore}</span></div>
+    <p class="qprompt">${q.prompt}</p>
+    <ul class="opts">${q.opts.map((o,i)=>`<li><button data-o="${esc(o)}"><span class="k">${String.fromCharCode(65+i)}</span><span class="hi">${o}</span></button></li>`).join("")}</ul>
+    <div id="mcq-feed"></div><div class="qnext-row" id="mcq-next"></div>`;
+  $$("#mcq-zone .opts button").forEach(b=>b.onclick=()=>mcqAnswer(q,b));
+}
+function mcqAnswer(q,btn){
+  if(MQlocked)return;MQlocked=true;
+  const ok=btn.dataset.o===q.ans;
+  $$("#mcq-zone .opts button").forEach(b=>{b.disabled=true;if(b.dataset.o===q.ans)b.classList.add("right");else if(b===btn)b.classList.add("wrong");});
+  if(ok)MQscore++;else MQmissed.push(q);
+  $("#mcq-feed").innerHTML=`<div class="qfeed ${ok?"":"bad"}"><svg><use href="#${ok?"i-check":"i-cross"}"/></svg><div><b>${ok?"Correct.":"Not quite."}</b> ${ok?"":"The answer is <b class='hi'>"+q.ans+"</b>. "}<span class="muted">${q.why}</span></div></div>`;
+  $("#mcq-next").innerHTML=`<button class="btn btn-solid" id="mcqn">${MQi<MQ.length-1?"Next question":"See results"} <svg><use href="#i-arrow"/></svg></button>`;
+  $("#mcqn").onclick=()=>{MQi<MQ.length-1?(MQi++,mcqShow()):mcqEnd();};
+}
+function mcqEnd(){
+  clearInterval(MQtimer);
+  $("#mcq-bar").style.width="100%";
+  const time=fmtT(Date.now()-MQstart),pct=MQscore/MQ.length;
+  const bkey="h0549-mcq-best-"+$("#mcq-theme").value;
+  const b=store.get(bkey,null);
+  const newBest=(!b||MQscore>b.score||(MQscore===b.score&&time<b.time));
+  if(newBest)store.set(bkey,{score:MQscore,total:MQ.length,time});
+  const verdict=pct>=.9?"Vocabulary mastery — that pool holds no surprises for you."
+    :pct>=.7?"Strong. Drill the missed words with flashcards, then re-run."
+    :pct>=.5?"Halfway there — study the theme in Vocabulary, then retry."
+    :"This theme needs work. Read the entries, then come back.";
+  $("#mcq-zone").innerHTML=`<div class="q-end">
+    <p class="score">${MQscore}<small>/${MQ.length}</small></p>
+    <p class="timechip">finished in ${time}${newBest&&b?" · <b style='color:var(--acc-deep)'>new best for this pool!</b>":""}</p>
+    <p class="verdict">${verdict}</p>
+    ${MQmissed.length?`<p class="sub-label" style="justify-content:center;margin-top:26px">Missed words — learn these</p><ol class="missed">${MQmissed.map(m=>`<li><p class="mc">${m.src}</p><p class="hi" style="font-size:1.05rem">${m.prompt.replace(/<[^>]*>/g,"")}</p><p>Answer — <span class="ma hi">${m.ans}</span></p></li>`).join("")}</ol>`:`<p style="margin-top:24px;color:var(--green);font-weight:600">A clean sweep — nothing missed.</p>`}
+    <div class="q-end-actions"><button class="btn btn-solid" id="mcq-again">New questions</button><button class="btn btn-ghost" id="mcq-edit">Change settings</button></div></div>`;
+  $("#mcq-again").onclick=mcqStart;
+  $("#mcq-edit").onclick=mcqIntro;
+}
+["mcq-theme","mcq-dir","mcq-count"].forEach(id=>$("#"+id).addEventListener("change",mcqIntro));
+mcqIntro();
+
+/* ================================================================
+   QUIZ B — MASTER QUIZ
+   ================================================================ */
+const qzone=$("#qzone");
+let Q,Qi,qScore,qMissed,locked,qStart,qTimer;
+const best=()=>store.get("h0549-best",null);
+function buildQuestions(){
+  const qs=[];
+  for(let i=0;i<3;i++){const h=rand(ALLWORDS);qs.push({cat:"Meaning",prompt:`What does <span class="hi">“${h.w[0]}”</span> mean?`,opts:shuffle([h.w[3],...sample(ALLWORDS.map(x=>x.w[3]),3,h.w[3])]),ans:h.w[3],why:`${h.w[0]}${h.w[2]?" — "+h.w[2]:""} (${h.w[3]})`});}
+  for(let i=0;i<2;i++){const h=rand(ALLWORDS);qs.push({cat:"Word",prompt:`Which word means <b>“${h.w[3]}”</b>?`,opts:shuffle([h.w[0],...sample(ALLWORDS.map(x=>x.w[0]),3,h.w[0])]),ans:h.w[0],why:`${h.w[0]} — ${h.w[3]}`});}
+  sample(CLOZE,2).forEach(c=>qs.push({cat:c.cat||"Complete the sentence",blank:true,blankSent:c.s,prompt:c.s.replace("______",""),opts:shuffle([c.a,...c.d]),ans:c.a,why:`Full sentence: “${c.s.replace("______",c.a)}”`}));
+  for(let i=0;i<2;i++){const m=rand(IDIOMS);qs.push({cat:"Idiom",prompt:`What does the idiom <span class="hi">“${m[0]}”</span> mean?`,opts:shuffle([m[3],...sample(IDIOMS.map(x=>x[3]),3,m[3])]),ans:m[3],why:`${m[0]} — ${m[2]}.`});}
+  const p=rand(PROVERBS);qs.push({cat:"Proverb",prompt:`Which proverb means <i>“${p[1]}”</i>?`,opts:shuffle([p[0],...sample(PROVERBS.map(x=>x[0]),3,p[0])]),ans:p[0],why:`${p[0]}`});
+  const g=rand(GENDERQ);qs.push({cat:"Gender",prompt:`What is the gender of <span class="hi">“${g[0]}”</span>?`,opts:shuffle(["masculine (पुल्लिंग)","feminine (स्त्रीलिंग)"]),ans:g[1]==="m"?"masculine (पुल्लिंग)":"feminine (स्त्रीलिंग)",why:`${g[0]} is ${g[1]==="m"?"masculine":"feminine"}.`});
+  const u=rand(UPGRADES);qs.push({cat:"Register",prompt:`Choose the formal upgrade of <span class="hi">“${u[0]}”</span>:`,opts:shuffle([u[1],...sample(UPGRADES.map(x=>x[1]),2,u[1])].filter((v,i,a)=>a.indexOf(v)===i)),ans:u[1],why:`${u[0]} → ${u[1]}: ${u[2]}`});
+  const ph=rand(ALLPH);qs.push({cat:"Writing phrase",prompt:`Which connective means <b>“${ph.en}”</b>?`,opts:shuffle([ph.ph,...sample(ALLPH.map(x=>x.ph),3,ph.ph)]),ans:ph.ph,why:`${ph.ph} — ${ph.en}.`});
+  const pf=rand(PFILL);qs.push({cat:"Connective",blank:true,blankSent:pf.s,prompt:pf.s.replace("___",""),opts:shuffle([pf.a,...pf.d]),ans:pf.a,why:`Full sentence: “${pf.s.replace("___",pf.a)}”`});
+  return shuffle(qs).slice(0,14);
+}
+function quizIntro(){
+  clearInterval(qTimer);$("#qbarfill").style.width="0%";const b=best();
+  qzone.innerHTML=`<div class="q-intro"><h3>Fourteen questions. No two attempts alike.</h3>
+    <p>Meanings both ways, sentence completion, idioms, proverbs, gender, register upgrades, connectives and writing phrases — drawn fresh from the full ${ALLWORDS.length}-word bank every attempt.</p>
+    ${b?`<span class="q-best">Personal best — <b>${b.score}/${b.total}</b> in ${b.time}</span>`:""}
+    <br><button class="btn btn-solid" id="qstart">Start master quiz <svg><use href="#i-arrow"/></svg></button></div>`;
+  $("#qstart").onclick=startQuiz;
+}
+function startQuiz(){Q=buildQuestions();Qi=0;qScore=0;qMissed=[];qStart=Date.now();qTimer=setInterval(()=>{const el=$("#qclock");if(el)el.textContent=fmtT(Date.now()-qStart);},500);showQ();}
+function showQ(){
+  const q=Q[Qi];locked=false;
+  $("#qbarfill").style.width=(Qi/Q.length*100)+"%";
+  qzone.innerHTML=`
+    <div class="qmeta"><span>Q ${Qi+1} / ${Q.length}</span><span class="cat">${q.cat}</span><span><span id="qclock">${fmtT(Date.now()-qStart)}</span> · ★ ${qScore}</span></div>
+    <p class="qprompt">${q.blank?`Complete the sentence — <span class="blank">______</span><br><span class="hi" style="font-weight:500;font-size:.9em;color:var(--ink2)">${q.blankSent.replace("______","……")}</span>`:q.prompt}</p>
+    <ul class="opts">${q.opts.map((o,i)=>`<li><button data-o="${esc(o)}"><span class="k">${String.fromCharCode(65+i)}</span><span class="hi">${o}</span></button></li>`).join("")}</ul>
+    <div id="qfeedslot"></div><div class="qnext-row" id="qnextrow"></div>`;
+  $$("#qzone .opts button").forEach(b=>b.onclick=()=>answer(q,b));
+}
+function answer(q,btn){
+  if(locked)return;locked=true;
+  const ok=btn.dataset.o===q.ans;
+  $$("#qzone .opts button").forEach(b=>{b.disabled=true;if(b.dataset.o===q.ans)b.classList.add("right");else if(b===btn)b.classList.add("wrong");});
+  if(!ok)qMissed.push(q);else qScore++;
+  $("#qfeedslot").innerHTML=`<div class="qfeed ${ok?"":"bad"}"><svg><use href="#${ok?"i-check":"i-cross"}"/></svg><div><b>${ok?"Correct.":"Not quite."}</b> ${ok?"":"The answer is <b class='hi'>"+q.ans+"</b>. "}<span class="muted">${q.why}</span></div></div>`;
+  $("#qnextrow").innerHTML=`<button class="btn btn-solid" id="qnext">${Qi<Q.length-1?"Next question":"See results"} <svg><use href="#i-arrow"/></svg></button>`;
+  $("#qnext").onclick=()=>{Qi<Q.length-1?(Qi++,showQ()):showEnd();};
+}
+function showEnd(){
+  clearInterval(qTimer);$("#qbarfill").style.width="100%";
+  const time=fmtT(Date.now()-qStart),pct=qScore/Q.length,b=best();
+  const newBest=(!b||qScore>b.score||(qScore===b.score&&time<b.time));
+  if(newBest)store.set("h0549-best",{score:qScore,total:Q.length,time});
+  const verdict=pct>=.9?"Outstanding — top-band vocabulary control."
+    :pct>=.7?"Very strong. Polish the missed ones and you're exam-ready."
+    :pct>=.5?"Solid base — revisit Writing Words and Grammar, then retry."
+    :"Early days. One theme a day with flashcards changes this fast.";
+  qzone.innerHTML=`<div class="q-end">
+    <p class="score">${qScore}<small>/${Q.length}</small></p>
+    <p class="timechip">finished in ${time}${newBest&&b?" · <b style='color:var(--acc-deep)'>new personal best!</b>":""}</p>
+    <p class="verdict">${verdict}</p>
+    ${qMissed.length?`<ol class="missed">${qMissed.map(m=>`<li><p class="mc">${m.cat}</p><p class="hi">${m.blank?m.blankSent:m.prompt.replace(/<[^>]*>/g,"")}</p><p>Answer — <span class="ma hi">${m.ans}</span></p></li>`).join("")}</ol>`:`<p style="margin-top:24px;color:var(--green);font-weight:600">A clean sweep — nothing missed.</p>`}
+    <div class="q-end-actions"><button class="btn btn-solid" id="qagain">New questions</button><button class="btn btn-ghost" id="qvocab">Back to vocabulary</button></div></div>`;
+  $("#qagain").onclick=startQuiz;
+  $("#qvocab").onclick=()=>showTab("vocab");
+}
+quizIntro();
+
+/* ============ EXAM GUIDE ============ */
+ $("#papers").innerHTML=PAPERS.map(p=>`<div class="paper"><p class="pnum">${p.n}</p><h3>${p.t}</h3><p>${p.d}</p><ul>${p.li.map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("");
+const tipKeys=Object.keys(TIPS);let curTip=0;
+function renderTips(){
+  $("#tiptabs").innerHTML=tipKeys.map((k,i)=>`<button class="${i===curTip?"on":""}" data-i="${i}">${k}</button>`).join("");
+  $$("#tiptabs button").forEach(b=>b.onclick=()=>{curTip=+b.dataset.i;renderTips();});
+  $("#tiplist").innerHTML=TIPS[tipKeys[curTip]].map((t,i)=>`<li><span class="tno">${String(i+1).padStart(2,"0")}</span><div><b>${t[0]}</b><p>${t[1]}</p></div></li>`).join("");
+}
+renderTips();
+ $("#mistakes").innerHTML=MISTAKES.map(m=>`<li><span class="mbox">✓</span><div class="mtxt"><b>${m[0]}</b><span>${m[1]}</span></div></li>`).join("");
+ $$("#mistakes li").forEach(li=>li.onclick=()=>{li.classList.toggle("done");if($$("#mistakes li.done").length===MISTAKES.length)toast("Every red flag checked off. Go get that A*.");});
+
+/* ============ SEARCH PALETTE ============ */
+const pal=$("#pal");
+const INDEX=[
+  ...ALLWORDS.map(x=>({label:x.w[0],sub:`${x.w[3]}${x.w[2]?" — "+x.w[2]:""}`,cat:"word",go:()=>{curTheme=x.ti;store.set("h0549-theme-sel",curTheme);showTab("vocab");renderThemes();renderEntries();}})),
+  ...ALLPH.map(x=>({label:x.ph,sub:x.en,cat:"phrase",go:()=>{curCat=WWORDS.findIndex(c=>c.c===x.cat);renderPh();showTab("phrases");}})),
+  ...IDIOMS.map(x=>({label:x[0],sub:x[2],cat:"idiom",go:()=>showTab("idioms")})),
+  ...GLOSSARY.map(x=>({label:x[0],sub:x[1],cat:"glossary",go:()=>showTab("wordbank")})),
+  ...GRAMMAR.map(x=>({label:x.t,sub:x.s,cat:"grammar",go:()=>showTab("grammar")})),
+  ...FORMATS.map(x=>({label:x.t,sub:"Writing format",cat:"format",go:()=>{curFmt=FORMATS.indexOf(x);renderFmt();showTab("writing");}}))];
+ $("#pal-count").textContent=INDEX.length.toLocaleString()+" entries";
+function openPal(){pal.classList.add("open");$("#palinput").value="";$("#palinput").focus();palSearch("");}
+function closePal(){pal.classList.remove("open");}
+ $("#palbtn").onclick=openPal;
+pal.addEventListener("click",e=>{if(e.target===pal)closePal();});
+addEventListener("keydown",e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();openPal();}
+  if(e.key==="Escape"){closePal();hdr.classList.remove("menu-open");}
+});
+function palSearch(q){
+  q=q.trim().toLowerCase();const box=$("#palres");
+  if(!q){box.innerHTML=`<div class="pal-empty">Search ${INDEX.length} entries — words, phrases, idioms, grammar, formats. Try "इसलिए", "पानी" or "letter".</div>`;return;}
+  const hits=INDEX.filter(x=>(x.label+" "+x.sub+" "+x.cat).toLowerCase().includes(q)).slice(0,9);
+  box.innerHTML=hits.length?hits.map((h,i)=>`<button class="pr ${i===0?"sel":""}" data-i="${INDEX.indexOf(h)}"><span class="pw hi">${h.label}</span><span class="pm">${h.sub}</span><span class="pc">${h.cat}</span></button>`).join("")
+    :`<div class="pal-empty">No matches for "${q}".</div>`;
+  $$("#palres .pr").forEach(b=>b.onclick=()=>{closePal();INDEX[+b.dataset.i].go();});
+}
+ $("#palinput").addEventListener("input",e=>palSearch(e.target.value));
+ $("#palinput").addEventListener("keydown",e=>{if(e.key==="Enter"){const f=$("#palres .pr");if(f){closePal();INDEX[+f.dataset.i].go();}}});
+</script>
+</body>
+</html>
