@@ -1029,131 +1029,159 @@ const CLOZE=[
 {s:"अपनी ग़लती सुनकर मैं ______ हो गया।",a:"पानी-पानी",d:["नौ दो ग्यारह","आँखों का तारा","लोहे के चने चबाने"],cat:"मुहावरा-वाक्य"},
 {s:"जहाँ ______, वहाँ राह।",a:"चाह",d:["चादर","चाँदनी","चारा"],cat:"कहावत"}];
 const GENDERQ=[["पानी","m"],["चाबी","f"],["समाचार","m"],["मेज़","f"],["पहाड़","m"],["दवा","f"],["वेतन","m"],["उपलब्धि","f"],["गाड़ी","f"],["शहर","m"],["आशा","f"],["कमर","f"],["किताब","f"],["सड़क","f"],["प्रदूषण","m"],["बात","f"]];
-
 /* ================================================================
-   ENGINE
+   ENGINE v2 — lazy sections · chunked vocab · delegated events
    ================================================================ */
 const store={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 let learned=new Set(store.get("h0549-learned",[]));
 const saveLearned=()=>store.set("h0549-learned",[...learned]);
-
-/* merge massive banks into THEMES-shaped objects */
-MASSIVE.forEach(b=>{
-  THEMES.push({name:b[0],hi:b[1],desc:b[2],w:b[3].map(l=>{const p=l.split("|");return [p[0],p[1]||"", "", p[2], p[3]||""];})});
-});
-const ALLWORDS=THEMES.flatMap((th,ti)=>th.w.map(w=>({w,theme:th,ti})));
-const ADV_COUNT=ALLWORDS.filter(x=>x.w[5]===1).length;
+const debounce=(fn,ms)=>{let t;return(...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms);};};
 
 let toastT;
-function toast(msg){$("#toastmsg").textContent=msg;$("#toast").classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>$("#toast").classList.remove("show"),2400);}
+function toast(m){$("#toastmsg").textContent=m;$("#toast").classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>$("#toast").classList.remove("show"),2200);}
 let hiVoice=null;
-function pickVoice(){const vs=speechSynthesis.getVoices();hiVoice=vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith("hi"))||null;}
+function pickVoice(){const v=speechSynthesis.getVoices();hiVoice=v.find(x=>x.lang&&x.lang.toLowerCase().startsWith("hi"))||null;}
 if("speechSynthesis" in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
-function speak(t){if(!("speechSynthesis" in window)){toast("Audio not supported here");return;}try{const u=new SpeechSynthesisUtterance(t);u.lang="hi-IN";if(hiVoice)u.voice=hiVoice;u.rate=.9;speechSynthesis.cancel();speechSynthesis.speak(u);}catch(e){}}
+function speak(t){if(!("speechSynthesis" in window))return toast("Audio not supported");try{const u=new SpeechSynthesisUtterance(t);u.lang="hi-IN";if(hiVoice)u.voice=hiVoice;u.rate=.9;speechSynthesis.cancel();speechSynthesis.speak(u);}catch(e){}}
 
-/* theme (dark) */
+/* theme */
 function applyTheme(t){document.documentElement.dataset.theme=t;store.set("h0549-theme",t);}
 applyTheme(store.get("h0549-theme","light"));
  $("#themebtn").onclick=()=>applyTheme(document.documentElement.dataset.theme==="dark"?"light":"dark");
 
-/* ============ TAB NAVIGATION ============ */
-const hdr=$("#hdr");
+/* merge massive banks + global word list (cheap: just references) */
+MASSIVE.forEach(b=>THEMES.push({name:b[0],hi:b[1],desc:b[2],w:b[3].map(l=>{const p=l.split("|");return[p[0],p[1]||"","",p[2],p[3]||""];})}));
+const ALLWORDS=THEMES.flatMap((th,ti)=>th.w.map(w=>({w,theme:th,ti})));
+const ADV_COUNT=ALLWORDS.filter(x=>x.w[5]===1).length;
+
+/* totals (Home stats — cheap string math, no DOM building) */
+ $("#v-total").textContent=ALLWORDS.length;
+ $("#stat-words").textContent=ALLWORDS.length.toLocaleString();
+ $("#stat-adv").textContent=ADV_COUNT;
+ $("#stat-ph").textContent=ALLPH.length;
+ $("#pal-count").textContent=(ALLWORDS.length+ALLPH.length+IDIOMS.length+GLOSSARY.length+GRAMMAR.length+FORMATS.length).toLocaleString()+" entries";
+
+/* ============ TABS + LAZY RENDER REGISTRY ============ */
+const hdr=$("#hdr"),RENDER={},rendered={};
 function showTab(id){
   $$(".tabsec").forEach(s=>s.classList.toggle("on",s.id==="sec-"+id));
   $$("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.t===id));
-  hdr.classList.remove("menu-open");
-  scrollTo({top:0});
+  hdr.classList.remove("menu-open");scrollTo({top:0});
   history.replaceState(null,"","#"+id);
+  if(!rendered[id]){rendered[id]=true;RENDER[id]&&RENDER[id]();}
 }
  $$("#tabs button").forEach(b=>b.onclick=()=>showTab(b.dataset.t));
- $$("[data-goto]").forEach(b=>b.onclick=()=>showTab(b.dataset.goto));
  $("#burger").onclick=()=>hdr.classList.add("menu-open");
  $("#mclose").onclick=()=>hdr.classList.remove("menu-open");
-const initHash=location.hash.slice(1);
-if(initHash&&document.getElementById("sec-"+initHash))showTab(initHash);
 
-/* ============ WORD OF THE DAY ============ */
+/* ============ ONE delegated listener for every dynamic button ============ */
+let hideLearned=false;
+document.addEventListener("click",e=>{
+  const g=e.target.closest("[data-goto]");if(g){showTab(g.dataset.goto);return;}
+  const sp=e.target.closest(".speak");if(sp){speak(sp.dataset.say);return;}
+  const st=e.target.closest(".star");
+  if(st){
+    const w=st.dataset.w;learned.has(w)?learned.delete(w):learned.add(w);saveLearned();
+    const row=st.closest(".ventry");
+    if(row){row.classList.toggle("learned",learned.has(w));
+      if(hideLearned&&learned.has(w))row.remove();}
+    st.classList.toggle("starred",learned.has(w));
+    updateLearnedCounts();
+    toast(learned.has(w)?`"${w}" learned`:`"${w}" removed`);
+  }
+});
+function updateLearnedCounts(){
+  const a=$("#stat-learned");if(a)a.textContent=learned.size;
+  const n=$("#v-allnum");if(n)n.textContent=learned.size;
+  const b=$("#v-allbar");if(b)b.style.width=(learned.size/ALLWORDS.length*100)+"%";
+  if(rendered.vocab)renderThemes();
+}
+
+/* ============ WORD OF THE DAY (built at load — Home only) ============ */
 (function(){
   const d=new Date();
   $("#wotd-date").textContent=d.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
-  const idx=Math.floor(d.getTime()/864e5)%ALLWORDS.length;
-  const[w,pos,hi,en,ex,adv]=ALLWORDS[idx].w;
+  const[w,pos,hi,en,ex]=ALLWORDS[Math.floor(d.getTime()/864e5)%ALLWORDS.length].w;
   $("#wotd-word").textContent=w;
   $("#wotd-gloss").innerHTML=`${hi?`<b>${hi}</b> · `:""}<i>${en}</i> <span style="opacity:.6">(${pos})</span>`;
   $("#wotd-ex").textContent=ex;
-  $("#wotd-speak").onclick=()=>speak(w+". "+ex);
+  $("#wotd-speak").dataset.say=w+". "+ex;
   const upd=()=>{const on=learned.has(w);$("#wotd-learn").style.borderColor=on?"var(--green)":"";$("#wotd-learn").style.color=on?"var(--green)":"";};
   upd();
-  $("#wotd-learn").onclick=()=>{learned.has(w)?learned.delete(w):learned.add(w);saveLearned();refreshLearnedUI();upd();toast(learned.has(w)?`"${w}" learned`:`"${w}" removed`);};
+  $("#wotd-learn").onclick=()=>{learned.has(w)?learned.delete(w):learned.add(w);saveLearned();updateLearnedCounts();upd();};
 })();
+updateLearnedCounts();
 
-/* ============ VOCAB ============ */
-let curTheme=store.get("h0549-theme-sel",0),hideLearned=false,lvlFilter="all";
-function themeProgress(t){return t.w.filter(w=>learned.has(w[0])).length;}
-function renderThemes(){
-  $("#themelist").innerHTML=THEMES.map((t,i)=>{const p=themeProgress(t),done=p===t.w.length;
-    return `<li class="${i===curTheme?"active":""} ${done?"done":""}"><button data-i="${i}"><span class="tn">${String(i+1).padStart(2,"0")}</span><span class="tdot"></span><span class="tname">${t.name}</span><span class="tprog">${p}/${t.w.length}</span></button></li>`;}).join("");
-  $$("#themelist button").forEach(b=>b.onclick=()=>{curTheme=+b.dataset.i;store.set("h0549-theme-sel",curTheme);renderThemes();renderEntries();});
-}
+/* ============ VOCAB — chunked, lazy ============ */
+let curTheme=store.get("h0549-theme-sel",0),lvlFilter="all",searchQ="",vList=[],vShown=0;
+const CHUNK=40;
 function entryHTML(e,idx){
-  const[w,pos,hi,en,ex,adv]=e;const isL=learned.has(w);
+  const[w,pos,hi,en,ex,adv]=e,isL=learned.has(w);
   return `<article class="ventry ${isL?"learned":""}">
     <span class="no">${String(idx).padStart(2,"0")}</span>
     <div class="vmain">
       <div class="w-row"><span class="hw">${w}</span>${pos&&pos!=="—"?`<span class="gen">${pos}</span>`:""}${adv===1?'<span class="adv">★ Advanced</span>':""}<span class="glo">${en}</span></div>
-      ${hi?`<p class="vmean">${hi}</p>`:""}
-      ${ex?`<p class="vex">${ex}</p>`:""}
+      ${hi?`<p class="vmean">${hi}</p>`:""}${ex?`<p class="vex">${ex}</p>`:""}
     </div>
     <div class="vside">
       <button class="side-btn speak" data-say="${esc(w)}. ${esc(ex||"")}" title="Pronounce"><svg><use href="#i-vol"/></svg></button>
       <button class="side-btn star ${isL?"starred":""}" data-w="${esc(w)}" title="Mark as learned"><svg><use href="#i-star"/></svg></button>
     </div></article>`;
 }
-function bindEntryButtons(root){
-  root.querySelectorAll(".speak").forEach(b=>b.onclick=()=>speak(b.dataset.say));
-  root.querySelectorAll(".star").forEach(b=>b.onclick=()=>{
-    const w=b.dataset.w;learned.has(w)?learned.delete(w):learned.add(w);saveLearned();refreshLearnedUI();
-    const row=b.closest(".ventry");row.classList.toggle("learned",learned.has(w));b.classList.toggle("starred",learned.has(w));
-    if(hideLearned&&learned.has(w))row.remove();
-    toast(learned.has(w)?`"${w}" learned`:`"${w}" un-learned`);});
+function renderThemes(){
+  $("#themelist").innerHTML=THEMES.map((t,i)=>{
+    const p=t.w.filter(w=>learned.has(w[0])).length,done=p===t.w.length;
+    return `<li class="${i===curTheme?"active":""} ${done?"done":""}"><button data-i="${i}"><span class="tn">${String(i+1).padStart(2,"0")}</span><span class="tdot"></span><span class="tname">${t.name}</span><span class="tprog">${p}/${t.w.length}</span></button></li>`;}).join("");
 }
-function renderEntries(){
-  const t=THEMES[curTheme];
-  $("#th-title").innerHTML=`${t.name} · <span class="hi">${t.hi}</span>`;
-  $("#th-desc").textContent=t.desc;
-  let list=t.w;
-  if(lvlFilter==="adv")list=list.filter(w=>w[5]===1);
-  if(lvlFilter==="core")list=list.filter(w=>w[5]!==1);
-  if(hideLearned)list=list.filter(w=>!learned.has(w[0]));
-  $("#entries").innerHTML=list.length?list.map((w,i)=>entryHTML(w,i+1)).join("")
-    :`<p style="padding:40px 0;color:var(--ink2);font-style:italic">Nothing here — try another filter or theme.</p>`;
-  bindEntryButtons($("#entries"));
+function currentPool(){
+  let base=searchQ
+    ?ALLWORDS.filter(x=>[x.w[0],x.w[2],x.w[3],x.w[4],x.theme.name].some(s=>s&&s.toLowerCase().includes(searchQ))).map(x=>x.w)
+    :THEMES[curTheme].w;
+  if(lvlFilter==="adv")base=base.filter(w=>w[5]===1);
+  if(lvlFilter==="core")base=base.filter(w=>w[5]!==1);
+  if(hideLearned)base=base.filter(w=>!learned.has(w[0]));
+  return searchQ?base.slice(0,150):base;
 }
-function refreshLearnedUI(){renderThemes();renderEntries();$("#stat-learned").textContent=learned.size;$("#v-allnum").textContent=learned.size;$("#v-allbar").style.width=(learned.size/ALLWORDS.length*100)+"%";}
-renderThemes();renderEntries();refreshLearnedUI();
- $("#v-total").textContent=ALLWORDS.length;
- $("#stat-words").textContent=ALLWORDS.length.toLocaleString();
- $("#stat-adv").textContent=ADV_COUNT;
- $("#stat-ph").textContent=ALLPH.length;
- $("#vsearch").addEventListener("input",e=>{
-  const q=e.target.value.trim().toLowerCase();
-  if(!q){renderEntries();return;}
-  const hits=ALLWORDS.filter(x=>[x.w[0],x.w[2],x.w[3],x.w[4],x.theme.name].some(s=>s&&s.toLowerCase().includes(q)))
-    .filter(x=>(lvlFilter!=="adv"||x.w[5]===1)&&(lvlFilter!=="core"||x.w[5]!==1))
-    .filter(x=>!hideLearned||!learned.has(x.w[0]));
-  $("#th-title").innerHTML=`Search — <span style="color:var(--acc-deep)">${hits.length}</span> result${hits.length===1?"":"s"}`;
-  $("#th-desc").textContent=`Matches for "${e.target.value.trim()}" across all ${THEMES.length} banks.`;
-  $("#entries").innerHTML=hits.length?hits.slice(0,300).map((h,i)=>entryHTML(h.w,i+1)).join("")
-    :`<p style="padding:40px 0;color:var(--ink2);font-style:italic">Nothing found. Try "environment", "पानी" or "teacher".</p>`;
-  bindEntryButtons($("#entries"));
-});
- $$("#lvlchips button[data-lvl]").forEach(b=>b.onclick=()=>{lvlFilter=b.dataset.lvl;$$("#lvlchips button[data-lvl]").forEach(x=>x.classList.toggle("on",x===b));renderEntries();});
- $("#unlearned-toggle").onclick=e=>{hideLearned=!hideLearned;e.currentTarget.classList.toggle("on",hideLearned);renderEntries();};
- $("#printbtn").onclick=()=>setTimeout(()=>window.print(),60);
+function paintEntries(append){
+  const box=$("#entries");
+  const old=box.querySelector(".vmore");if(old)old.remove();
+  if(!vList.length){if(!append)box.innerHTML=`<p style="padding:40px 0;color:var(--ink2);font-style:italic">${searchQ?`No matches for "${searchQ}". Try "environment", "पानी" or "teacher".`:"Nothing here — try another filter or theme."}</p>`;return;}
+  const start=append?vShown:0,slice=vList.slice(start,start+CHUNK);
+  const html=slice.map((w,i)=>entryHTML(w,start+i+1)).join("");
+  append?box.insertAdjacentHTML("beforeend",html):box.innerHTML=html;
+  vShown+=slice.length;
+  if(vShown<vList.length){
+    box.insertAdjacentHTML("beforeend",`<button class="btn btn-ghost vmore" style="margin:26px auto">Show more · ${vShown}/${vList.length} ▾</button>`);
+    box.querySelector(".vmore").onclick=()=>paintEntries(true);
+  }
+}
+function refreshList(){
+  vList=currentPool();vShown=0;
+  if(searchQ){
+    $("#th-title").innerHTML=`Search — <span style="color:var(--acc-deep)">${vList.length}</span> result${vList.length===1?"":"s"}`;
+    $("#th-desc").textContent=`Matches for "${searchQ}" across all ${THEMES.length} banks (showing up to 150).`;
+  }else{
+    const t=THEMES[curTheme];
+    $("#th-title").innerHTML=`${t.name} · <span class="hi">${t.hi}</span>`;
+    $("#th-desc").textContent=t.desc;
+  }
+  paintEntries(false);
+}
+RENDER.vocab=()=>{
+  $("#vsearch").addEventListener("input",debounce(e=>{searchQ=e.target.value.trim().toLowerCase();refreshList();},170));
+  $("#themelist").addEventListener("click",e=>{
+    const b=e.target.closest("button[data-i]");if(!b)return;
+    curTheme=+b.dataset.i;store.set("h0549-theme-sel",curTheme);
+    $("#vsearch").value="";searchQ="";renderThemes();refreshList();
+  });
+  $$("#lvlchips button[data-lvl]").forEach(b=>b.onclick=()=>{lvlFilter=b.dataset.lvl;$$("#lvlchips button[data-lvl]").forEach(x=>x.classList.toggle("on",x===b));refreshList();});
+  $("#unlearned-toggle").onclick=e=>{hideLearned=!hideLearned;e.currentTarget.classList.toggle("on",hideLearned);refreshList();};
+  $("#printbtn").onclick=()=>setTimeout(()=>window.print(),80);
+  renderThemes();refreshList();
+};
 
 /* ============ FLASHCARDS ============ */
 let fcDeck=[],fcI=0,fcKnown=0,fcFlipped=false;
- $("#fc-deck").innerHTML=`<option value="-1">All words (${ALLWORDS.length})</option><option value="-2">★ Advanced only (${ADV_COUNT})</option>`+THEMES.map((t,i)=>`<option value="${i}">${t.name} (${t.w.length})</option>`).join("");
 function fcStart(shuf){
   const di=+$("#fc-deck").value;
   let src=di===-1?ALLWORDS.map(x=>({w:x.w,theme:x.theme})):di===-2?ALLWORDS.filter(x=>x.w[5]===1).map(x=>({w:x.w,theme:x.theme})):THEMES[di].w.map(w=>({w,theme:THEMES[di]}));
@@ -1173,35 +1201,37 @@ function fcRender(){
     <div class="fc ${fcFlipped?"flipped":""}" id="fccard" role="button" tabindex="0">
       <div class="fc-inner">
         <div class="fc-face fc-front"><p class="fcl">Say the meaning, then flip</p><p class="fcw hi">${w}</p><p class="fcg">${pos||""} · tap to flip</p></div>
-        <div class="fc-face fc-back"><p class="fcw hi">${w}</p><p class="fcm">${hi?hi+"<i>"+en+"</i>":"<i>"+en+"</i>"}${pos&&pos!=="—"?`<i style="font-style:normal">(${pos})</i>`:""}</p>${ex?`<p class="fce">${ex}</p>`:""}</div>
+        <div class="fc-face fc-back"><p class="fcw hi">${w}</p><p class="fcm">${hi?hi+"<i>"+en+"</i>":"<i>"+en+"</i>"}</p>${ex?`<p class="fce">${ex}</p>`:""}</div>
       </div></div>
-    <div class="fc-actions"><button class="btn btn-ghost" id="fc-speak">Hear it</button><button class="btn btn-ghost" id="fc-againbtn">↺ Again</button><button class="btn btn-green" id="fc-know">Got it</button></div>
+    <div class="fc-actions"><button class="btn btn-ghost speak" data-say="${esc(w)}. ${esc(ex||en)}">Hear it</button><button class="btn btn-ghost" id="fc-againbtn">↺ Again</button><button class="btn btn-green" id="fc-know">Got it</button></div>
     <p class="fc-tip">Click the card (or Space) to flip. "Again" pushes the card to the end.</p>`;
-  const card=$("#fccard");
-  const flip=()=>{fcFlipped=!fcFlipped;card.classList.toggle("flipped",fcFlipped);};
+  const card=$("#fccard"),flip=()=>{fcFlipped=!fcFlipped;card.classList.toggle("flipped",fcFlipped);};
   card.onclick=flip;card.onkeydown=e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();flip();}};
-  $("#fc-speak").onclick=()=>speak(w+". "+(ex||en));
   $("#fc-know").onclick=()=>{fcKnown++;fcI++;fcFlipped=false;fcRender();};
   $("#fc-againbtn").onclick=()=>{fcDeck.push(fcDeck[fcI]);fcI++;fcFlipped=false;fcRender();};
 }
- $("#fc-deck").onchange=()=>fcStart(true);
- $("#fc-shuffle").onclick=()=>fcStart(true);
-fcStart(true);
+RENDER.cards=()=>{
+  $("#fc-deck").innerHTML=`<option value="-1">All words (${ALLWORDS.length})</option><option value="-2">★ Advanced only (${ADV_COUNT})</option>`+THEMES.map((t,i)=>`<option value="${i}">${t.name} (${t.w.length})</option>`).join("");
+  $("#fc-deck").onchange=()=>fcStart(true);
+  $("#fc-shuffle").onclick=()=>fcStart(true);
+  fcStart(true);
+};
 
 /* ============ IDIOMS ============ */
- $("#idiomlist").innerHTML=IDIOMS.map((x,i)=>`
-  <article class="idiom"><span class="no">${String(i+1).padStart(2,"0")}</span><div>
-    <h3 class="hi">${x[0]}<button class="side-btn speak" style="vertical-align:4px;margin-left:8px" data-say="${esc(x[0]+'. '+x[4])}" title="Pronounce"><svg><use href="#i-vol"/></svg></button></h3>
-    <div class="mean-grid"><div class="cell"><b>Literal</b><p class="hi">${x[1]}</p></div><div class="cell fig"><b>Figurative</b><p>${x[3]} — ${x[2]}</p></div></div>
-    <p class="vex">${x[4]}</p></div></article>`).join("");
- $("#provlist").innerHTML=PROVERBS.map((x,i)=>`
-  <article class="idiom"><span class="no">${String(i+1).padStart(2,"0")}</span><div>
-    <h3 class="hi">${x[0]}<button class="side-btn speak" style="vertical-align:4px;margin-left:8px" data-say="${esc(x[0])}" title="Pronounce"><svg><use href="#i-vol"/></svg></button><span class="tagchip">Proverb</span></h3>
-    <div class="mean-grid" style="grid-template-columns:1fr"><div class="cell fig"><b>Meaning</b><p>${x[1]}</p></div></div>
-    <p class="vex">${x[2]}</p></div></article>`).join("");
- $$("#idiomlist .speak, #provlist .speak").forEach(b=>b.onclick=()=>speak(b.dataset.say));
+RENDER.idioms=()=>{
+  $("#idiomlist").innerHTML=IDIOMS.map((x,i)=>`
+    <article class="idiom"><span class="no">${String(i+1).padStart(2,"0")}</span><div>
+      <h3 class="hi">${x[0]}<button class="side-btn speak" style="vertical-align:4px;margin-left:8px" data-say="${esc(x[0]+'. '+x[4])}"><svg><use href="#i-vol"/></svg></button></h3>
+      <div class="mean-grid"><div class="cell"><b>Literal</b><p class="hi">${x[1]}</p></div><div class="cell fig"><b>Figurative</b><p>${x[3]} — ${x[2]}</p></div></div>
+      <p class="vex">${x[4]}</p></div></article>`).join("");
+  $("#provlist").innerHTML=PROVERBS.map((x,i)=>`
+    <article class="idiom"><span class="no">${String(i+1).padStart(2,"0")}</span><div>
+      <h3 class="hi">${x[0]}<button class="side-btn speak" style="vertical-align:4px;margin-left:8px" data-say="${esc(x[0])}"><svg><use href="#i-vol"/></svg></button><span class="tagchip">Proverb</span></h3>
+      <div class="mean-grid" style="grid-template-columns:1fr"><div class="cell fig"><b>Meaning</b><p>${x[1]}</p></div></div>
+      <p class="vex">${x[2]}</p></div></article>`).join("");
+};
 
-/* ============ PHRASES ============ */
+/* ============ PHRASES + PHRASE QUIZ ============ */
 let curCat=0;
 function renderPh(){
   $("#phcats").innerHTML=WWORDS.map((c,i)=>`<button class="${i===curCat?"on":""}" data-i="${i}">${c.c}</button>`).join("");
@@ -1209,11 +1239,8 @@ function renderPh(){
   const c=WWORDS[curCat];
   $("#phgrid").innerHTML=c.items.map(it=>`
     <div class="ph-card"><p class="pwh hi">${it[0]}</p><p class="pe">${it[1]}</p><p class="pu">${it[2]}</p>
-      <div class="ph-act"><button class="side-btn speak" data-say="${esc(it[0]+'. '+it[2])}" title="Pronounce"><svg><use href="#i-vol"/></svg></button></div></div>`).join("");
-  $$("#phgrid .speak").forEach(b=>b.onclick=()=>speak(b.dataset.say));
+      <div class="ph-act"><button class="side-btn speak" data-say="${esc(it[0]+'. '+it[2])}"><svg><use href="#i-vol"/></svg></button></div></div>`).join("");
 }
-renderPh();
-/* phrase quiz */
 function buildPhraseQs(){
   const qs=[];
   sample(ALLPH,3).forEach(p=>qs.push({cat:"Phrase",prompt:`Which phrase means <b>“${p.en}”</b>?`,opts:shuffle([p.ph,...sample(ALLPH.map(x=>x.ph),3,p.ph)]),ans:p.ph,why:`${p.ph} — ${p.en}.`}));
@@ -1245,32 +1272,35 @@ function pqEnd(){
     <p class="muted" style="max-width:420px;margin:6px auto 0">Connectives are half your essay marks. Revisit the banks above, then try the MCQ trainer.</p>
     <div class="q-end-actions"><button class="btn btn-acc" id="pqr">New phrase quiz</button><button class="btn btn-ghost" data-goto="quiz">Quizzes <svg><use href="#i-arrow"/></svg></button></div></div>`;
   $("#pqr").onclick=pqStart;
-  $$("#pq-zone [data-goto]").forEach(b=>b.onclick=()=>showTab(b.dataset.goto));
 }
-pqStart();
+RENDER.phrases=()=>{renderPh();pqStart();};
 
 /* ============ WORD BANK / LAB ============ */
- $("#upledger").innerHTML=UPGRADES.map(u=>`
-  <div class="lrow"><span class="basic hi">${u[0]}</span>
-    <span class="arrow"><svg viewBox="0 0 30 14" width="30" height="14"><path d="M0 7h24M19 2l7 5-7 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    <span><span class="up hi">${u[1]}</span><span class="up-note">${u[2]}</span></span></div>`).join("");
- $("#gloss").innerHTML=GLOSSARY.map(g=>`<div class="gitem"><b class="hi">${g[0]}</b><p class="gu">${g[2]}</p></div>`).join("");
 const labState=LAB.map(()=>0);
 function renderLab(){
   $("#labbox").innerHTML=LAB.map((L,i)=>{const k=labState[i];
     return `<p class="lab-s">${L.pre}<em class="pill hi" data-i="${i}" tabindex="0" role="button">${L.swaps[k]}</em>${L.post}</p><p class="reg"><i class="${k===1?"l1":k===2?"l2":""}"></i>${L.lv[k]}</p>`;}).join("");
   $$("#labbox .pill").forEach(p=>{const cyc=()=>{const i=+p.dataset.i;labState[i]=(labState[i]+1)%LAB[i].swaps.length;renderLab();};p.onclick=cyc;p.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();cyc();}};});
 }
-renderLab();
- $("#labreset").onclick=()=>{labState.fill(0);renderLab();};
+RENDER.wordbank=()=>{
+  $("#upledger").innerHTML=UPGRADES.map(u=>`
+    <div class="lrow"><span class="basic hi">${u[0]}</span>
+      <span class="arrow"><svg viewBox="0 0 30 14" width="30" height="14"><path d="M0 7h24M19 2l7 5-7 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span><span class="up hi">${u[1]}</span><span class="up-note">${u[2]}</span></span></div>`).join("");
+  $("#gloss").innerHTML=GLOSSARY.map(g=>`<div class="gitem"><b class="hi">${g[0]}</b><p class="gu">${g[2]}</p></div>`).join("");
+  renderLab();
+  $("#labreset").onclick=()=>{labState.fill(0);renderLab();};
+};
 
 /* ============ GRAMMAR ============ */
- $("#g-grid").innerHTML=GRAMMAR.map((g,i)=>`
-  <div class="gcard ${i===0?"open":""}"><button class="gcard-head">
-    <span class="gi hi">${g.ic}</span><span><b>${g.t}</b><small class="hi">${g.s}</small></span>
-    <svg class="chev" width="16" height="16"><use href="#i-chev"/></svg></button>
-    <div class="gcard-body">${g.html}</div></div>`).join("");
- $$(".gcard-head").forEach(b=>b.onclick=()=>b.closest(".gcard").classList.toggle("open"));
+RENDER.grammar=()=>{
+  $("#g-grid").innerHTML=GRAMMAR.map((g,i)=>`
+    <div class="gcard ${i===0?"open":""}"><button class="gcard-head">
+      <span class="gi hi">${g.ic}</span><span><b>${g.t}</b><small class="hi">${g.s}</small></span>
+      <svg class="chev" width="16" height="16"><use href="#i-chev"/></svg></button>
+      <div class="gcard-body">${g.html}</div></div>`).join("");
+  $$(".gcard-head").forEach(b=>b.onclick=()=>b.closest(".gcard").classList.toggle("open"));
+};
 
 /* ============ WRITING ============ */
 let curFmt=store.get("h0549-fmt",0);
@@ -1289,70 +1319,59 @@ function renderFmt(){
     li.addEventListener("mouseenter",()=>{const s=$(`#fmtex .seg[data-note="${li.dataset.note}"]`);if(s)s.classList.add("lit");});
     li.addEventListener("mouseleave",()=>$$("#fmtex .seg.lit").forEach(s=>s.classList.remove("lit")));});
 }
-renderFmt();
+RENDER.writing=renderFmt;
 
 /* ============ READING ============ */
- $("#passages").innerHTML=PASSAGES.map((p,pi)=>`
-  <article class="passage">
-    <div class="pas-head"><h3>${p.title} · <span class="hi">${p.hi}</span></h3><div class="pas-meta">${p.meta.map(m=>`<span>${m}</span>`).join("")}</div></div>
-    <div class="pas-body">${p.paras.map(t=>`<p>${t}</p>`).join("")}
-      <p style="text-align:right"><button class="side-btn speak" data-say="${esc(p.paras[0])}" title="Listen"><svg><use href="#i-vol"/></svg></button></p></div>
-    <div class="pas-qs">${p.qs.map((q,qi)=>`
-      <div class="pq"><h4>${pi+1}.${qi+1} ${q.q}</h4>
-        <div class="pq-opts">${q.opts.map((o,oi)=>`<button data-p="${pi}" data-q="${qi}" data-o="${oi}">${String.fromCharCode(65+oi)}. <span class="hi">${o}</span></button>`).join("")}</div>
-        <p class="pq-why" id="why-${pi}-${qi}"></p></div>`).join("")}</div></article>`).join("");
- $$("#passages .speak").forEach(b=>b.onclick=()=>speak(b.dataset.say));
- $$("#passages .pq-opts button").forEach(b=>b.onclick=()=>{
-  const p=PASSAGES[+b.dataset.p],q=p.qs[+b.dataset.q],oi=+b.dataset.o;
-  const sibs=b.parentElement.querySelectorAll("button");
-  sibs.forEach(x=>x.disabled=true);sibs[q.ans].classList.add("right");
-  if(oi!==q.ans)b.classList.add("wrong");
-  const why=$(`#why-${b.dataset.p}-${b.dataset.q}`);
-  why.innerHTML=`${oi===q.ans?"<b>Correct.</b> ":"<b>Not quite.</b> "}${q.why}`;why.classList.add("show");
-});
+RENDER.reading=()=>{
+  $("#passages").innerHTML=PASSAGES.map((p,pi)=>`
+    <article class="passage">
+      <div class="pas-head"><h3>${p.title} · <span class="hi">${p.hi}</span></h3><div class="pas-meta">${p.meta.map(m=>`<span>${m}</span>`).join("")}</div></div>
+      <div class="pas-body">${p.paras.map(t=>`<p>${t}</p>`).join("")}
+        <p style="text-align:right"><button class="side-btn speak" data-say="${esc(p.paras[0])}"><svg><use href="#i-vol"/></svg></button></p></div>
+      <div class="pas-qs">${p.qs.map((q,qi)=>`
+        <div class="pq"><h4>${pi+1}.${qi+1} ${q.q}</h4>
+          <div class="pq-opts">${q.opts.map((o,oi)=>`<button data-p="${pi}" data-q="${qi}" data-o="${oi}">${String.fromCharCode(65+oi)}. <span class="hi">${o}</span></button>`).join("")}</div>
+          <p class="pq-why" id="why-${pi}-${qi}"></p></div>`).join("")}</div></article>`).join("");
+  $$("#passages .pq-opts button").forEach(b=>b.onclick=()=>{
+    const p=PASSAGES[+b.dataset.p],q=p.qs[+b.dataset.q],oi=+b.dataset.o;
+    const sibs=b.parentElement.querySelectorAll("button");
+    sibs.forEach(x=>x.disabled=true);sibs[q.ans].classList.add("right");
+    if(oi!==q.ans)b.classList.add("wrong");
+    const why=$(`#why-${b.dataset.p}-${b.dataset.q}`);
+    why.innerHTML=`${oi===q.ans?"<b>Correct.</b> ":"<b>Not quite.</b> "}${q.why}`;why.classList.add("show");
+  });
+};
 
-/* ================================================================
-   QUIZ A — VOCAB MCQ TRAINER
-   ================================================================ */
- $("#mcq-theme").innerHTML=`<option value="-1">All ${THEMES.length} banks (${ALLWORDS.length} words)</option>`+THEMES.map((t,i)=>`<option value="${i}">${t.name} (${t.w.length})</option>`).join("");
-let MQ,MQi=0,MQscore=0,MQmissed=[],MQlocked=false,MQstart,MQtimer;
-function mcqPool(){
-  const di=+$("#mcq-theme").value;
-  return di===-1?ALLWORDS:THEMES[di].w.map(w=>({w,theme:THEMES[di],ti:di}));
-}
-function mcqDistractorKey(dir,q){
-  // distractors from same theme if possible, else global
-  const pool=mcqPool();
-  const key=dir==="h2e"?"w[3]":"w[0]";
-  const sameTheme=pool.filter(x=>x.w!==q.w);
-  let opts=sample(sameTheme,3,q.w).map(x=>dir==="h2e"?x.w[3]:x.w[0]);
+/* ============ QUIZ A · VOCAB MCQ TRAINER ============ */
+function fmtT(ms){const s=Math.floor(ms/1000);return `${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`;}
+function mcqPool(){const di=+$("#mcq-theme").value;return di===-1?ALLWORDS:THEMES[di].w.map(w=>({w,theme:THEMES[di],ti:di}));}
+function mcqDistractors(dir,q){
+  const pool=mcqPool().filter(x=>x.w!==q.w);
+  let opts=sample(pool,3,q.w).map(x=>dir==="h2e"?x.w[3]:x.w[0]);
   if(opts.length<3)opts=opts.concat(sample(ALLWORDS.filter(x=>x.w!==q.w),3-opts.length,q.w).map(x=>dir==="h2e"?x.w[3]:x.w[0]));
   return [...new Set(opts)].slice(0,3);
 }
+let MQ,MQi=0,MQscore=0,MQmissed=[],MQlocked=false,MQstart,MQtimer;
 function mcqStart(){
   const dir=$("#mcq-dir").value,n=+$("#mcq-count").value;
   const pool=shuffle(mcqPool().slice()).slice(0,n);
   MQ=pool.map(x=>{
-    const d=Math.random()<.5? (dir==="mix"?(Math.random()<.5?"h2e":"e2h"):dir):dir;
-    if(d==="h2e")return{cat:"Hindi → English",prompt:`What does <span class="hi">“${x.w[0]}”</span> mean?`,opts:shuffle([x.w[3],...mcqDistractorKey("h2e",x)]),ans:x.w[3],why:`${x.w[0]}${x.w[2]?" — "+x.w[2]:""} (${x.w[3]})`,src:x.theme.name};
-    return{cat:"English → Hindi",prompt:`Which word means <b>“${x.w[3]}”</b>?`,opts:shuffle([x.w[0],...mcqDistractorKey("e2h",x)]),ans:x.w[0],why:`${x.w[0]} — ${x.w[3]}${x.w[2]?" ("+x.w[2]+")":""}`,src:x.theme.name};
+    const d=dir==="mix"?(Math.random()<.5?"h2e":"e2h"):dir;
+    if(d==="h2e")return{cat:"Hindi → English",src:x.theme.name,prompt:`What does <span class="hi">“${x.w[0]}”</span> mean?`,opts:shuffle([x.w[3],...mcqDistractors("h2e",x)]),ans:x.w[3],why:`${x.w[0]}${x.w[2]?" — "+x.w[2]:""} (${x.w[3]})`};
+    return{cat:"English → Hindi",src:x.theme.name,prompt:`Which word means <b>“${x.w[3]}”</b>?`,opts:shuffle([x.w[0],...mcqDistractors("e2h",x)]),ans:x.w[0],why:`${x.w[0]} — ${x.w[3]}${x.w[2]?" ("+x.w[2]+")":""}`};
   });
   MQi=0;MQscore=0;MQmissed=[];MQstart=Date.now();
   clearInterval(MQtimer);
   MQtimer=setInterval(()=>{const el=$("#mcq-clock");if(el)el.textContent=fmtT(Date.now()-MQstart);},500);
   mcqShow();
 }
-function fmtT(ms){const s=Math.floor(ms/1000);return `${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`;}
 function mcqIntro(){
   clearInterval(MQtimer);
   $("#mcq-bar").style.width="0%";
-  const di=+$("#mcq-theme").value;
-  const pool=mcqPool();
-  const bkey="h0549-mcq-best-"+di;
-  const b=store.get(bkey,null);
+  const di=+$("#mcq-theme").value,b=store.get("h0549-mcq-best-"+di,null);
   $("#mcq-zone").innerHTML=`<div class="q-intro">
     <h3>${di===-1?"Every word is fair game":THEMES[di].name+" — "+THEMES[di].w.length+" words"}.</h3>
-    <p>${pool.length} words in this pool. Questions are drawn at random, in your chosen direction, with distractors pulled from the same theme wherever possible — so wrong answers look tempting.</p>
+    <p>Questions drawn at random in your chosen direction, with distractors pulled from the same theme so wrong answers look tempting.</p>
     ${b?`<span class="q-best">Best for this pool — <b>${b.score}/${b.total}</b> in ${b.time}</span>`:""}
     <br><button class="btn btn-solid" id="mcq-go">Start MCQ quiz <svg><use href="#i-arrow"/></svg></button></div>`;
   $("#mcq-go").onclick=mcqStart;
@@ -1371,67 +1390,54 @@ function mcqAnswer(q,btn){
   if(MQlocked)return;MQlocked=true;
   const ok=btn.dataset.o===q.ans;
   $$("#mcq-zone .opts button").forEach(b=>{b.disabled=true;if(b.dataset.o===q.ans)b.classList.add("right");else if(b===btn)b.classList.add("wrong");});
-  if(ok)MQscore++;else MQmissed.push(q);
+  ok?MQscore++:MQmissed.push(q);
   $("#mcq-feed").innerHTML=`<div class="qfeed ${ok?"":"bad"}"><svg><use href="#${ok?"i-check":"i-cross"}"/></svg><div><b>${ok?"Correct.":"Not quite."}</b> ${ok?"":"The answer is <b class='hi'>"+q.ans+"</b>. "}<span class="muted">${q.why}</span></div></div>`;
   $("#mcq-next").innerHTML=`<button class="btn btn-solid" id="mcqn">${MQi<MQ.length-1?"Next question":"See results"} <svg><use href="#i-arrow"/></svg></button>`;
   $("#mcqn").onclick=()=>{MQi<MQ.length-1?(MQi++,mcqShow()):mcqEnd();};
 }
 function mcqEnd(){
-  clearInterval(MQtimer);
-  $("#mcq-bar").style.width="100%";
-  const time=fmtT(Date.now()-MQstart),pct=MQscore/MQ.length;
-  const bkey="h0549-mcq-best-"+$("#mcq-theme").value;
-  const b=store.get(bkey,null);
-  const newBest=(!b||MQscore>b.score||(MQscore===b.score&&time<b.time));
-  if(newBest)store.set(bkey,{score:MQscore,total:MQ.length,time});
-  const verdict=pct>=.9?"Vocabulary mastery — that pool holds no surprises for you."
-    :pct>=.7?"Strong. Drill the missed words with flashcards, then re-run."
-    :pct>=.5?"Halfway there — study the theme in Vocabulary, then retry."
-    :"This theme needs work. Read the entries, then come back.";
+  clearInterval(MQtimer);$("#mcq-bar").style.width="100%";
+  const time=fmtT(Date.now()-MQstart),pct=MQscore/MQ.length,bkey="h0549-mcq-best-"+$("#mcq-theme").value,b=store.get(bkey,null);
+  const nb=(!b||MQscore>b.score||(MQscore===b.score&&time<b.time));
+  if(nb)store.set(bkey,{score:MQscore,total:MQ.length,time});
+  const verdict=pct>=.9?"Vocabulary mastery — this pool holds no surprises for you.":pct>=.7?"Strong. Drill the missed words, then re-run.":pct>=.5?"Halfway there — study the theme, then retry.":"This theme needs work. Read the entries, then come back.";
   $("#mcq-zone").innerHTML=`<div class="q-end">
     <p class="score">${MQscore}<small>/${MQ.length}</small></p>
-    <p class="timechip">finished in ${time}${newBest&&b?" · <b style='color:var(--acc-deep)'>new best for this pool!</b>":""}</p>
+    <p class="timechip">finished in ${time}${nb&&b?" · <b style='color:var(--acc-deep)'>new best for this pool!</b>":""}</p>
     <p class="verdict">${verdict}</p>
-    ${MQmissed.length?`<p class="sub-label" style="justify-content:center;margin-top:26px">Missed words — learn these</p><ol class="missed">${MQmissed.map(m=>`<li><p class="mc">${m.src}</p><p class="hi" style="font-size:1.05rem">${m.prompt.replace(/<[^>]*>/g,"")}</p><p>Answer — <span class="ma hi">${m.ans}</span></p></li>`).join("")}</ol>`:`<p style="margin-top:24px;color:var(--green);font-weight:600">A clean sweep — nothing missed.</p>`}
+    ${MQmissed.length?`<ol class="missed">${MQmissed.map(m=>`<li><p class="mc">${m.src}</p><p class="hi" style="font-size:1.05rem">${m.prompt.replace(/<[^>]*>/g,"")}</p><p>Answer — <span class="ma hi">${m.ans}</span></p></li>`).join("")}</ol>`:`<p style="margin-top:24px;color:var(--green);font-weight:600">A clean sweep — nothing missed.</p>`}
     <div class="q-end-actions"><button class="btn btn-solid" id="mcq-again">New questions</button><button class="btn btn-ghost" id="mcq-edit">Change settings</button></div></div>`;
-  $("#mcq-again").onclick=mcqStart;
-  $("#mcq-edit").onclick=mcqIntro;
+  $("#mcq-again").onclick=mcqStart;$("#mcq-edit").onclick=mcqIntro;
 }
-["mcq-theme","mcq-dir","mcq-count"].forEach(id=>$("#"+id).addEventListener("change",mcqIntro));
-mcqIntro();
 
-/* ================================================================
-   QUIZ B — MASTER QUIZ
-   ================================================================ */
-const qzone=$("#qzone");
-let Q,Qi,qScore,qMissed,locked,qStart,qTimer;
-const best=()=>store.get("h0549-best",null);
+/* ============ QUIZ B · MASTER QUIZ ============ */
 function buildQuestions(){
   const qs=[];
   for(let i=0;i<3;i++){const h=rand(ALLWORDS);qs.push({cat:"Meaning",prompt:`What does <span class="hi">“${h.w[0]}”</span> mean?`,opts:shuffle([h.w[3],...sample(ALLWORDS.map(x=>x.w[3]),3,h.w[3])]),ans:h.w[3],why:`${h.w[0]}${h.w[2]?" — "+h.w[2]:""} (${h.w[3]})`});}
   for(let i=0;i<2;i++){const h=rand(ALLWORDS);qs.push({cat:"Word",prompt:`Which word means <b>“${h.w[3]}”</b>?`,opts:shuffle([h.w[0],...sample(ALLWORDS.map(x=>x.w[0]),3,h.w[0])]),ans:h.w[0],why:`${h.w[0]} — ${h.w[3]}`});}
   sample(CLOZE,2).forEach(c=>qs.push({cat:c.cat||"Complete the sentence",blank:true,blankSent:c.s,prompt:c.s.replace("______",""),opts:shuffle([c.a,...c.d]),ans:c.a,why:`Full sentence: “${c.s.replace("______",c.a)}”`}));
   for(let i=0;i<2;i++){const m=rand(IDIOMS);qs.push({cat:"Idiom",prompt:`What does the idiom <span class="hi">“${m[0]}”</span> mean?`,opts:shuffle([m[3],...sample(IDIOMS.map(x=>x[3]),3,m[3])]),ans:m[3],why:`${m[0]} — ${m[2]}.`});}
-  const p=rand(PROVERBS);qs.push({cat:"Proverb",prompt:`Which proverb means <i>“${p[1]}”</i>?`,opts:shuffle([p[0],...sample(PROVERBS.map(x=>x[0]),3,p[0])]),ans:p[0],why:`${p[0]}`});
+  const p=rand(PROVERBS);qs.push({cat:"Proverb",prompt:`Which proverb means <i>“${p[1]}”</i>?`,opts:shuffle([p[0],...sample(PROVERBS.map(x=>x[0]),3,p[0])]),ans:p[0],why:p[0]});
   const g=rand(GENDERQ);qs.push({cat:"Gender",prompt:`What is the gender of <span class="hi">“${g[0]}”</span>?`,opts:shuffle(["masculine (पुल्लिंग)","feminine (स्त्रीलिंग)"]),ans:g[1]==="m"?"masculine (पुल्लिंग)":"feminine (स्त्रीलिंग)",why:`${g[0]} is ${g[1]==="m"?"masculine":"feminine"}.`});
   const u=rand(UPGRADES);qs.push({cat:"Register",prompt:`Choose the formal upgrade of <span class="hi">“${u[0]}”</span>:`,opts:shuffle([u[1],...sample(UPGRADES.map(x=>x[1]),2,u[1])].filter((v,i,a)=>a.indexOf(v)===i)),ans:u[1],why:`${u[0]} → ${u[1]}: ${u[2]}`});
   const ph=rand(ALLPH);qs.push({cat:"Writing phrase",prompt:`Which connective means <b>“${ph.en}”</b>?`,opts:shuffle([ph.ph,...sample(ALLPH.map(x=>x.ph),3,ph.ph)]),ans:ph.ph,why:`${ph.ph} — ${ph.en}.`});
   const pf=rand(PFILL);qs.push({cat:"Connective",blank:true,blankSent:pf.s,prompt:pf.s.replace("___",""),opts:shuffle([pf.a,...pf.d]),ans:pf.a,why:`Full sentence: “${pf.s.replace("___",pf.a)}”`});
   return shuffle(qs).slice(0,14);
 }
+let Q,Qi,qScore,qMissed,locked,qStart,qTimer;
 function quizIntro(){
-  clearInterval(qTimer);$("#qbarfill").style.width="0%";const b=best();
-  qzone.innerHTML=`<div class="q-intro"><h3>Fourteen questions. No two attempts alike.</h3>
-    <p>Meanings both ways, sentence completion, idioms, proverbs, gender, register upgrades, connectives and writing phrases — drawn fresh from the full ${ALLWORDS.length}-word bank every attempt.</p>
+  clearInterval(qTimer);$("#qbarfill").style.width="0%";const b=store.get("h0549-best",null);
+  $("#qzone").innerHTML=`<div class="q-intro"><h3>Fourteen questions. No two attempts alike.</h3>
+    <p>Meanings both ways, sentence completion, idioms, proverbs, gender, register, connectives and writing phrases — drawn fresh from the full ${ALLWORDS.length}-word bank every attempt.</p>
     ${b?`<span class="q-best">Personal best — <b>${b.score}/${b.total}</b> in ${b.time}</span>`:""}
     <br><button class="btn btn-solid" id="qstart">Start master quiz <svg><use href="#i-arrow"/></svg></button></div>`;
   $("#qstart").onclick=startQuiz;
 }
-function startQuiz(){Q=buildQuestions();Qi=0;qScore=0;qMissed=[];qStart=Date.now();qTimer=setInterval(()=>{const el=$("#qclock");if(el)el.textContent=fmtT(Date.now()-qStart);},500);showQ();}
+function startQuiz(){Q=buildQuestions();Qi=0;qScore=0;qMissed=[];qStart=Date.now();clearInterval(qTimer);qTimer=setInterval(()=>{const el=$("#qclock");if(el)el.textContent=fmtT(Date.now()-qStart);},500);showQ();}
 function showQ(){
   const q=Q[Qi];locked=false;
   $("#qbarfill").style.width=(Qi/Q.length*100)+"%";
-  qzone.innerHTML=`
+  $("#qzone").innerHTML=`
     <div class="qmeta"><span>Q ${Qi+1} / ${Q.length}</span><span class="cat">${q.cat}</span><span><span id="qclock">${fmtT(Date.now()-qStart)}</span> · ★ ${qScore}</span></div>
     <p class="qprompt">${q.blank?`Complete the sentence — <span class="blank">______</span><br><span class="hi" style="font-weight:500;font-size:.9em;color:var(--ink2)">${q.blankSent.replace("______","……")}</span>`:q.prompt}</p>
     <ul class="opts">${q.opts.map((o,i)=>`<li><button data-o="${esc(o)}"><span class="k">${String.fromCharCode(65+i)}</span><span class="hi">${o}</span></button></li>`).join("")}</ul>
@@ -1442,54 +1448,57 @@ function answer(q,btn){
   if(locked)return;locked=true;
   const ok=btn.dataset.o===q.ans;
   $$("#qzone .opts button").forEach(b=>{b.disabled=true;if(b.dataset.o===q.ans)b.classList.add("right");else if(b===btn)b.classList.add("wrong");});
-  if(!ok)qMissed.push(q);else qScore++;
+  ok?qScore++:qMissed.push(q);
   $("#qfeedslot").innerHTML=`<div class="qfeed ${ok?"":"bad"}"><svg><use href="#${ok?"i-check":"i-cross"}"/></svg><div><b>${ok?"Correct.":"Not quite."}</b> ${ok?"":"The answer is <b class='hi'>"+q.ans+"</b>. "}<span class="muted">${q.why}</span></div></div>`;
   $("#qnextrow").innerHTML=`<button class="btn btn-solid" id="qnext">${Qi<Q.length-1?"Next question":"See results"} <svg><use href="#i-arrow"/></svg></button>`;
   $("#qnext").onclick=()=>{Qi<Q.length-1?(Qi++,showQ()):showEnd();};
 }
 function showEnd(){
   clearInterval(qTimer);$("#qbarfill").style.width="100%";
-  const time=fmtT(Date.now()-qStart),pct=qScore/Q.length,b=best();
-  const newBest=(!b||qScore>b.score||(qScore===b.score&&time<b.time));
-  if(newBest)store.set("h0549-best",{score:qScore,total:Q.length,time});
-  const verdict=pct>=.9?"Outstanding — top-band vocabulary control."
-    :pct>=.7?"Very strong. Polish the missed ones and you're exam-ready."
-    :pct>=.5?"Solid base — revisit Writing Words and Grammar, then retry."
-    :"Early days. One theme a day with flashcards changes this fast.";
-  qzone.innerHTML=`<div class="q-end">
+  const time=fmtT(Date.now()-qStart),pct=qScore/Q.length,b=store.get("h0549-best",null);
+  const nb=(!b||qScore>b.score||(qScore===b.score&&time<b.time));
+  if(nb)store.set("h0549-best",{score:qScore,total:Q.length,time});
+  const verdict=pct>=.9?"Outstanding — top-band vocabulary control.":pct>=.7?"Very strong. Polish the missed ones and you're exam-ready.":pct>=.5?"Solid base — revisit Writing Words and Grammar, then retry.":"Early days. One theme a day with flashcards changes this fast.";
+  $("#qzone").innerHTML=`<div class="q-end">
     <p class="score">${qScore}<small>/${Q.length}</small></p>
-    <p class="timechip">finished in ${time}${newBest&&b?" · <b style='color:var(--acc-deep)'>new personal best!</b>":""}</p>
+    <p class="timechip">finished in ${time}${nb&&b?" · <b style='color:var(--acc-deep)'>new personal best!</b>":""}</p>
     <p class="verdict">${verdict}</p>
     ${qMissed.length?`<ol class="missed">${qMissed.map(m=>`<li><p class="mc">${m.cat}</p><p class="hi">${m.blank?m.blankSent:m.prompt.replace(/<[^>]*>/g,"")}</p><p>Answer — <span class="ma hi">${m.ans}</span></p></li>`).join("")}</ol>`:`<p style="margin-top:24px;color:var(--green);font-weight:600">A clean sweep — nothing missed.</p>`}
-    <div class="q-end-actions"><button class="btn btn-solid" id="qagain">New questions</button><button class="btn btn-ghost" id="qvocab">Back to vocabulary</button></div></div>`;
+    <div class="q-end-actions"><button class="btn btn-solid" id="qagain">New questions</button><button class="btn btn-ghost" data-goto="vocab">Back to vocabulary</button></div></div>`;
   $("#qagain").onclick=startQuiz;
-  $("#qvocab").onclick=()=>showTab("vocab");
 }
-quizIntro();
+RENDER.quiz=()=>{
+  $("#mcq-theme").innerHTML=`<option value="-1">All ${THEMES.length} banks (${ALLWORDS.length} words)</option>`+THEMES.map((t,i)=>`<option value="${i}">${t.name} (${t.w.length})</option>`).join("");
+  ["mcq-theme","mcq-dir","mcq-count"].forEach(id=>$("#"+id).addEventListener("change",mcqIntro));
+  mcqIntro();quizIntro();
+};
 
 /* ============ EXAM GUIDE ============ */
- $("#papers").innerHTML=PAPERS.map(p=>`<div class="paper"><p class="pnum">${p.n}</p><h3>${p.t}</h3><p>${p.d}</p><ul>${p.li.map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("");
 const tipKeys=Object.keys(TIPS);let curTip=0;
 function renderTips(){
   $("#tiptabs").innerHTML=tipKeys.map((k,i)=>`<button class="${i===curTip?"on":""}" data-i="${i}">${k}</button>`).join("");
   $$("#tiptabs button").forEach(b=>b.onclick=()=>{curTip=+b.dataset.i;renderTips();});
   $("#tiplist").innerHTML=TIPS[tipKeys[curTip]].map((t,i)=>`<li><span class="tno">${String(i+1).padStart(2,"0")}</span><div><b>${t[0]}</b><p>${t[1]}</p></div></li>`).join("");
 }
-renderTips();
- $("#mistakes").innerHTML=MISTAKES.map(m=>`<li><span class="mbox">✓</span><div class="mtxt"><b>${m[0]}</b><span>${m[1]}</span></div></li>`).join("");
- $$("#mistakes li").forEach(li=>li.onclick=()=>{li.classList.toggle("done");if($$("#mistakes li.done").length===MISTAKES.length)toast("Every red flag checked off. Go get that A*.");});
+RENDER.exam=()=>{
+  $("#papers").innerHTML=PAPERS.map(p=>`<div class="paper"><p class="pnum">${p.n}</p><h3>${p.t}</h3><p>${p.d}</p><ul>${p.li.map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("");
+  renderTips();
+  $("#mistakes").innerHTML=MISTAKES.map(m=>`<li><span class="mbox">✓</span><div class="mtxt"><b>${m[0]}</b><span>${m[1]}</span></div></li>`).join("");
+  $$("#mistakes li").forEach(li=>li.onclick=()=>{li.classList.toggle("done");if($$("#mistakes li.done").length===MISTAKES.length)toast("Every red flag checked off. Go get that A*.");});
+};
 
-/* ============ SEARCH PALETTE ============ */
-const pal=$("#pal");
-const INDEX=[
-  ...ALLWORDS.map(x=>({label:x.w[0],sub:`${x.w[3]}${x.w[2]?" — "+x.w[2]:""}`,cat:"word",go:()=>{curTheme=x.ti;store.set("h0549-theme-sel",curTheme);showTab("vocab");renderThemes();renderEntries();}})),
-  ...ALLPH.map(x=>({label:x.ph,sub:x.en,cat:"phrase",go:()=>{curCat=WWORDS.findIndex(c=>c.c===x.cat);renderPh();showTab("phrases");}})),
-  ...IDIOMS.map(x=>({label:x[0],sub:x[2],cat:"idiom",go:()=>showTab("idioms")})),
-  ...GLOSSARY.map(x=>({label:x[0],sub:x[1],cat:"glossary",go:()=>showTab("wordbank")})),
-  ...GRAMMAR.map(x=>({label:x.t,sub:x.s,cat:"grammar",go:()=>showTab("grammar")})),
-  ...FORMATS.map(x=>({label:x.t,sub:"Writing format",cat:"format",go:()=>{curFmt=FORMATS.indexOf(x);renderFmt();showTab("writing");}}))];
- $("#pal-count").textContent=INDEX.length.toLocaleString()+" entries";
-function openPal(){pal.classList.add("open");$("#palinput").value="";$("#palinput").focus();palSearch("");}
+/* ============ SEARCH PALETTE (index built on first open) ============ */
+const pal=$("#pal");let INDEX=null;
+function buildIndex(){
+  INDEX=[
+    ...ALLWORDS.map(x=>({label:x.w[0],sub:`${x.w[3]}${x.w[2]?" — "+x.w[2]:""}`,cat:"word",go:()=>{curTheme=x.ti;store.set("h0549-theme-sel",curTheme);showTab("vocab");if(!rendered.vocab){rendered.vocab=true;RENDER.vocab();}else{renderThemes();searchQ="";$("#vsearch").value="";refreshList();}}})),
+    ...ALLPH.map(x=>({label:x.ph,sub:x.en,cat:"phrase",go:()=>{curCat=WWORDS.findIndex(c=>c.c===x.cat);showTab("phrases");if(rendered.phrases)renderPh();}})),
+    ...IDIOMS.map(x=>({label:x[0],sub:x[2],cat:"idiom",go:()=>showTab("idioms")})),
+    ...GLOSSARY.map(x=>({label:x[0],sub:x[1],cat:"glossary",go:()=>showTab("wordbank")})),
+    ...GRAMMAR.map(x=>({label:x.t,sub:x.s,cat:"grammar",go:()=>showTab("grammar")})),
+    ...FORMATS.map(x=>({label:x.t,sub:"Writing format",cat:"format",go:()=>{curFmt=FORMATS.indexOf(x);showTab("writing");if(rendered.writing)renderFmt();}}))];
+}
+function openPal(){pal.classList.add("open");if(!INDEX)buildIndex();$("#palinput").value="";$("#palinput").focus();palSearch("");}
 function closePal(){pal.classList.remove("open");}
  $("#palbtn").onclick=openPal;
 pal.addEventListener("click",e=>{if(e.target===pal)closePal();});
@@ -1505,8 +1514,12 @@ function palSearch(q){
     :`<div class="pal-empty">No matches for "${q}".</div>`;
   $$("#palres .pr").forEach(b=>b.onclick=()=>{closePal();INDEX[+b.dataset.i].go();});
 }
- $("#palinput").addEventListener("input",e=>palSearch(e.target.value));
+ $("#palinput").addEventListener("input",debounce(e=>palSearch(e.target.value),120));
  $("#palinput").addEventListener("keydown",e=>{if(e.key==="Enter"){const f=$("#palres .pr");if(f){closePal();INDEX[+f.dataset.i].go();}}});
+
+/* boot: open the hashed tab or Home (only that section renders) */
+const h0=location.hash.slice(1);
+showTab(h0&&document.getElementById("sec-"+h0)?h0:"home");
 </script>
 </body>
 </html>
